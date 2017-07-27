@@ -1,3 +1,3 @@
 # tracking_things
 
-by Sammara - Bruno - Vinícius - Lucas
+by Sammara - Bruno - Vinícius
