@@ -15,6 +15,42 @@ public class Usuario {
 	public String toString() {
 		return this.nome + ", " + this.email + ", " + this.telefone;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getInfoUsuario(String nome, String email, String telefone) {
+		if (this.nome.equals(nome.toLowerCase()) && this.telefone.equals(telefone.toLowerCase())) {
+			return this.email;
+		}
+		return "Usuario não cadastrado";
+	}
+	
+	public void attDados(String nome, String telefone) {
+		setNome(nome);
+		setTelefone(telefone);
+	}
 	
 	@Override
 	public int hashCode() {
@@ -46,4 +82,5 @@ public class Usuario {
 			return false;
 		return true;
 	}
+
 }
