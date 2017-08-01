@@ -1,45 +1,56 @@
 package principal;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UsuarioController {
-	
-	private List<Usuario> usuarios;
+
+	private Map<String, Usuario> usuarios;
 
 	public UsuarioController() {
-		this.usuarios = new ArrayList<>();
+		this.usuarios = new HashMap<>();
 	}
-	
-	public String getInfoUsuario(String nome, String email, String telefone) {
-		return usuarios.get(buscaUsuario(nome, telefone)).getInfoUsuario(nome, email, telefone);
+
+	private String chaveMapa(String nome, String telefone) {
+		return nome.toLowerCase() + telefone.toLowerCase();
 	}
-	
-	private int buscaUsuario(String nome, String telefone) {
-		for (int i = 0; i < usuarios.size(); i++) {
-			if (usuarios.get(i).getNome().equals(nome.toLowerCase())) {
-				if (usuarios.get(i).getTelefone().equals(telefone.toLowerCase())) {
-					return i;
-				}
-			}
+
+	public String getInfoUsuario(String nome, String telefone, String atributo) {
+		if (usuarios.containsKey(chaveMapa(nome, telefone))) {
+			return usuarios.get(chaveMapa(nome, telefone)).getInfoUsuario(atributo);
 		}
-		return -1;
+		throw new IllegalArgumentException("Usuario invalido");
 	}
-	
-	public void cadastrarUsuario(String nome, String email, String telefone) {
-		usuarios.add(new Usuario(nome,email,telefone));
+
+	public void cadastrarUsuario(String nome, String telefone, String email) {
+		if (usuarios.containsKey(chaveMapa(nome, telefone))) {
+			throw new IllegalArgumentException("Usuario ja cadastrado");
+		}
+		usuarios.put(chaveMapa(nome, telefone), new Usuario(nome, telefone, email));
 	}
-	
-	public void removeUsuario(String nome, String telefone) {
-		usuarios.remove(buscaUsuario(nome, telefone));
+
+	public void removerUsuario(String nome, String telefone) {
+		if (!(usuarios.containsKey(chaveMapa(nome, telefone)))) {
+			throw new IllegalArgumentException("Usuario invalido");
+		}
+		usuarios.remove(chaveMapa(nome, telefone));
 	}
-	
-	public String pesquisaUsuario(String nome, String telefone) {
-		return usuarios.get(buscaUsuario(nome, telefone)).toString();
+
+	public String pesquisarUsuario(String nome, String telefone) {
+		return usuarios.get(chaveMapa(nome, telefone)).toString();
 	}
-	
-	public void attUsuario(String nome, String telefone) {
-		usuarios.get(buscaUsuario(nome, telefone)).attDados(nome, telefone);
+
+	private void atualizarChave(Usuario novo) {
+		usuarios.put(chaveMapa(novo.getNome(), novo.getTelefone()), novo);
+	}
+
+	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
+		if (!(usuarios.containsKey(chaveMapa(nome, telefone)))) {
+			throw new IllegalArgumentException("Usuario invalido");
+		}
+		usuarios.get(chaveMapa(nome, telefone)).atualizarDados(atributo, valor);
+		Usuario novo = usuarios.get(chaveMapa(nome, telefone));
+		usuarios.remove(chaveMapa(nome, telefone));
+		atualizarChave(novo);
 	}
 }

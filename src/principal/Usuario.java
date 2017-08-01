@@ -6,7 +6,7 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	
-	public Usuario(String nome, String email, String telefone) {
+	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
@@ -40,16 +40,26 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-	public String getInfoUsuario(String nome, String email, String telefone) {
-		if (this.nome.equals(nome.toLowerCase()) && this.telefone.equals(telefone.toLowerCase())) {
+	public String getInfoUsuario(String atributo) {
+		if ("email".equals(atributo.toLowerCase())) {
 			return this.email;
+		}
+		else if ("telefone".equals(atributo.toLowerCase())) {
+			return this.telefone;
+		}
+		else if ("nome".equals(atributo.toLowerCase())) {
+			return this.nome;
 		}
 		return "Usuario não cadastrado";
 	}
 	
-	public void attDados(String nome, String telefone) {
-		setNome(nome);
-		setTelefone(telefone);
+	public void atualizarDados(String atributo, String valor) {
+		if ("email".equals(atributo.toLowerCase())) {
+			setEmail(valor);
+		}
+		else if ("telefone".equals(atributo.toLowerCase())) {
+			setTelefone(valor);
+		}
 	}
 	
 	@Override

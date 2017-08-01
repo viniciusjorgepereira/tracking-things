@@ -1,6 +1,6 @@
 package principal;
 
-public enum ClassIndicativa {
+public enum ClassInd {
 
 	LIVRE("Livre"), 
 	DEZ_ANOS("10 Anos"), 
@@ -11,7 +11,7 @@ public enum ClassIndicativa {
 
 	private final String status;
 	
-	ClassIndicativa(String status) {
+	ClassInd(String status) {
 		this.status = status;
 	}
 
