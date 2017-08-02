@@ -28,16 +28,8 @@ public class Usuario {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getTelefone() {
 		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public String getInfoUsuario(String atributo) {
@@ -55,10 +47,10 @@ public class Usuario {
 	
 	public void atualizarDados(String atributo, String valor) {
 		if ("email".equals(atributo.toLowerCase())) {
-			setEmail(valor);
+			this.email = valor;
 		}
 		else if ("telefone".equals(atributo.toLowerCase())) {
-			setTelefone(valor);
+			this.telefone = valor;
 		}
 	}
 	

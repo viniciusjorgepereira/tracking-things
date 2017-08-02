@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class UsuarioController {
 
-	private Map<String, Usuario> usuarios;
+	private IdUsuario id;
+	private Map<IdUsuario, Usuario> usuarios;
 
 	public UsuarioController() {
 		this.usuarios = new HashMap<>();
@@ -16,41 +17,46 @@ public class UsuarioController {
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-		if (usuarios.containsKey(chaveMapa(nome, telefone))) {
-			return usuarios.get(chaveMapa(nome, telefone)).getInfoUsuario(atributo);
+		id = new IdUsuario(nome, telefone);
+		if (usuarios.containsKey(id)) {
+			return usuarios.get(id).getInfoUsuario(atributo);
 		}
 		throw new IllegalArgumentException("Usuario invalido");
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
-		if (usuarios.containsKey(chaveMapa(nome, telefone))) {
+		id = new IdUsuario(nome, telefone);
+		if (usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario ja cadastrado");
 		}
-		usuarios.put(chaveMapa(nome, telefone), new Usuario(nome, telefone, email));
+		usuarios.put(id, new Usuario(nome, telefone, email));
 	}
 
 	public void removerUsuario(String nome, String telefone) {
-		if (!(usuarios.containsKey(chaveMapa(nome, telefone)))) {
+		id = new IdUsuario(nome, telefone);
+		if (!(usuarios.containsKey(id))) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
-		usuarios.remove(chaveMapa(nome, telefone));
+		usuarios.remove(id);
 	}
 
 	public String pesquisarUsuario(String nome, String telefone) {
 		return usuarios.get(chaveMapa(nome, telefone)).toString();
 	}
 
-	private void atualizarChave(Usuario novo) {
-		usuarios.put(chaveMapa(novo.getNome(), novo.getTelefone()), novo);
+	private void atualizarChave(IdUsuario id) {
+		Usuario novo = usuarios.get(id);
+		usuarios.remove(id);
+		id = new IdUsuario(novo.getNome(), novo.getTelefone());
+		usuarios.put(id, novo);
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		if (!(usuarios.containsKey(chaveMapa(nome, telefone)))) {
+		id = new IdUsuario(nome, telefone);
+		if (!(usuarios.containsKey(id))) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
-		usuarios.get(chaveMapa(nome, telefone)).atualizarDados(atributo, valor);
-		Usuario novo = usuarios.get(chaveMapa(nome, telefone));
-		usuarios.remove(chaveMapa(nome, telefone));
-		atualizarChave(novo);
+		usuarios.get(id).atualizarDados(atributo, valor);
+		atualizarChave(id);
 	}
 }
