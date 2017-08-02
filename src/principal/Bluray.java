@@ -1,19 +1,40 @@
 package principal;
 
-public class Bluray {
-	
-	protected int preco;
+public abstract class Bluray {
+
+	protected String nome;
 	protected int duracao;
-	protected String titulo;
-	protected int anoLancamento;
+	protected double valor;
 	protected boolean emprestimo;
-	protected ClassInd classind;
 	
-	public Bluray(String titulo, int preco, int duracao, ClassInd classind, int lancamento) {
-		this.titulo = titulo;
-		this.preco = preco;
+	public Bluray(String nome, int duracao, double valor) {
+		this.nome = nome;
 		this.duracao = duracao;
-		this.classind = classind;
-		this.anoLancamento = lancamento;
+		this.valor = valor;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Bluray))
+			return false;
+		Bluray other = (Bluray) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 }
