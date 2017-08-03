@@ -1,12 +1,15 @@
 package principal;
 
+import itens.Inventario;
 import usuarios.UsuarioController;
 
 public class SystemController {
 	private UsuarioController usuarios;
+	private Inventario inventario;
 	
 	public SystemController() {
 		usuarios = new UsuarioController();
+		inventario = new Inventario();
 	}
 	
 	public void cadastrarUsuario(String nome, String telefone, String email) {
@@ -69,7 +72,7 @@ public class SystemController {
 	}
 
 	public String listarItensOrdenadosPorNome() {
-		return null;
+		return inventario.listarItensOrdenadosPorNome();
 	}
 
 	public String listarItensOrdenadosPorValor() {
