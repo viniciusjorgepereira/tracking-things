@@ -1,15 +1,22 @@
 package usuarios;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import itens.Bluray;
+
 public class Usuario {
 
 	private String nome;
 	private String email;
 	private String telefone;
+	private List<Bluray> itens;
 	
 	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
+		this.itens = new ArrayList<>();
 	}
 
 	public String toString() {
