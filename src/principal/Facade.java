@@ -6,7 +6,7 @@ public class Facade {
 		private SystemController system;
 		
 		public static void main(String[] args) {
-			args = new String[] { "principal.Facade", "testes_aceitacao/us1_test.txt" };
+			args = new String[] { "principal.Facade", "testes_aceitacao/us1_test.txt", "testes_aceitacao/us2_test.txt" };
 			EasyAccept.main(args);
 		}
 
@@ -40,8 +40,8 @@ public class Facade {
 			system.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 		}
 
-		public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-			system.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco, plataforma);
+		public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
+			system.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 		}
 		
 		public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {

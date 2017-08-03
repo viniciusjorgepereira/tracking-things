@@ -32,7 +32,7 @@ public class SystemController {
 		
 	}
 
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco, String plataforma) {
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		
 	}
 
@@ -42,17 +42,19 @@ public class SystemController {
 
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
+		usuarios.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
-			int nomeroFaixas, String artista, String classificacao) {
+			int numeroFaixas, String artista, String classificacao) {
+		usuarios.cadastrarBluRayShow(nome, telefone, nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) {
-		
+		usuarios.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
