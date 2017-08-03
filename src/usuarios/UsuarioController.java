@@ -51,7 +51,7 @@ public class UsuarioController {
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
-		usuarios.get(id).atualizarDados(atributo, valor);
+		usuarios.get(id).atualizarDadosUsuario(atributo, valor);
 		atualizarChave(id);
 	}
 }
