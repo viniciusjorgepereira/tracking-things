@@ -3,14 +3,17 @@ package usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
-import itens.Bluray;
+import itens.Filmes;
+import itens.Itens;
+import itens.Series;
+import itens.Shows;
 
 public class Usuario {
 
 	private String nome;
 	private String email;
 	private String telefone;
-	private List<Bluray> itens;
+	private List<Itens> itens;
 	
 	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
@@ -40,25 +43,38 @@ public class Usuario {
 	}
 
 	public String getInfoUsuario(String atributo) {
+		String saida = "";
 		if ("email".equals(atributo.toLowerCase())) {
-			return this.email;
+			saida += this.email;
 		}
 		else if ("telefone".equals(atributo.toLowerCase())) {
-			return this.telefone;
+			saida += this.telefone;
 		}
 		else if ("nome".equals(atributo.toLowerCase())) {
-			return this.nome;
+			saida += this.nome;
 		}
-		return "Usuario não cadastrado";
+		return saida;
 	}
 	
-	public void atualizarDados(String atributo, String valor) {
+	public void atualizarDadosUsuario(String atributo, String valor) {
 		if ("email".equals(atributo.toLowerCase())) {
 			this.email = valor;
 		}
 		else if ("telefone".equals(atributo.toLowerCase())) {
 			this.telefone = valor;
 		}
+	}
+
+	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classind) {
+		itens.add(new Filmes(nomeItem,preco,duracao,genero,lancamento));
+	}
+
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd, String genero, int temporada) {
+		itens.add(new Series(nomeItem,preco,duracao,descricao,classInd,genero,temporada));
+	}
+
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista, String classInd) {
+		itens.add(new Shows(nomeItem,preco,duracao,faixas,artista,classInd));
 	}
 	
 	@Override
