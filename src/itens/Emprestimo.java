@@ -1,4 +1,4 @@
-package principal;
+package itens;
 
 import java.util.Date;
 

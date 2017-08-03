@@ -1,4 +1,4 @@
-package principal;
+package itens;
 
 public enum ClassInd {
 
