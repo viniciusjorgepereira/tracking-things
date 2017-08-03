@@ -14,7 +14,7 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private List<Itens> itens;
-	
+
 	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
 		this.email = email;
@@ -46,36 +46,42 @@ public class Usuario {
 		String saida = "";
 		if ("email".equals(atributo.toLowerCase())) {
 			saida += this.email;
-		}
-		else if ("telefone".equals(atributo.toLowerCase())) {
+		} else if ("telefone".equals(atributo.toLowerCase())) {
 			saida += this.telefone;
-		}
-		else if ("nome".equals(atributo.toLowerCase())) {
+		} else if ("nome".equals(atributo.toLowerCase())) {
 			saida += this.nome;
 		}
 		return saida;
 	}
-	
+
 	public void atualizarDadosUsuario(String atributo, String valor) {
 		if ("email".equals(atributo.toLowerCase())) {
 			this.email = valor;
-		}
-		else if ("telefone".equals(atributo.toLowerCase())) {
+		} else if ("telefone".equals(atributo.toLowerCase())) {
 			this.telefone = valor;
 		}
 	}
 
-	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classind) {
-		itens.add(new Filmes(nomeItem,preco,duracao,genero,lancamento));
+	public void atualizarDadosItens(String atributo, String valor) {
+		
+	}
+	
+	
+	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero,
+			String classind) {
+		itens.add(new Filmes(nomeItem, preco, duracao, genero, lancamento));
 	}
 
-	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd, String genero, int temporada) {
-		itens.add(new Series(nomeItem,preco,duracao,descricao,classInd,genero,temporada));
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd,
+			String genero, int temporada) {
+		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
 
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista, String classInd) {
-		itens.add(new Shows(nomeItem,preco,duracao,faixas,artista,classInd));
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista,
+			String classInd) {
+		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
+
 	
 	@Override
 	public int hashCode() {

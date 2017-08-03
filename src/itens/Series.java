@@ -20,4 +20,5 @@ public class Series extends Bluray{
 		this.numTemporadas = temporada;
 		this.colecao = new ArrayList<>();
 	}	
+	
 }

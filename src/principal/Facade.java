@@ -15,7 +15,7 @@ public class Facade {
 		}
 		
 		/**
-		 * Caso de uso 1: CRUD dos usuários
+		 * Caso de uso 1: CRUD dos usuarios
 		 */
 		public void cadastrarUsuario(String nome, String telefone, String email) {
 			system.cadastrarUsuario(nome, telefone, email);
@@ -34,7 +34,7 @@ public class Facade {
 		}
 		
 		/**
-		 * Caso de uso 2: CRUD dos itens emprestáveis
+		 * Caso de uso 2: CRUD dos itens emprestaveis
 		 */
 		public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 			system.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
@@ -92,7 +92,7 @@ public class Facade {
 		}
 		
 		/**
-		 * Caso de uso 4: criação de empréstimos
+		 * Caso de uso 4: criacao de emprestimos
 		 */
 		public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 			system.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
