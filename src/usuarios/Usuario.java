@@ -76,13 +76,16 @@ public class Usuario {
 			String genero, int temporada) {
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
-
+	
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista,
 			String classInd) {
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
-
 	
+	public List<Itens> getItens() {
+		return itens;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

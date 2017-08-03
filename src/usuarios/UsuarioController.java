@@ -15,10 +15,6 @@ public class UsuarioController {
 		this.excecoes = new ExcecoesUsuario();
 	}
 
-	private String chaveMapa(String nome, String telefone) {
-		return nome.toLowerCase() + telefone.toLowerCase();
-	}
-
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
@@ -38,7 +34,8 @@ public class UsuarioController {
 	}
 
 	public String pesquisarUsuario(String nome, String telefone) {
-		return usuarios.get(chaveMapa(nome, telefone)).toString();
+		IdUsuario id = new IdUsuario(nome, telefone);
+		return usuarios.get(id).toString();
 	}
 
 	private void atualizarChave(IdUsuario id) {
@@ -53,5 +50,23 @@ public class UsuarioController {
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).atualizarDadosUsuario(atributo, valor);
 		atualizarChave(id);
+	}
+
+	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
+			String genero, String classificacao, int anoLancamento) {
+		IdUsuario id = new IdUsuario(nome, telefone);
+		usuarios.get(id).cadastrarBlurayFilme(nomeItem, preco, duracao, anoLancamento, genero, classificacao);			
+	}
+
+	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
+			int numeroFaixas, String artista, String classificacao) {
+		IdUsuario id = new IdUsuario(nome, telefone);
+		usuarios.get(id).cadastrarBlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
+	}
+	
+	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
+			int duracao, String classificacao, String genero, int temporada) {
+		IdUsuario id = new IdUsuario(nome, telefone);
+		usuarios.get(id).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 }
