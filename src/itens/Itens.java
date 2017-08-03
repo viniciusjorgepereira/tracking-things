@@ -2,10 +2,10 @@ package itens;
 
 public abstract class Itens {
 	protected String nome;
-	protected double valor;
+	protected double preco;
 	
-	public Itens(String nome, double valor) {
+	public Itens(String nome, double preco) {
 		this.nome = nome;
-		this.valor = valor;
+		this.preco = preco;
 	}
 }
