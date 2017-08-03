@@ -1,16 +1,13 @@
 package itens;
 
-public abstract class Bluray {
+public abstract class Bluray extends Itens {
 
-	protected String nome;
 	protected int duracao;
-	protected double valor;
 	protected boolean emprestimo;
 	
 	public Bluray(String nome, int duracao, double valor) {
-		this.nome = nome;
+		super(nome, valor);
 		this.duracao = duracao;
-		this.valor = valor;
 	}
 
 	@Override
