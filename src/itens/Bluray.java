@@ -5,11 +5,22 @@ public abstract class Bluray extends Itens {
 	protected int duracao;
 	protected boolean emprestimo;
 	
-	public Bluray(String nome, int duracao, double valor) {
-		super(nome, valor);
+	public Bluray(String nome, double preco, int duracao) {
+		super(nome, preco);
 		this.duracao = duracao;
 	}
 
+	public String getInfoBluray(String atributo) {
+		String saida = "";
+		if ("nome".equals(atributo.toLowerCase())) {
+			saida += this.nome;
+		}
+		else if ("preco".equals(atributo.toLowerCase())) {
+			saida += String.valueOf(this.preco);
+		}
+		return saida;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
