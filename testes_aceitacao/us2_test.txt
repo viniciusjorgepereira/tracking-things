@@ -15,7 +15,7 @@ expect "70.0" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="War" atrib
 
 adicionarPecaPerdida nome="Joao" telefone="98888-8888" nomeItem="War" nomePeca="Dado"
 
-stacktrace cadastrarBluRayFilme nome="Maria" telefone="96666-6666" nomeItem="Crepusculo" preco=1.99 duracao=120 genero="ROMANCE" classificacao="QUATORZE_ANOS" anoLancamento=2008
+cadastrarBluRayFilme nome="Maria" telefone="96666-6666" nomeItem="Crepusculo" preco=1.99 duracao=120 genero="ROMANCE" classificacao="QUATORZE_ANOS" anoLancamento=2008
 expect "1.99" getInfoItem nome="Maria" telefone="96666-6666" nomeItem="Crepusculo" atributo="Preco"
 
 cadastrarBluRayShow nome="Maria" telefone="96666-6666" nomeItem="RBD Ao Vivo" preco=19.99 duracao=60 numeroFaixas=20 artista="REBELDES" classificacao="DOZE_ANOS"
