@@ -10,8 +10,11 @@ public class Facade {
 			EasyAccept.main(args);
 		}
 
+		public Facade() {
+			system = new SystemController();			
+		}
+		
 		public void iniciarSistema() {
-			system = new SystemController();
 		}
 		
 		/**
