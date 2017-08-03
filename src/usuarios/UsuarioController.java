@@ -44,8 +44,8 @@ public class UsuarioController {
 	private void atualizarChave(IdUsuario id) {
 		Usuario novo = usuarios.get(id);
 		usuarios.remove(id);
-		id = new IdUsuario(novo.getNome(), novo.getTelefone());
-		usuarios.put(id, novo);
+		IdUsuario novoId = new IdUsuario(novo.getNome(), novo.getTelefone());
+		usuarios.put(novoId, novo);
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
