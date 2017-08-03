@@ -1,6 +1,7 @@
 package principal;
 
 import easyaccept.EasyAccept;
+import usuarios.*;
 
 public class FacadeTestUS1 {
 	
