@@ -1,10 +1,13 @@
 package usuarios;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import itens.ExcecoesItens;
 import itens.Filmes;
 import itens.Itens;
+import itens.JogoEletronico;
+import itens.JogoTabuleiro;
 import itens.Series;
 import itens.Shows;
 
@@ -13,19 +16,17 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String telefone;
-	private List<Itens> itens;
+	private Set<Itens> itens;
+	private ExcecoesItens excecoesItens;
 
 	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
-		this.itens = new ArrayList<>();
+		this.itens = new HashSet<>();
+		this.excecoesItens = new ExcecoesItens();
 	}
-
-	public String toString() {
-		return this.nome + ", " + this.email + ", " + this.telefone;
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -42,49 +43,94 @@ public class Usuario {
 		return telefone;
 	}
 
-	public String getInfoUsuario(String atributo) {
-		String saida = "";
-		if ("email".equals(atributo.toLowerCase())) {
-			saida += this.email;
-		} else if ("telefone".equals(atributo.toLowerCase())) {
-			saida += this.telefone;
-		} else if ("nome".equals(atributo.toLowerCase())) {
-			saida += this.nome;
+	public Set<Itens> getTodosItens() {
+		return itens;
+	}
+
+	public Itens getItem(String nome) {
+		for (Itens item : itens) {
+			if (item.getNome().equals(nome)) {
+				return item;
+			}
 		}
-		return saida;
+		excecoesItens.itemNotFound();
+		return null;
+	}
+	
+	public String getDetalhesItem(String nome) {
+		return getItem(nome).toString();
+	}
+	
+	public String getInfoUsuario(String atributo) {
+		if ("email".equals(atributo.toLowerCase())) {
+			return this.email;
+			
+		} else if ("telefone".equals(atributo.toLowerCase())) {
+			return this.telefone;
+			
+		} else if ("nome".equals(atributo.toLowerCase())) {
+			return this.nome;
+		}
+		return "";
 	}
 
 	public void atualizarDadosUsuario(String atributo, String valor) {
 		if ("email".equals(atributo.toLowerCase())) {
 			this.email = valor;
+			
 		} else if ("telefone".equals(atributo.toLowerCase())) {
 			this.telefone = valor;
 		}
 	}
 
-	public void atualizarDadosItens(String atributo, String valor) {
+	public void atualizarDadosItens(String nomeItem, String atributo, String valor) {
+		if (atributo.equals("Nome")) {
+			getItem(nomeItem).setNome(valor);
+			
+		} else if (atributo.equals("Preco")) {
+			double preco = Double.parseDouble(valor);
+			excecoesItens.precoInvalido(preco);
+			getItem(nomeItem).setPreco(preco);
+		}
 		
 	}
 	
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
+		excecoesItens.precoInvalido(preco);
+		itens.add(new JogoEletronico(nomeItem, preco, plataforma));
+	}
+	
+	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
+		excecoesItens.precoInvalido(preco);
+		itens.add(new JogoTabuleiro(nomeItem, preco));
+	}
+	
+	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
+		Itens item = getItem(nomeItem); 
+		if (item instanceof JogoTabuleiro) {
+			JogoTabuleiro jogoTabuleiro = (JogoTabuleiro) item;
+			jogoTabuleiro.adicionarPecaPerdida(nomePeca);
+		}
+	}
 	
 	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero,
 			String classind) {
-		itens.add(new Filmes(nomeItem, preco, duracao, genero, lancamento));
+		excecoesItens.precoInvalido(preco);
+		itens.add(new Filmes(nomeItem, preco, duracao, classind, genero, lancamento));
 	}
 
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd,
 			String genero, int temporada) {
+		excecoesItens.precoInvalido(preco);
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
 	
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista,
 			String classInd) {
+		excecoesItens.precoInvalido(preco);
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
 	
-	public List<Itens> getItens() {
-		return itens;
-	}
 
 	@Override
 	public int hashCode() {
@@ -115,6 +161,20 @@ public class Usuario {
 		} else if (!telefone.equals(other.telefone))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.nome + ", " + this.email + ", " + this.telefone;
+	}
+
+	public String getInfoItem(String nomeItem, String atributo) {
+		return getItem(nomeItem).getAtributo(atributo);
+	}
+	
+	public void removerItem(String nomeItem) {
+		Itens item = getItem(nomeItem);
+		itens.remove(item);
 	}
 
 }

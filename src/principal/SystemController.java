@@ -29,15 +29,15 @@ public class SystemController {
 	}
 	
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-		
+		usuarios.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		
+		usuarios.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		
+		usuarios.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
 	}
 
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
@@ -56,33 +56,40 @@ public class SystemController {
 			int duracao, String classificacao, String genero, int temporada) {
 		usuarios.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
+	
+	public void adicionaItensInventario() {
+		inventario.adicionaItens(usuarios.getTodosItens());
+	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
-		
+		usuarios.removerItem(nome, telefone, nomeItem);
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
+		usuarios.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 		
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		return null;
+		return usuarios.getInfoItem(nome, telefone, nomeItem, atributo);
 	}
 
 	public String listarItensOrdenadosPorNome() {
+		adicionaItensInventario();
 		return inventario.listarItensOrdenadosPorNome();
 	}
 
 	public String listarItensOrdenadosPorValor() {
-		return null;
+		adicionaItensInventario();
+		return inventario.listarItensOrdenadosPorValor();
 	}
 
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		return null;
+		return usuarios.detalhesItem(nome, telefone, nomeItem);
 	}
 	
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,

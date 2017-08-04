@@ -3,11 +3,12 @@ package itens;
 public abstract class Bluray extends Itens {
 
 	protected int duracao;
-	protected boolean emprestimo;
+	protected String classInd;
 	
-	public Bluray(String nome, double preco, int duracao) {
+	public Bluray(String nome, double preco, int duracao, String classInd) {
 		super(nome, preco);
 		this.duracao = duracao;
+		this.classInd = classInd;
 	}
 
 	public String getInfoBluray(String atributo) {

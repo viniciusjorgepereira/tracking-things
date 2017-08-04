@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Series extends Bluray{
-
-	private int duracao;
+	
 	private String genero;
-	private String classInd;
 	private String descricao;
 	private int numTemporadas;
 	private List<Bluray> colecao;
 	
 	public Series(String nome, double preco, int duracao, String descricao, String classificacao, String genero, int temporada) {
-		super(nome, preco, duracao);
+		super(nome, preco, duracao, classificacao);
 		this.genero = genero;
 		this.descricao = descricao;
-		this.classInd = classificacao;
 		this.numTemporadas = temporada;
 		this.colecao = new ArrayList<>();
 	}
@@ -47,5 +44,11 @@ public class Series extends Bluray{
 		if (numTemporadas != other.numTemporadas)
 			return false;
 		return true;
-	}		
+	}
+	
+	@Override
+	public String toString() {
+		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatus() + ", " + duracao + 
+				" min, " + classInd + ", " + genero + ", Temporada " + numTemporadas;
+	}
 }
