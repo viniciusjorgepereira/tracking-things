@@ -74,6 +74,15 @@ public class Usuario {
 		return "";
 	}
 
+	public String getInfoItem(String nomeItem, String atributo) {
+		return getItem(nomeItem).getAtributo(atributo);
+	}
+	
+	public void removerItem(String nomeItem) {
+		Itens item = getItem(nomeItem);
+		itens.remove(item);
+	}
+	
 	public void atualizarDadosUsuario(String atributo, String valor) {
 		if ("email".equals(atributo.toLowerCase())) {
 			this.email = valor;
@@ -168,13 +177,5 @@ public class Usuario {
 		return this.nome + ", " + this.email + ", " + this.telefone;
 	}
 
-	public String getInfoItem(String nomeItem, String atributo) {
-		return getItem(nomeItem).getAtributo(atributo);
-	}
-	
-	public void removerItem(String nomeItem) {
-		Itens item = getItem(nomeItem);
-		itens.remove(item);
-	}
 
 }

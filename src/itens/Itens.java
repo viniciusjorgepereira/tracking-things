@@ -1,6 +1,6 @@
 package itens;
 
-import java.text.DecimalFormat;   
+import java.text.DecimalFormat;
 
 public abstract class Itens {
 	protected String nome;
@@ -54,6 +54,5 @@ public abstract class Itens {
 		}
 		
 		return "";
-	}
-
+	}	
 }
