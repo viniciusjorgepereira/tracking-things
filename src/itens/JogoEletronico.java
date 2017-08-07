@@ -42,7 +42,7 @@ public class JogoEletronico extends Itens {
 	@Override
 	public String toString() {
 		return "JOGO ELETRONICO: " + this.nome + ", R$ " + super.getPrecoString() + ", " +
-				super.getStatus() + ", " + this.plataforma;
+				super.getStatusString() + ", " + this.plataforma;
 	}
 	
 	

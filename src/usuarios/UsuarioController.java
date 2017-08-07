@@ -11,6 +11,7 @@ public class UsuarioController {
 
 	private ExcecoesUsuario excecoes;
 	private Map<IdUsuario, Usuario> usuarios;
+	
 
 	public UsuarioController() {
 		this.usuarios = new HashMap<>();
@@ -128,5 +129,32 @@ public class UsuarioController {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
+	}
+
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
+		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		
+		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
+		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
+		
+		usuarios.get(idDono).emprestar(nomeDono, nomeRequerente, nomeItem, dataEmprestimo, periodo);
+		usuarios.get(idRequerente).receberEmprestimo(nomeDono, nomeRequerente, nomeItem, dataEmprestimo, periodo);
+		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
+	}
+
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
+			String nomeItem, String dataEmprestimo, String dataDevolucao) {
+		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
+		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		
+		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
+		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
+		
+		usuarios.get(idDono).devolverItem(nomeRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idRequerente).devolverItem(nomeRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "false");
+
 	}
 }

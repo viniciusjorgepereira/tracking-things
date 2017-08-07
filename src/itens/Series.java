@@ -48,7 +48,7 @@ public class Series extends Bluray{
 	
 	@Override
 	public String toString() {
-		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatus() + ", " + duracao + 
+		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
 				" min, " + classInd + ", " + genero + ", Temporada " + numTemporadas;
 	}
 }

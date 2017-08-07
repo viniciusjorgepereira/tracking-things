@@ -5,11 +5,24 @@ public class IdUsuario {
 	private String nome;
 	private String telefone;
 	
+
 	public IdUsuario(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

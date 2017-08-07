@@ -3,6 +3,8 @@ package usuarios;
 import java.util.HashSet;
 import java.util.Set;
 
+import emprestimo.Emprestimo;
+import emprestimo.ExcecoesEmprestimo;
 import itens.ExcecoesItens;
 import itens.Filmes;
 import itens.Itens;
@@ -17,14 +19,18 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private Set<Itens> itens;
+	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
+	private ExcecoesEmprestimo excecoesEmprestimo;
 
 	public Usuario(String nome, String telefone, String email) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.itens = new HashSet<>();
+		this.emprestimos = new HashSet<>();
 		this.excecoesItens = new ExcecoesItens();
+		this.excecoesEmprestimo = new ExcecoesEmprestimo();
 	}
 	
 	public String getNome() {
@@ -100,6 +106,11 @@ public class Usuario {
 			double preco = Double.parseDouble(valor);
 			excecoesItens.precoInvalido(preco);
 			getItem(nomeItem).setPreco(preco);
+			
+		} else if (atributo.equals("Status")) {
+			boolean status = Boolean.parseBoolean(valor);
+			getItem(nomeItem).setStatus(status);
+			
 		}
 		
 	}
@@ -140,7 +151,35 @@ public class Usuario {
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
 	
-
+	public void emprestar(String nomeDono, String nomeRequerente, String nomeItem, String dataEmprestimo,
+			int periodo) {
+		excecoesItens.statusItem(getItem(nomeItem).getStatus());
+		emprestimos.add(new Emprestimo(nomeDono, nomeRequerente, dataEmprestimo, nomeItem, periodo));
+	}
+	
+	public void receberEmprestimo(String nomeDono, String nomeRequerente, String nomeItem, String dataEmprestimo,
+			int periodo) {
+		emprestimos.add(new Emprestimo(nomeDono, nomeRequerente, dataEmprestimo, nomeItem, periodo));
+	}
+	
+	public Emprestimo encontraEmprestimo(String nomeRequerente, String nomeItem, String dataEmprestimo) {
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().equals(nomeRequerente) && emprestimo.getNomeItem().equals(nomeItem)
+					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo)) {
+				return emprestimo;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void devolverItem(String nomeRequerente, String nomeItem, String dataEmprestimo,
+			String dataDevolucao) {
+		Emprestimo emprestimo = encontraEmprestimo(nomeRequerente, nomeItem, dataEmprestimo);
+		excecoesEmprestimo.emprestimoInvalido(emprestimo);
+		emprestimo.devolucao(dataDevolucao);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
