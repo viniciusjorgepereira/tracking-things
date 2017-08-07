@@ -1,23 +1,31 @@
 package emprestimo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import usuarios.IdUsuario;
 
 public class Emprestimo {
 	private IdUsuario dono;
 	private IdUsuario requerente;
-	private String dataEmprestimo;
+	private LocalDate dataEmprestimo;
 	private String nomeItem;
 	private int dias;
-	private String dataDevolucao;
+	private LocalDate dataDevolucao;
+	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 
 	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, String item, int dias) {
 		this.dono = dono;
 		this.requerente = requerente;
-		this.dataEmprestimo = dataEmprestimo;
+		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);;
 		this.nomeItem = item;
 		this.dias = dias;
-		this.dataDevolucao = "Emprestimo em andamento";
+	}
+	
+	public void setDataEmprestimo(String data) {
+		dataEmprestimo = LocalDate.parse(data, formato);
 	}
 	
 	public IdUsuario getDono() {
@@ -29,7 +37,8 @@ public class Emprestimo {
 	}
 	
 	public String getDataEmprestimo() {
-		return dataEmprestimo;
+		String data = formato.format(dataEmprestimo);
+		return data;
 	}
 	
 	public String getNomeItem() {
@@ -41,10 +50,21 @@ public class Emprestimo {
 	}
 	
 	public String getDataDevolucao() {
-		return dataDevolucao;
+		if (dataDevolucao != null) {
+			String data = formato.format(dataDevolucao);
+			return data;
+		}
+		return "Emprestimo em andamento";
 	}
+	
 	public void devolucao(String dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
+		this.dataDevolucao = LocalDate.parse(dataDevolucao, formato);
+	}
+	
+	public int atraso() {
+		int atraso = (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS);
+		
+		return atraso;
 	}
 
 	@Override
@@ -97,7 +117,7 @@ public class Emprestimo {
 	@Override
 	public String toString() {
 		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + nomeItem + 
-				", " + dataEmprestimo + ", " + dias + " dias, ENTREGA: " + dataDevolucao;
+				", " + getDataEmprestimo() + ", " + dias + " dias, ENTREGA: " + getDataDevolucao();
 	}
 
 	
