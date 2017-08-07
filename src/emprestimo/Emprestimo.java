@@ -1,29 +1,31 @@
 package emprestimo;
 
+import usuarios.IdUsuario;
+
 public class Emprestimo {
-	private String nomeDono;
-	private String nomeRequerente;
+	private IdUsuario dono;
+	private IdUsuario requerente;
 	private String dataEmprestimo;
 	private String nomeItem;
 	private int dias;
 	private String dataDevolucao;
 	
 
-	public Emprestimo(String nomeDono, String nomeRequerente, String dataEmprestimo, String item, int dias) {
-		this.nomeDono = nomeDono;
-		this.nomeRequerente = nomeRequerente;
+	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, String item, int dias) {
+		this.dono = dono;
+		this.requerente = requerente;
 		this.dataEmprestimo = dataEmprestimo;
 		this.nomeItem = item;
 		this.dias = dias;
 		this.dataDevolucao = "Emprestimo em andamento";
 	}
 	
-	public String getDono() {
-		return nomeDono;
+	public IdUsuario getDono() {
+		return dono;
 	}
 	
-	public String getRequerente() {
-		return nomeRequerente;
+	public IdUsuario getRequerente() {
+		return requerente;
 	}
 	
 	public String getDataEmprestimo() {
@@ -41,7 +43,6 @@ public class Emprestimo {
 	public String getDataDevolucao() {
 		return dataDevolucao;
 	}
-
 	public void devolucao(String dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
@@ -50,8 +51,8 @@ public class Emprestimo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nomeDono == null) ? 0 : nomeDono.hashCode());
-		result = prime * result + ((nomeRequerente == null) ? 0 : nomeRequerente.hashCode());
+		result = prime * result + ((dono == null) ? 0 : dono.hashCode());
+		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
 		result = prime * result + ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
 		return result;
@@ -68,15 +69,15 @@ public class Emprestimo {
 		if (getClass() != obj.getClass())
 			return false;
 		Emprestimo other = (Emprestimo) obj;
-		if (nomeDono == null) {
-			if (other.nomeDono != null)
+		if (dono == null) {
+			if (other.dono != null)
 				return false;
-		} else if (!nomeDono.equals(other.nomeDono))
+		} else if (!dono.equals(other.dono))
 			return false;
-		if (nomeRequerente == null) {
-			if (other.nomeRequerente != null)
+		if (requerente == null) {
+			if (other.requerente != null)
 				return false;
-		} else if (!nomeRequerente.equals(other.nomeRequerente))
+		} else if (!requerente.equals(other.requerente))
 			return false;
 		if (dataEmprestimo == null) {
 			if (other.dataEmprestimo != null)
@@ -95,7 +96,7 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		return "EMPRESTIMO - De: " + nomeDono + ", Para: " + nomeRequerente + ", " + nomeItem + 
+		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + nomeItem + 
 				", " + dataEmprestimo + ", " + dias + " dias, ENTREGA: " + dataDevolucao;
 	}
 

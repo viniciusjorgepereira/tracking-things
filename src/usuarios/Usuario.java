@@ -151,20 +151,20 @@ public class Usuario {
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
 	
-	public void emprestar(String nomeDono, String nomeRequerente, String nomeItem, String dataEmprestimo,
+	public void emprestar(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo,
 			int periodo) {
 		excecoesItens.statusItem(getItem(nomeItem).getStatus());
-		emprestimos.add(new Emprestimo(nomeDono, nomeRequerente, dataEmprestimo, nomeItem, periodo));
+		emprestimos.add(new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo));
 	}
 	
-	public void receberEmprestimo(String nomeDono, String nomeRequerente, String nomeItem, String dataEmprestimo,
+	public void receberEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo,
 			int periodo) {
-		emprestimos.add(new Emprestimo(nomeDono, nomeRequerente, dataEmprestimo, nomeItem, periodo));
+		emprestimos.add(new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo));
 	}
 	
-	public Emprestimo encontraEmprestimo(String nomeRequerente, String nomeItem, String dataEmprestimo) {
+	public Emprestimo encontraEmprestimo(IdUsuario requerente, String nomeItem, String dataEmprestimo) {
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getRequerente().equals(nomeRequerente) && emprestimo.getNomeItem().equals(nomeItem)
+			if (emprestimo.getRequerente().equals(requerente) && emprestimo.getNomeItem().equals(nomeItem)
 					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo)) {
 				return emprestimo;
 			}
@@ -173,9 +173,9 @@ public class Usuario {
 		return null;
 	}
 	
-	public void devolverItem(String nomeRequerente, String nomeItem, String dataEmprestimo,
+	public void devolverItem(IdUsuario requerente, String nomeItem, String dataEmprestimo,
 			String dataDevolucao) {
-		Emprestimo emprestimo = encontraEmprestimo(nomeRequerente, nomeItem, dataEmprestimo);
+		Emprestimo emprestimo = encontraEmprestimo(requerente, nomeItem, dataEmprestimo);
 		excecoesEmprestimo.emprestimoInvalido(emprestimo);
 		emprestimo.devolucao(dataDevolucao);
 	}

@@ -139,8 +139,8 @@ public class UsuarioController {
 		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
 		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
 		
-		usuarios.get(idDono).emprestar(nomeDono, nomeRequerente, nomeItem, dataEmprestimo, periodo);
-		usuarios.get(idRequerente).receberEmprestimo(nomeDono, nomeRequerente, nomeItem, dataEmprestimo, periodo);
+		usuarios.get(idDono).emprestar(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		usuarios.get(idRequerente).receberEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
 	}
 
@@ -152,9 +152,12 @@ public class UsuarioController {
 		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
 		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
 		
-		usuarios.get(idDono).devolverItem(nomeRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idRequerente).devolverItem(nomeRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idDono).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idRequerente).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "false");
-
+		
+		
+		
+		
 	}
 }
