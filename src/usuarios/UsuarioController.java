@@ -218,6 +218,11 @@ public class UsuarioController {
 		usuarios.get(id).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 	
+	/**
+	 * Retorna um array com todos os itens
+	 * 
+	 * @return Retorna um array com todos os itens
+	 * */
 	public ArrayList<Itens> getTodosItens() {
 		ArrayList<Itens> itens = new ArrayList<>();
 		
@@ -228,6 +233,15 @@ public class UsuarioController {
 		return itens;
 	}
 
+	/**
+	 * Invoca o método que traz detalhes sobre o Item em forma de String
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * 
+	 * @return Retorna uma String com os detalhes do item
+	 * */
 	public String detalhesItem(String nome, String telefone, String nomeItem) {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
@@ -235,6 +249,16 @@ public class UsuarioController {
 		
 	}
 
+	/**
+	 * Invoca o método que recupera um atributo em forma de String
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * @param atributo Atributo a ser buscado
+	 * 
+	 * @return Retorna um atributo desejado em forma de string
+	 * */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
@@ -242,14 +266,33 @@ public class UsuarioController {
 		
 	}
 
+	/**
+	 * Atualiza um atributo do item
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituirá o antigo
+	 * */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
 	}
 
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+	/**
+	 * Registra empréstimos
+	 * 
+	 * @param nomeDono Nome do dono
+	 * @param telefoneDono Telefone do dono
+	 * @param nomeRequerente Nome da pessoa que pega emprestado
+	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param nomeItem Nome do item
+	 * @param dataEmprestimo Representa a data do empréstimo
+	 * @param periodo Representa o período do empréstimo em dias
+	 * */
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
 		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
 		
@@ -261,8 +304,18 @@ public class UsuarioController {
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
 	}
 
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) {
+	/**
+	 * Registra devoluções de itens no sistema
+	 * 
+	 * @param nomeDono Nome do dono
+	 * @param telefoneDono Telefone do dono
+	 * @param nomeRequerente Nome da pessoa que pega emprestado
+	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param nomeItem Nome do item
+	 * @param dataEmprestimo Representa a data do empréstimo
+	 * @param dataDevolucao Representa a data de devolução do item
+	 * */
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
 		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
 		
