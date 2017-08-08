@@ -27,7 +27,6 @@ public class Inventario {
 	
 	public String listarItensOrdenadosPorNome() {
 		ordenaNome();
-		
 		return listaItensString();
 	}
 	
@@ -38,12 +37,9 @@ public class Inventario {
 	
 	public String listaItensString() {
 		String saida = "";
-		
 		for (Itens iten : itensOrdenados) {
 			saida += iten.toString() + "|";
 		} 
-		
 		return saida;
 	}
-	
 }
