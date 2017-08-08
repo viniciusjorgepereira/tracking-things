@@ -62,6 +62,7 @@ public class SystemController {
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
+		usuarios.cadastrarBlurayTemporada(nome, telefone, nomeBlurayTemporada, duracao);
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {

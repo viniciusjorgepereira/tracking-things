@@ -217,6 +217,12 @@ public class UsuarioController {
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
+
+	public void cadastrarBlurayTemporada(String nome, String telefone, String nomeTemporada, int duracao) {
+		IdUsuario id = new IdUsuario(nome, telefone);
+		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		usuarios.get(id).cadastrarBlurayTemporada(nomeTemporada,duracao);
+	}
 	
 	/**
 	 * Retorna um array com todos os itens
@@ -225,11 +231,9 @@ public class UsuarioController {
 	 * */
 	public ArrayList<Itens> getTodosItens() {
 		ArrayList<Itens> itens = new ArrayList<>();
-		
 		for (Usuario usuario : usuarios.values()) {
 			itens.addAll(usuario.getTodosItens());
 		}
-		
 		return itens;
 	}
 
@@ -246,7 +250,6 @@ public class UsuarioController {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getDetalhesItem(nomeItem);
-		
 	}
 
 	/**
@@ -263,7 +266,6 @@ public class UsuarioController {
 		IdUsuario id = new IdUsuario(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getInfoItem(nomeItem, atributo);
-		
 	}
 
 	/**

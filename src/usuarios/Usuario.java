@@ -169,10 +169,8 @@ public class Usuario {
 			
 		} else if (atributo.equals("Status")) {
 			boolean status = Boolean.parseBoolean(valor);
-			getItem(nomeItem).setStatus(status);
-			
+			getItem(nomeItem).setStatus(status);	
 		}
-		
 	}
 	
 	/**
@@ -243,6 +241,14 @@ public class Usuario {
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
 	
+	public void cadastrarBlurayTemporada(String nome, int duracao) {
+		Itens item = getItem(nome);
+		if (item instanceof Series) {
+			Series temporada = (Series) item;
+			temporada.adicionarTemporada(duracao);			
+		}
+	}
+	
 	/**
 	 * Adiciona um show em BluRay a lista de itens do usuário
 	 * 
@@ -299,7 +305,6 @@ public class Usuario {
 				return emprestimo;
 			}
 		}
-		
 		return null;
 	}
 	
