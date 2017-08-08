@@ -43,9 +43,7 @@ public abstract class Itens {
 
 	public String getPrecoString() {
 		DecimalFormat df = new DecimalFormat("0.0#");
-		String valor = df.format(preco).replace(",", ".");
-		
-		return valor;
+		return df.format(preco).replace(",", ".");
 	}
 
 	public String getAtributo(String atributo) {
@@ -58,7 +56,6 @@ public abstract class Itens {
 		} else if (atributo.equals("Emprestimo")) {
 			return getStatusString();
 		}
-		
 		return "";
 	}	
 }

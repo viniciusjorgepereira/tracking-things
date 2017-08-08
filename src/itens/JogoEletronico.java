@@ -44,7 +44,4 @@ public class JogoEletronico extends Itens {
 		return "JOGO ELETRONICO: " + this.nome + ", R$ " + super.getPrecoString() + ", " +
 				super.getStatusString() + ", " + this.plataforma;
 	}
-	
-	
-	
 }
