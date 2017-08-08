@@ -14,7 +14,7 @@ public class Series extends Bluray{
 		super(nome, preco, duracao, classificacao);
 		this.descricao = descricao;
 		this.numTemporadas = temporada;
-		this.genero = Genero.valueOf(genero);
+		this.genero = Genero.valueOf(genero.toUpperCase());
 	}
 
 	public void adicionarTemporada(int duracao) {
@@ -52,6 +52,6 @@ public class Series extends Bluray{
 	@Override
 	public String toString() {
 		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
-				" min, " + classInd + ", " + genero.getValor() + ", Temporada " + numTemporadas;
+				" min, " + classind.getValor() + ", " + genero.getValor() + ", Temporada " + numTemporadas;
 	}
 }

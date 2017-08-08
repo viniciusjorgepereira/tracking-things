@@ -14,6 +14,6 @@ public class Shows extends Bluray{
 	@Override
 	public String toString() {
 		return "SHOW: "+ nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
-				" min, " + classInd + ", " + artista + ", " + faixas + " faixas";
+				" min, " + classind.getValor() + ", " + artista + ", " + faixas + " faixas";
 	}
 }

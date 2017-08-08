@@ -14,6 +14,6 @@ public class Filmes extends Bluray{
 	@Override
 	public String toString() {
 		return "FILME: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao +
-				" min, " + classInd + ", " + genero + ", " + lancamento;
+				" min, " + classind.getValor() + ", " + genero + ", " + lancamento;
 	}
 }
