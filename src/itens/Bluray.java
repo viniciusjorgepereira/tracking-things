@@ -1,3 +1,9 @@
+/**
+ * Classe abstrata que serve de base para a construção de BluRay's
+ * 
+ * Herda atributos da classe Itens
+ * */
+
 package itens;
 
 public abstract class Bluray extends Itens {
@@ -5,12 +11,27 @@ public abstract class Bluray extends Itens {
 	protected int duracao;
 	protected String classInd;
 	
+	/**
+	 * Constroi um objeto do tipo BluRay
+	 * 
+	 * @param nome Nome do Item
+	 * @param preco Preço do Item
+	 * @param duracao Representa a duração do BluRay
+	 * @param classInd Representa a classificação indicativa do BluRay
+	 * */
 	public Bluray(String nome, double preco, int duracao, String classInd) {
 		super(nome, preco);
 		this.duracao = duracao;
 		this.classInd = classInd;
 	}
 
+	/**
+	 * Resgata atributos do BluRay
+	 * 
+	 * @param atributo Representa o atributo a ser resgatado
+	 * 
+	 * @return Retorna o atributo buscado em forma de String
+	 * */
 	public String getInfoBluray(String atributo) {
 		String saida = "";
 		if ("nome".equals(atributo.toLowerCase())) {
