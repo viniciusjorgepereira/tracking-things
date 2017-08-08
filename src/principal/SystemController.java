@@ -62,7 +62,6 @@ public class SystemController {
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
-		
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
@@ -71,7 +70,6 @@ public class SystemController {
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		usuarios.atualizarItem(nome, telefone, nomeItem, atributo, valor);
-		
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
@@ -95,18 +93,12 @@ public class SystemController {
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		usuarios.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente,
-				telefoneRequerente, nomeItem, dataEmprestimo, periodo);
-		
+				telefoneRequerente, nomeItem, dataEmprestimo, periodo);	
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente,
 				nomeItem, dataEmprestimo, dataDevolucao);
-		
 	}
-	
-
-
-
 }
