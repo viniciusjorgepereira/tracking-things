@@ -10,16 +10,13 @@ public class IdUsuario {
 	private String nome;
 	private String telefone;
 	
-<<<<<<< HEAD
 	/**
 	 * Constrói uma ID para o usuário
 	 * 
 	 * @param nome Indica o nome do usuário
 	 * @param telefone Indica o telefone do usuário
 	 * */
-=======
 
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
 	public IdUsuario(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;

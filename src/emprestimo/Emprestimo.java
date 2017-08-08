@@ -9,28 +9,22 @@ import usuarios.IdUsuario;
 public class Emprestimo {
 	private IdUsuario dono;
 	private IdUsuario requerente;
-<<<<<<< HEAD
-	private Date dataEmprestimo;
-=======
 	private LocalDate dataEmprestimo;
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
 	private String nomeItem;
 	private int dias;
 	private LocalDate dataDevolucao;
 	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
-<<<<<<< HEAD
-	public Emprestimo(IdUsuario dono, IdUsuario requerente, Date dataEmprestimo, String item, int dias) {
+	public Emprestimo(IdUsuario dono, IdUsuario requerente, LocalDate dataEmprestimo, String item, int dias) {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.dataEmprestimo = dataEmprestimo;
-=======
+	}
 
 	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, String item, int dias) {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);;
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
 		this.nomeItem = item;
 		this.dias = dias;
 	}
@@ -85,13 +79,11 @@ public class Emprestimo {
 		result = prime * result + ((dono == null) ? 0 : dono.hashCode());
 		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
 		result = prime * result + ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
-<<<<<<< HEAD
+
 		result = prime * result + ((dono == null) ? 0 : dono.hashCode());
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
 		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
-=======
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
 		return result;
 	}
 
@@ -121,27 +113,22 @@ public class Emprestimo {
 				return false;
 		} else if (!dataEmprestimo.equals(other.dataEmprestimo))
 			return false;
-<<<<<<< HEAD
 		if (dono == null) {
 			if (other.dono != null)
 				return false;
 		} else if (!dono.equals(other.dono))
 			return false;
-=======
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
 		if (nomeItem == null) {
 			if (other.nomeItem != null)
 				return false;
 		} else if (!nomeItem.equals(other.nomeItem))
 			return false;
-<<<<<<< HEAD
 		if (requerente == null) {
 			if (other.requerente != null)
 				return false;
 		} else if (!requerente.equals(other.requerente))
 			return false;
-=======
->>>>>>> 280a61c00f81f140157613a33f40fc033cfa1563
+
 		return true;
 	}
 
