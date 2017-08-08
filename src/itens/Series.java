@@ -5,19 +5,22 @@ import java.util.List;
 
 public class Series extends Bluray{
 	
+	private int episodios;
 	private String genero;
 	private String descricao;
 	private int numTemporadas;
-	private List<Bluray> colecao;
 	
 	public Series(String nome, double preco, int duracao, String descricao, String classificacao, String genero, int temporada) {
 		super(nome, preco, duracao, classificacao);
 		this.genero = genero;
 		this.descricao = descricao;
 		this.numTemporadas = temporada;
-		this.colecao = new ArrayList<>();
 	}
 
+	public void adicionarTemporada(int duracao) {
+		this.episodios += 1;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
