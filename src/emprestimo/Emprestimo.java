@@ -4,15 +4,15 @@ import java.util.Date;
 import usuarios.IdUsuario;
 
 public class Emprestimo {
-	private IdUsuario nomeDono;
-	private IdUsuario nomeRequerente;
+	private IdUsuario dono;
+	private IdUsuario requerente;
 	private Date dataEmprestimo;
 	private String nomeItem;
 	private int dias;
 	
-	public Emprestimo(IdUsuario nomeDono, IdUsuario nomeRequerente, Date dataEmprestimo, String item, int dias) {
-		this.nomeDono = nomeDono;
-		this.nomeRequerente = nomeRequerente;
+	public Emprestimo(IdUsuario dono, IdUsuario requerente, Date dataEmprestimo, String item, int dias) {
+		this.dono = dono;
+		this.requerente = requerente;
 		this.dataEmprestimo = dataEmprestimo;
 		this.nomeItem = item;
 		this.dias = dias;
@@ -23,9 +23,9 @@ public class Emprestimo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
-		result = prime * result + ((nomeDono == null) ? 0 : nomeDono.hashCode());
+		result = prime * result + ((dono == null) ? 0 : dono.hashCode());
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
-		result = prime * result + ((nomeRequerente == null) ? 0 : nomeRequerente.hashCode());
+		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
 		return result;
 	}
 
@@ -43,20 +43,20 @@ public class Emprestimo {
 				return false;
 		} else if (!dataEmprestimo.equals(other.dataEmprestimo))
 			return false;
-		if (nomeDono == null) {
-			if (other.nomeDono != null)
+		if (dono == null) {
+			if (other.dono != null)
 				return false;
-		} else if (!nomeDono.equals(other.nomeDono))
+		} else if (!dono.equals(other.dono))
 			return false;
 		if (nomeItem == null) {
 			if (other.nomeItem != null)
 				return false;
 		} else if (!nomeItem.equals(other.nomeItem))
 			return false;
-		if (nomeRequerente == null) {
-			if (other.nomeRequerente != null)
+		if (requerente == null) {
+			if (other.requerente != null)
 				return false;
-		} else if (!nomeRequerente.equals(other.nomeRequerente))
+		} else if (!requerente.equals(other.requerente))
 			return false;
 		return true;
 	}
