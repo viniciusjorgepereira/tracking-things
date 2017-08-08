@@ -56,6 +56,6 @@ public class JogoTabuleiro extends Itens {
 	@Override
 	public String toString() {
 		return "JOGO DE TABULEIRO: " + nome + ", R$ " + super.getPrecoString() + 
-				", " + super.getStatus() + ", " + statusPecas();
+				", " + super.getStatusString() + ", " + statusPecas();
 	}
 }

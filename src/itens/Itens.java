@@ -29,8 +29,11 @@ public abstract class Itens {
 		return preco;
 	}
 	
+	public boolean getStatus() {
+		return status;
+	}
 	
-	public String getStatus() {
+	public String getStatusString() {
 		return status == true ? "Emprestado" : "Nao emprestado";
 	}
 	
@@ -51,6 +54,9 @@ public abstract class Itens {
 			
 		} else if (atributo.equals("Nome")) {
 			return nome;
+			
+		} else if (atributo.equals("Emprestimo")) {
+			return getStatusString();
 		}
 		
 		return "";
