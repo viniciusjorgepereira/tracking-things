@@ -1,3 +1,7 @@
+/**
+ * Classe que Gerencia o sistema
+ * */
+
 package principal;
 
 import itens.Inventario;
@@ -7,31 +11,82 @@ public class SystemController {
 	private UsuarioController usuarios;
 	private Inventario inventario;
 	
+	/**
+	 * Constroi o Gerenciador do Sistema, gerando um controlador de
+	 * usuários e o inventário
+	 * */
 	public SystemController() {
 		usuarios = new UsuarioController();
 		inventario = new Inventario();
 	}
 	
+	/**
+	 * Invoca método de cadastrar usuários
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * @param email Representa o email do usuário
+	 * */
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		usuarios.cadastrarUsuario(nome, telefone, email);
 	}
 
+	/**
+	 * Invoca método para remover usuário
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * */
 	public void removerUsuario(String nome, String telefone) {
 		usuarios.removerUsuario(nome, telefone);
 	}
 	
+	/**
+	 * Invoca método para resgatar atributos do usuário
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * @param atributo Representa atributo a ser resgatado
+	 * 
+	 * @return Retorna em forma de String o atributo desejado
+	 * */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		return usuarios.getInfoUsuario(nome, telefone, atributo);
 	}
 
+	/**
+	 * Atualiza dados do usuário
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * @param atributo Representa o atributo a ser alterado
+	 * @param valor Valor que substituirá o antigo
+	 * */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		usuarios.atualizarUsuario(nome, telefone, atributo, valor);
 	}
 	
+	/**
+	 * Cadastra jogo eletrônico
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * @param nomeItem Representa o nome do jogo eletrônico
+	 * @param preco Representa o preço do item
+	 * @param plataforma Representa a plataforma que o jogo funciona
+	 * */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		usuarios.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
+	/**
+	 * Cadastra jogo de tabuleiro
+	 * 
+	 * @param nome Representa o nome do usuário
+	 * @param telefone Representa o telefone do usuário
+	 * @param nomeItem Representa o nome do jogo de tabuleiro
+	 * @param preco Representa o preço do item
+	 * */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		usuarios.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
