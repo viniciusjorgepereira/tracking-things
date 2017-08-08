@@ -272,9 +272,5 @@ public class UsuarioController {
 		usuarios.get(idDono).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idRequerente).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "false");
-		
-		
-		
-		
 	}
 }

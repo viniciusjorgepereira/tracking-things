@@ -7,5 +7,4 @@ public class ExcecoesEmprestimo {
 			throw new IllegalArgumentException("Emprestimo nao encontrado");
 		}
 	}
-	
 }
