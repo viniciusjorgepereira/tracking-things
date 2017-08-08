@@ -6,15 +6,15 @@ import java.util.List;
 public class Series extends Bluray{
 	
 	private int episodios;
-	private String genero;
+	private Genero genero;
 	private String descricao;
 	private int numTemporadas;
 	
 	public Series(String nome, double preco, int duracao, String descricao, String classificacao, String genero, int temporada) {
 		super(nome, preco, duracao, classificacao);
-		this.genero = genero;
 		this.descricao = descricao;
 		this.numTemporadas = temporada;
+		this.genero = Genero.valueOf(genero);
 	}
 
 	public void adicionarTemporada(int duracao) {
@@ -52,6 +52,6 @@ public class Series extends Bluray{
 	@Override
 	public String toString() {
 		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
-				" min, " + classInd + ", " + genero + ", Temporada " + numTemporadas;
+				" min, " + classInd + ", " + genero.getValor() + ", Temporada " + numTemporadas;
 	}
 }
