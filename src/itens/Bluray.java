@@ -6,7 +6,7 @@
 
 package itens;
 
-public abstract class Bluray extends Itens {
+public abstract class Bluray extends Item {
 
 	protected int duracao;
 	protected ClassificacaoIndicativa classind;

@@ -1,6 +1,6 @@
 package itens;
 
-public class JogoEletronico extends Itens {
+public class JogoEletronico extends Item {
 	private String plataforma;
 
 	public JogoEletronico(String nome, Double preco, String plataforma) {

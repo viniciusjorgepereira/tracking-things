@@ -11,7 +11,7 @@ import emprestimo.Emprestimo;
 import emprestimo.ExcecoesEmprestimo;
 import itens.ExcecoesItens;
 import itens.Filmes;
-import itens.Itens;
+import itens.Item;
 import itens.JogoEletronico;
 import itens.JogoTabuleiro;
 import itens.Series;
@@ -22,7 +22,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String telefone;
-	private Set<Itens> itens;
+	private Set<Item> itens;
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
 	private ExcecoesEmprestimo excecoesEmprestimo;
@@ -62,7 +62,7 @@ public class Usuario {
 		return telefone;
 	}
 
-	public Set<Itens> getTodosItens() {
+	public Set<Item> getTodosItens() {
 		return itens;
 	}
 
@@ -73,8 +73,8 @@ public class Usuario {
 	 * 
 	 * @return O item desejado
 	 * */
-	public Itens getItem(String nome) {
-		for (Itens item : itens) {
+	public Item getItem(String nome) {
+		for (Item item : itens) {
 			if (item.getNome().equals(nome)) {
 				return item;
 			}
@@ -132,7 +132,7 @@ public class Usuario {
 	 * @param nomeItem Representa o nome do item
 	 * */
 	public void removerItem(String nomeItem) {
-		Itens item = getItem(nomeItem);
+		Item item = getItem(nomeItem);
 		itens.remove(item);
 	}
 	
@@ -203,7 +203,7 @@ public class Usuario {
 	 * @param nomePeca Nome da peça perdida
 	 * */
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
-		Itens item = getItem(nomeItem); 
+		Item item = getItem(nomeItem); 
 		if (item instanceof JogoTabuleiro) {
 			JogoTabuleiro jogoTabuleiro = (JogoTabuleiro) item;
 			jogoTabuleiro.adicionarPecaPerdida(nomePeca);
@@ -242,7 +242,7 @@ public class Usuario {
 	}
 	
 	public void cadastrarBlurayTemporada(String nome, int duracao) {
-		Itens item = getItem(nome);
+		Item item = getItem(nome);
 		if (item instanceof Series) {
 			Series temporada = (Series) item;
 			temporada.adicionarTemporada(duracao);			

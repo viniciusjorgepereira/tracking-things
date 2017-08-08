@@ -3,7 +3,7 @@ package itens;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JogoTabuleiro extends Itens {
+public class JogoTabuleiro extends Item {
 	private List<String> pecasPerdidas;
 	
 	public JogoTabuleiro(String nome, double preco) {

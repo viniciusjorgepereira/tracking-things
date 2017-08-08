@@ -6,13 +6,13 @@ import java.util.List;
 
 
 public class Inventario {
-	private List<Itens> itensOrdenados;
+	private List<Item> itensOrdenados;
 	
 	public Inventario() {
 		itensOrdenados = new ArrayList<>();
 	}
 
-	public void adicionaItens(ArrayList<Itens> todosItens) {
+	public void adicionaItens(ArrayList<Item> todosItens) {
 		itensOrdenados.clear();
 		itensOrdenados.addAll(todosItens);
 	}
@@ -37,7 +37,7 @@ public class Inventario {
 	
 	public String listaItensString() {
 		String saida = "";
-		for (Itens iten : itensOrdenados) {
+		for (Item iten : itensOrdenados) {
 			saida += iten.toString() + "|";
 		} 
 		return saida;
