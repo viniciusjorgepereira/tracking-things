@@ -2,10 +2,10 @@ package itens;
 
 import java.util.Comparator;
 
-public class OrdenaPorValorComparator implements Comparator<Itens> {
+public class OrdenaPorValorComparator implements Comparator<Item> {
 
 	@Override
-	public int compare(Itens iten1, Itens iten2) {
+	public int compare(Item iten1, Item iten2) {
 		return (int) ((iten1.preco - iten2.preco) * 100);
 	}
 }

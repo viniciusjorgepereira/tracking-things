@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import itens.Itens;
+import itens.Item;
 import usuarios.IdUsuario;
 
 public class UsuarioController2 {
@@ -223,8 +223,8 @@ public class UsuarioController2 {
 		usuarios.get(id).cadastrarBlurayTemporada(nomeTemporada,duracao);
 	}
 	
-	public ArrayList<Itens> getTodosItens() {
-		ArrayList<Itens> itens = new ArrayList<>();
+	public ArrayList<Item> getTodosItens() {
+		ArrayList<Item> itens = new ArrayList<>();
 		for (Usuario usuario : usuarios.values()) {
 			itens.addAll(usuario.getTodosItens());
 		}

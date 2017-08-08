@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import itens.Itens;
+import itens.Item;
 import usuarios.IdUsuario;
 
 public class UsuarioController {
@@ -229,8 +229,8 @@ public class UsuarioController {
 	 * 
 	 * @return Retorna um array com todos os itens
 	 * */
-	public ArrayList<Itens> getTodosItens() {
-		ArrayList<Itens> itens = new ArrayList<>();
+	public ArrayList<Item> getTodosItens() {
+		ArrayList<Item> itens = new ArrayList<>();
 		for (Usuario usuario : usuarios.values()) {
 			itens.addAll(usuario.getTodosItens());
 		}

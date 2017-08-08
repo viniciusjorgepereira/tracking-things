@@ -2,12 +2,12 @@ package itens;
 
 import java.text.DecimalFormat;
 
-public abstract class Itens {
+public abstract class Item {
 	protected String nome;
 	protected double preco;
 	protected boolean status;
 	
-	public Itens(String nome, double preco) {
+	public Item(String nome, double preco) {
 		this.nome = nome;
 		this.preco = preco;
 		this.status = false;
@@ -47,15 +47,16 @@ public abstract class Itens {
 	}
 
 	public String getAtributo(String atributo) {
-		if (atributo.equals("Preco")) {
-			return getPrecoString();
-			
-		} else if (atributo.equals("Nome")) {
-			return nome;
-			
-		} else if (atributo.equals("Emprestimo")) {
-			return getStatusString();
+		String saida = "";
+		if ("preco".equals(atributo.toLowerCase())) {
+			saida += getPrecoString();			
 		}
-		return "";
+		else if ("nome".equals(atributo.toLowerCase())) {
+			saida += this.nome;			
+		}
+		else if ("emprestimo".equals(atributo.toLowerCase())) {
+			saida += getStatusString();			
+		}
+		return saida;
 	}	
 }
