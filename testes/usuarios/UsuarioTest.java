@@ -8,18 +8,34 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import emprestimo.Emprestimo;
 import itens.Item;
 import itens.Series;
 
 public class UsuarioTest {
 
 	private Usuario novo;
+	private Usuario outroUsuario;
+	private IdUsuario novoId;
+	private IdUsuario outroUsuarioId;
 
 	@Before
 	public void inicializa() {
 		novo = new Usuario("Vinicius", "4002-8922", "vinicius@ccc.com");
+		outroUsuario = new Usuario("Jorge", "3321-3321", "jorge@ccc.ufcg.com");
+		
+		novoId = new IdUsuario(novo.getNome(), novo.getTelefone());
+		outroUsuarioId = new IdUsuario(outroUsuario.getNome(), outroUsuario.getTelefone());
+		
 		novo.cadastrarBlurayFilme("Animais Fantasticos", 49.99, 120, 2016, "AVENTURA", "QUATORZE_ANOS");
 		novo.cadastrarBluraySerie("The Flash", 89.99, "Primeira temporada", 240, "QUATORZE_ANOS", "POLICIAL", 1);
+		novo.cadastrarBlurayShow("James Bay Ao Vivo", 29.99, 138, 14, "James Bay", "livre");
+		
+		novo.cadastrarEletronico("GTA V", 89.99, "XboX");
+		novo.cadastrarEletronico("Harry Potter Lego Years 1-4", 39.99, "PS4");
+		
+		novo.cadastrarJogoTabuleiro("Monopoly", 49.99);
+		novo.cadastrarJogoTabuleiro("Xadrez de Bruxo", 99.99);
 	}
 
 	@Test
@@ -70,64 +86,48 @@ public class UsuarioTest {
 		novo.getItem("The Flash");
 	}
 
+	@Test
 	public void testAtualizarDadosUsuario() {
-		fail("Not yet implemented");
+		novo.atualizarDadosUsuario("email", "vinicius@ccc.ufcg.com");
+		assertEquals("vinicius@ccc.ufcg.com", novo.getEmail());
 	}
 
+	@Test
 	public void testAtualizarDadosItens() {
-		fail("Not yet implemented");
+		novo.atualizarDadosItens("Animais Fantasticos", "preco", "39.99");
+		assertEquals("39.99", novo.getInfoItem("Animais Fantasticos", "preco"));
 	}
 
-	public void testCadastrarEletronico() {
-		fail("Not yet implemented");
-	}
-
-	public void testCadastrarJogoTabuleiro() {
-		fail("Not yet implemented");
-	}
-
+	@Test
 	public void testAdicionarPecaPerdida() {
-		fail("Not yet implemented");
+		novo.adicionarPecaPerdida("Xadrez de Bruxo", "Rainha ma");
+		assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COM PECAS PERDIDAS", novo.getDetalhesItem("Xadrez de Bruxo"));
 	}
 
-	public void testCadastrarBlurayFilme() {
-		fail("Not yet implemented");
-	}
-
-	public void testCadastrarBluraySerie() {
-		fail("Not yet implemented");
-	}
-
-	public void testCadastrarBlurayTemporada() {
-		fail("Not yet implemented");
-	}
-
-	public void testCadastrarBlurayShow() {
-		fail("Not yet implemented");
-	}
-
+	@Test
 	public void testEmprestar() {
-		fail("Not yet implemented");
+		novo.emprestar(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
+		//assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COMPLETO", novo.getDetalhesItem("Xadrez de Bruxo"));
 	}
 
+	@Test
 	public void testReceberEmprestimo() {
-		fail("Not yet implemented");
+		novo.receberEmprestimo(novoId, outroUsuarioId, "Monopoly", "08/08/2017", 4);
 	}
 
+	@Test
 	public void testEncontraEmprestimo() {
-		fail("Not yet implemented");
+		//novo.emprestar(novoId, outroUsuarioId, "Monopoly", "03/08/2011", 6);
+		//novo.encontraEmprestimo(outroUsuarioId, "Monopoly", "03/08/2017");
 	}
 
+	@Test
 	public void testDevolverItem() {
-		fail("Not yet implemented");
+		//novo.devolverItem(outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
 	}
 
-	public void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
+	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		assertEquals("Vinicius, vinicius@ccc.com, 4002-8922", novo.toString());
 	}
-
 }

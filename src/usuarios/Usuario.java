@@ -159,17 +159,17 @@ public class Usuario {
 	 * @param valor Valor que substituirá o antigo
 	 * */
 	public void atualizarDadosItens(String nomeItem, String atributo, String valor) {
-		if (atributo.equals("Nome")) {
-			getItem(nomeItem).setNome(valor);
-			
-		} else if (atributo.equals("Preco")) {
+		if ("nome".equals(atributo.toLowerCase())) {
+			getItem(nomeItem).setNome(valor);			
+		}
+		else if ("preco".equals(atributo.toLowerCase())) {
 			double preco = Double.parseDouble(valor);
 			excecoesItens.precoInvalido(preco);
-			getItem(nomeItem).setPreco(preco);
-			
-		} else if (atributo.equals("Status")) {
+			getItem(nomeItem).setPreco(preco);			
+		}
+		else if ("status".equals(atributo.toLowerCase())) {
 			boolean status = Boolean.parseBoolean(valor);
-			getItem(nomeItem).setStatus(status);	
+			getItem(nomeItem).setStatus(status);				
 		}
 	}
 	
