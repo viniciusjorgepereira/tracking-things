@@ -304,9 +304,7 @@ public class UsuarioController {
 		
 		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
 		
-		usuarios.get(idDono).registrarEmprestimo(emprestimo);
 		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
-		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
 	}
 
 	/**

@@ -110,14 +110,12 @@ public class UsuarioTest {
 	@Test
 	public void testRegistrarEmprestimo() {
 		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
-		novo.registrarEmprestimo(emprestimo);
 		outroUsuario.registrarEmprestimo(emprestimo);
 	}
 
 	@Test
 	public void testEncontraEmprestimo() {
 		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
-		novo.registrarEmprestimo(emprestimo);
 		outroUsuario.registrarEmprestimo(emprestimo);
 		assertEquals(emprestimo, novo.encontraEmprestimo(outroUsuarioId, "Monopoly", "03/08/2017"));
 	}
@@ -130,7 +128,6 @@ public class UsuarioTest {
 	@Test
 	public void testDevolverItem2() {
 		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
-		novo.registrarEmprestimo(emprestimo);
 		outroUsuario.registrarEmprestimo(emprestimo);
 		novo.devolverItem(outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
 	}

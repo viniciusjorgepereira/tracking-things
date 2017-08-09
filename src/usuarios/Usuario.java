@@ -270,8 +270,11 @@ public class Usuario {
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
 		Item item = getItem(nomeItem);
 		excecoesItens.statusItem(item.getStatus());
+		atualizarDadosItens(nomeItem, "Status", "true");
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
+		registrarEmprestimo(emprestimo);
 		
-		return new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo);
+		return emprestimo;
 	}
 	
 	/**

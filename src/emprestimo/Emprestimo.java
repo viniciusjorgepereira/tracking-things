@@ -4,28 +4,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+import itens.Item;
 import usuarios.IdUsuario;
 
 public class Emprestimo {
 	
-	private int dias;
-	private String nomeItem;
+	private Item item;
 	private IdUsuario dono;
 	private IdUsuario requerente;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
+	private int dias;
 	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	
-	public Emprestimo(IdUsuario dono, IdUsuario requerente, LocalDate dataEmprestimo, String item, int dias) {
-		this.dono = dono;
-		this.requerente = requerente;
-		this.dataEmprestimo = dataEmprestimo;
-	}
 
-	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, String item, int dias) {
+	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, Item item, int dias) {
 		this.dias = dias;
 		this.dono = dono;
-		this.nomeItem = item;
+		this.item = item;
 		this.requerente = requerente;
 		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);;
 	}
@@ -47,7 +42,7 @@ public class Emprestimo {
 	}
 	
 	public String getNomeItem() {
-		return nomeItem;
+		return item.getNome();
 	}
 	
 	public int getDias() {
@@ -69,7 +64,7 @@ public class Emprestimo {
 	 * Metodo que verifica os dias de atraso
 	 * @return Retorna a quantidade de dias em atraso
 	 */
-	public int atraso() {
+	public int getAtraso() {
 		return (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS);
 	}
 
@@ -82,9 +77,9 @@ public class Emprestimo {
 		result = prime * result + ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
 
 		result = prime * result + ((dono == null) ? 0 : dono.hashCode());
-		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
 		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
-		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
 		return result;
 	}
 
@@ -117,10 +112,10 @@ public class Emprestimo {
 				return false;
 		} else if (!dono.equals(other.dono))
 			return false;
-		if (nomeItem == null) {
-			if (other.nomeItem != null)
+		if (item == null) {
+			if (other.item != null)
 				return false;
-		} else if (!nomeItem.equals(other.nomeItem))
+		} else if (!item.equals(other.item))
 			return false;
 		if (requerente == null) {
 			if (other.requerente != null)
@@ -133,7 +128,7 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + nomeItem + 
+		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + item.getNome() + 
 				", " + getDataEmprestimo() + ", " + dias + " dias, ENTREGA: " + getDataDevolucao();
 	}
 }

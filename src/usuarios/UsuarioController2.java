@@ -247,7 +247,7 @@ public class UsuarioController2 {
 	 * @return Retorna uma String com os detalhes do item
 	 * */
 	public String detalhesItem(String nome, String telefone, String nomeItem) {
-		IdUsuario id = new IdUsuario(nome, telefone);
+		IdUsuario id = pesquisaId(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getDetalhesItem(nomeItem);
 	}
@@ -263,7 +263,7 @@ public class UsuarioController2 {
 	 * @return Retorna um atributo desejado em forma de string
 	 * */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		IdUsuario id = new IdUsuario(nome, telefone);
+		IdUsuario id = pesquisaId(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getInfoItem(nomeItem, atributo);
 	}
@@ -278,7 +278,7 @@ public class UsuarioController2 {
 	 * @param valor Valor que substituirá o antigo
 	 * */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		IdUsuario id = new IdUsuario(nome, telefone);
+		IdUsuario id = pesquisaId(nome, telefone);
 		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
 	}
@@ -295,8 +295,8 @@ public class UsuarioController2 {
 	 * @param periodo Representa o período do empréstimo em dias
 	 * */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
-		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
 		
 		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
 		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
@@ -320,8 +320,8 @@ public class UsuarioController2 {
 	 * @param dataDevolucao Representa a data de devolução do item
 	 * */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
-		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
 		
 		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
 		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
