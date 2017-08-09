@@ -164,7 +164,6 @@ public class Usuario {
 		}
 		else if ("preco".equals(atributo.toLowerCase())) {
 			double preco = Double.parseDouble(valor);
-			excecoesItens.precoInvalido(preco);
 			getItem(nomeItem).setPreco(preco);			
 		}
 		else if ("status".equals(atributo.toLowerCase())) {
@@ -181,7 +180,6 @@ public class Usuario {
 	 * @param plataforma Representa a plataforma que o jogo funciona
 	 * */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
-		excecoesItens.precoInvalido(preco);
 		itens.add(new JogoEletronico(nomeItem, preco, plataforma));
 	}
 	
@@ -192,7 +190,6 @@ public class Usuario {
 	 * @param preco Representa o preço do item
 	 * */
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
-		excecoesItens.precoInvalido(preco);
 		itens.add(new JogoTabuleiro(nomeItem, preco));
 	}
 	
@@ -221,7 +218,6 @@ public class Usuario {
 	 * @param classInd Representa a classificação indicativa do filme
 	 * */
 	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classind) {
-		excecoesItens.precoInvalido(preco);
 		itens.add(new Filmes(nomeItem, preco, duracao, classind, genero, lancamento));
 	}
 
@@ -237,7 +233,6 @@ public class Usuario {
 	 * @param temporada Representa qual a temporada da sére
 	 * */
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd, String genero, int temporada) {
-		excecoesItens.precoInvalido(preco);
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
 	
@@ -260,7 +255,6 @@ public class Usuario {
 	 * @param classInd Representa a classificação indicativa do show
 	 * */
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista, String classInd) {
-		excecoesItens.precoInvalido(preco);
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
 	}
 	

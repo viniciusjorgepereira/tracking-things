@@ -83,7 +83,7 @@ public class SystemController {
 	 * */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		excecoes.dadosInvalidos(nome, telefone, nomeItem, plataforma, "Nome do Item", "Plataforma");
-		excecoes.numeroInvalido("Preço", preco);
+		excecoes.numeroInvalido("Preco", preco);
 		usuarios.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
@@ -97,7 +97,7 @@ public class SystemController {
 	 * */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		excecoes.dadosInvalidos(nome, telefone, nomeItem, "Nome do item");
-		excecoes.numeroInvalido("Preço", preco);
+		excecoes.numeroInvalido("Preco", preco);
 		usuarios.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 
@@ -109,7 +109,7 @@ public class SystemController {
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
 		excecoes.dadosInvalidos(nomeItem, telefone, nomeItem, genero, "Nome do item", "Genero");
-		excecoes.numeroInvalido("Preço", preco);
+		excecoes.numeroInvalido("Preco", preco);
 		excecoes.numeroInvalido("Duração", duracao);
 		excecoes.outrosDadosInvalidos("Classificação", classificacao);
 		
@@ -120,7 +120,7 @@ public class SystemController {
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numeroFaixas, String artista, String classificacao) {
 		excecoes.dadosInvalidos(nomeItem, telefone, nomeItem, artista, "Nome do item", "Nome do Artista");
-		excecoes.numeroInvalido("Preço", preco);
+		excecoes.numeroInvalido("Preco", preco);
 		excecoes.numeroInvalido("Duração", duracao);
 		excecoes.numeroInvalido("Numero de faixas", numeroFaixas);
 		excecoes.outrosDadosInvalidos("Classificação", classificacao);
@@ -132,7 +132,7 @@ public class SystemController {
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) {
 		excecoes.dadosInvalidos(nomeItem, telefone, nomeItem, descricao, "Nome do item", "Descrição");
-		excecoes.numeroInvalido("Preço", preco);
+		excecoes.numeroInvalido("Preco", preco);
 		excecoes.numeroInvalido("Duração", duracao);
 		excecoes.numeroInvalido("Temporada", temporada);
 		excecoes.outrosDadosInvalidos("Classificação", classificacao);
@@ -159,7 +159,7 @@ public class SystemController {
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		excecoes.dadosInvalidos(nome, telefone, nomeItem, atributo, "Nome do item", "Atributo");
-		excecoes.outrosDadosInvalidos("Valor", valor);
+		excecoes.valorInvalido(atributo, valor);
 		
 		usuarios.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
