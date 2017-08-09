@@ -273,9 +273,11 @@ public class Usuario {
 	 * @param dataEmprestimo Data do empréstimo
 	 * @param periodo Período de empréstimo do item
 	 * */
-	public void emprestar(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		excecoesItens.statusItem(getItem(nomeItem).getStatus());
-		emprestimos.add(new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo));
+	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
+		Item item = getItem(nomeItem);
+		excecoesItens.statusItem(item.getStatus());
+		
+		return new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo);
 	}
 	
 	/**
@@ -287,8 +289,8 @@ public class Usuario {
 	 * @param dataEmprestimo Data do empréstimo
 	 * @param periodo Período de empréstimo do item
 	 * */
-	public void receberEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		emprestimos.add(new Emprestimo(dono, requerente, dataEmprestimo, nomeItem, periodo));
+	public void registrarEmprestimo(Emprestimo emprestimo) {
+		emprestimos.add(emprestimo);
 	}
 	
 	/**

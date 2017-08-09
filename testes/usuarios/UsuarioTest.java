@@ -105,14 +105,16 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void testEmprestar() {
-		novo.emprestar(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
+	public void testCriarEmprestimo() {
+		novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
 		//assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COMPLETO", novo.getDetalhesItem("Xadrez de Bruxo"));
 	}
 
 	@Test
-	public void testReceberEmprestimo() {
-		novo.receberEmprestimo(novoId, outroUsuarioId, "Monopoly", "08/08/2017", 4);
+	public void testRegistrarEmprestimo() {
+		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
+		novo.registrarEmprestimo(emprestimo);
+		outroUsuario.registrarEmprestimo(emprestimo);
 	}
 
 	@Test

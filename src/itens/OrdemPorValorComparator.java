@@ -2,7 +2,7 @@ package itens;
 
 import java.util.Comparator;
 
-public class OrdenaPorValorComparator implements Comparator<Item> {
+public class OrdemPorValorComparator implements Comparator<Item> {
 
 	@Override
 	public int compare(Item iten1, Item iten2) {

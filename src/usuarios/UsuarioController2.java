@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import emprestimo.Emprestimo;
 import itens.Item;
 import usuarios.IdUsuario;
 
@@ -223,6 +224,11 @@ public class UsuarioController2 {
 		usuarios.get(id).cadastrarBlurayTemporada(nomeTemporada,duracao);
 	}
 	
+	/**
+	 * Retorna um array com todos os itens
+	 * 
+	 * @return Retorna um array com todos os itens
+	 * */
 	public ArrayList<Item> getTodosItens() {
 		ArrayList<Item> itens = new ArrayList<>();
 		for (Usuario usuario : usuarios.values()) {
@@ -231,35 +237,94 @@ public class UsuarioController2 {
 		return itens;
 	}
 
+	/**
+	 * Invoca o método que traz detalhes sobre o Item em forma de String
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * 
+	 * @return Retorna uma String com os detalhes do item
+	 * */
 	public String detalhesItem(String nome, String telefone, String nomeItem) {
-		IdUsuario id = pesquisaId(nome, telefone);
+		IdUsuario id = new IdUsuario(nome, telefone);
+		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getDetalhesItem(nomeItem);
 	}
 
+	/**
+	 * Invoca o método que recupera um atributo em forma de String
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * @param atributo Atributo a ser buscado
+	 * 
+	 * @return Retorna um atributo desejado em forma de string
+	 * */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		IdUsuario id = pesquisaId(nome, telefone);
+		IdUsuario id = new IdUsuario(nome, telefone);
+		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		return usuarios.get(id).getInfoItem(nomeItem, atributo);
 	}
 
+	/**
+	 * Atualiza um atributo do item
+	 * 
+	 * @param nome Nome do usuário
+	 * @param telefone Telefone do usuário
+	 * @param nomeItem Nome do Item buscado
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituirá o antigo
+	 * */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		IdUsuario id = pesquisaId(nome, telefone);
+		IdUsuario id = new IdUsuario(nome, telefone);
+		excecoes.usuarioInvalido(usuarios.containsKey(id));
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
 	}
 
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+	/**
+	 * Registra empréstimos
+	 * 
+	 * @param nomeDono Nome do dono
+	 * @param telefoneDono Telefone do dono
+	 * @param nomeRequerente Nome da pessoa que pega emprestado
+	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param nomeItem Nome do item
+	 * @param dataEmprestimo Representa a data do empréstimo
+	 * @param periodo Representa o período do empréstimo em dias
+	 * */
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
+		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
 		
-		usuarios.get(idDono).emprestar(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
-		usuarios.get(idRequerente).receberEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
+		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
+		
+		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		
+		usuarios.get(idDono).registrarEmprestimo(emprestimo);
+		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
 	}
 
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+	/**
+	 * Registra devoluções de itens no sistema
+	 * 
+	 * @param nomeDono Nome do dono
+	 * @param telefoneDono Telefone do dono
+	 * @param nomeRequerente Nome da pessoa que pega emprestado
+	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param nomeItem Nome do item
+	 * @param dataEmprestimo Representa a data do empréstimo
+	 * @param dataDevolucao Representa a data de devolução do item
+	 * */
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
+		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
+		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		
+		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
+		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
 		
 		usuarios.get(idDono).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idRequerente).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);

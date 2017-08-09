@@ -22,7 +22,7 @@ public class Inventario {
 	}
 	
 	public void ordenaValor() {
-		Collections.sort(itensOrdenados, new OrdenaPorValorComparator());
+		Collections.sort(itensOrdenados, new OrdemPorValorComparator());
 	}
 	
 	public String listarItensOrdenadosPorNome() {
@@ -37,8 +37,8 @@ public class Inventario {
 	
 	public String listaItensString() {
 		String saida = "";
-		for (Item iten : itensOrdenados) {
-			saida += iten.toString() + "|";
+		for (Item item : itensOrdenados) {
+			saida += item.toString() + "|";
 		} 
 		return saida;
 	}

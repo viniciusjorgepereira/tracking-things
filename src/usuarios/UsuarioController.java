@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import emprestimo.Emprestimo;
 import itens.Item;
 import usuarios.IdUsuario;
 
@@ -301,8 +302,10 @@ public class UsuarioController {
 		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
 		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
 		
-		usuarios.get(idDono).emprestar(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
-		usuarios.get(idRequerente).receberEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		
+		usuarios.get(idDono).registrarEmprestimo(emprestimo);
+		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
 		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "true");
 	}
 
