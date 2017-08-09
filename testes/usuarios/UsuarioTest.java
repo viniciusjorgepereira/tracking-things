@@ -2,12 +2,8 @@ package usuarios;
 
 import static org.junit.Assert.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import emprestimo.Emprestimo;
 import itens.Item;
 import itens.Series;
@@ -28,8 +24,9 @@ public class UsuarioTest {
 		outroUsuarioId = new IdUsuario(outroUsuario.getNome(), outroUsuario.getTelefone());
 		
 		novo.cadastrarBlurayFilme("Animais Fantasticos", 49.99, 120, 2016, "AVENTURA", "QUATORZE_ANOS");
-		novo.cadastrarBluraySerie("The Flash", 89.99, "Primeira temporada", 240, "QUATORZE_ANOS", "POLICIAL", 1);
+		novo.cadastrarBluraySerie("The Flash", 89.99, "Primeira temporada", 240, "QUATORZE_ANOS", "POLICIAL", 2);
 		novo.cadastrarBlurayShow("James Bay Ao Vivo", 29.99, 138, 14, "James Bay", "livre");
+		novo.cadastrarBlurayTemporada("The Flash", 240);
 		
 		novo.cadastrarEletronico("GTA V", 89.99, "XboX");
 		novo.cadastrarEletronico("Harry Potter Lego Years 1-4", 39.99, "PS4");
@@ -61,13 +58,13 @@ public class UsuarioTest {
 
 	@Test
 	public void testGetItem() {
-		Item teste = new Series("The Flash", 59.90, 380, "My name is Barry Allen and i'm the fastest man alive", "quatorze_anos", "policial", 1);
+		Item teste = new Series("The Flash", 59.90, 380, "My name is Barry Allen and i'm the fastest man alive", "quatorze_anos", "policial", 2);
 		assertEquals(teste, novo.getItem("The Flash"));
 	}
 
 	@Test
 	public void testGetDetalhesItem() {
-		assertEquals("SERIE: The Flash, R$ 89.99, Nao emprestado, 240 min, QUATORZE_ANOS, POLICIAL, Temporada 1", novo.getDetalhesItem("The Flash"));
+		assertEquals("SERIE: The Flash, R$ 89.99, Nao emprestado, 240 min, QUATORZE_ANOS, POLICIAL, Temporada 2", novo.getDetalhesItem("The Flash"));
 	}
 
 	@Test
@@ -107,7 +104,7 @@ public class UsuarioTest {
 	@Test
 	public void testCriarEmprestimo() {
 		novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
-		//assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COMPLETO", novo.getDetalhesItem("Xadrez de Bruxo"));
+		assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Emprestado, COMPLETO", novo.getDetalhesItem("Xadrez de Bruxo"));
 	}
 
 	@Test
@@ -119,13 +116,23 @@ public class UsuarioTest {
 
 	@Test
 	public void testEncontraEmprestimo() {
-		//novo.emprestar(novoId, outroUsuarioId, "Monopoly", "03/08/2011", 6);
-		//novo.encontraEmprestimo(outroUsuarioId, "Monopoly", "03/08/2017");
+		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
+		novo.registrarEmprestimo(emprestimo);
+		outroUsuario.registrarEmprestimo(emprestimo);
+		assertEquals(emprestimo, novo.encontraEmprestimo(outroUsuarioId, "Monopoly", "03/08/2017"));
 	}
 
-	@Test
+	@Test (expected=IllegalArgumentException.class)
 	public void testDevolverItem() {
-		//novo.devolverItem(outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
+		novo.devolverItem(outroUsuarioId, "Monopoly 2", "03/08/2017", "05/07/2017");
+	}
+	
+	@Test
+	public void testDevolverItem2() {
+		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
+		novo.registrarEmprestimo(emprestimo);
+		outroUsuario.registrarEmprestimo(emprestimo);
+		novo.devolverItem(outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
 	}
 
 	@Test
