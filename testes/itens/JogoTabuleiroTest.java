@@ -20,20 +20,20 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals(jgTabuleiro.getPecasPerdidas(), "rainha branca\n" + 
-													 "rei preto\n");
+		assertEquals("rainha branca\n" + 
+					 "rei preto\n", jgTabuleiro.getPecasPerdidas());
 	}
 	
 	@Test
 	public void testGetAtributo() {
-		assertEquals(jgTabuleiro.getAtributo("nome"), "Xadrez");
-		assertEquals(jgTabuleiro.getAtributo("preco"), "10.0");
+		assertEquals("Xadrez", jgTabuleiro.getAtributo("nome"));
+		assertEquals("10.0", jgTabuleiro.getAtributo("preco"));
 	}
 
 	@Test
 	public void testAtualizarAtributo() {
 		jgTabuleiro.atualizarAtributo("nome", "XADREZ");
-		assertEquals(jgTabuleiro.getNome(), "XADREZ");
+		assertEquals("XADREZ", jgTabuleiro.getNome());
 		
 		jgTabuleiro.atualizarAtributo("preco", "12.0");
 		assertEquals(12.0, jgTabuleiro.getPreco(), 0.1);
@@ -46,8 +46,8 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals(jgTabuleiro.statusPecas(), "COM PECAS PERDIDAS");
-		assertEquals(jgVazio.statusPecas(), "COMPLETO");
+		assertEquals("COM PECAS PERDIDAS", jgTabuleiro.statusPecas());
+		assertEquals("COMPLETO", jgVazio.statusPecas());
 	}
 
 	@Test
@@ -55,14 +55,19 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals(jgTabuleiro.getPecasPerdidas(), "rainha branca\n" + 
-				 									 "rei preto\n");
+		assertEquals("rainha branca\n" + 
+				 	 "rei preto\n", jgTabuleiro.getPecasPerdidas());
 	}
 
 	@Test
 	public void testEqualsObject() {
 		JogoTabuleiro jgTest = new JogoTabuleiro("Xadrez", 0.15);
 		assertTrue(jgTabuleiro.equals(jgTest));
+		
+		jgTabuleiro.adicionarPecaPerdida("rainha branca");
+		jgTabuleiro.adicionarPecaPerdida("rei preto");
+		
+		assertFalse(jgTabuleiro.equals(jgTest));
 	}
 
 	@Test
@@ -70,13 +75,8 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals("JOGO DE TABULEIRO: Xadrez, R$ 10.0, Nao emprestado, COM PECAS PERDIDAS", 
-					 "JOGO DE TABULEIRO: " + jgTabuleiro.getNome() + ", R$ " + jgTabuleiro.getPrecoString() +
-					 ", " + jgTabuleiro.getStatusString() + ", " + jgTabuleiro.statusPecas());
-		
-		assertEquals("JOGO DE TABULEIRO: Only for empty tests, R$ 0.15, Nao emprestado, COMPLETO", 
-				 "JOGO DE TABULEIRO: " + jgVazio.getNome() + ", R$ " + jgVazio.getPrecoString() +
-				 ", " + jgVazio.getStatusString() + ", " + jgVazio.statusPecas());
+		assertEquals("JOGO DE TABULEIRO: Xadrez, R$ 10.0, Nao emprestado, COM PECAS PERDIDAS", jgTabuleiro.toString());
+		assertEquals("JOGO DE TABULEIRO: Only for empty tests, R$ 0.15, Nao emprestado, COMPLETO", jgVazio.toString());
 	}
 
 }
