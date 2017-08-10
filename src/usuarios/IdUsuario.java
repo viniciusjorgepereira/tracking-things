@@ -1,6 +1,6 @@
 /**
- * Classe que representa o ID de cada usuário, composta pelo
- * nome e pelo número de telefone
+ * Classe que representa o ID de cada usuario, composta pelo
+ * nome e pelo numero de telefone
  * */
 
 package usuarios;
@@ -11,10 +11,10 @@ public class IdUsuario {
 	private String telefone;
 	
 	/**
-	 * Constrói uma ID para o usuário
+	 * Constrói uma ID para o usuario
 	 * 
-	 * @param nome Indica o nome do usuário
-	 * @param telefone Indica o telefone do usuário
+	 * @param nome Indica o nome do usuario
+	 * @param telefone Indica o telefone do usuario
 	 * */
 
 	public IdUsuario(String nome, String telefone) {

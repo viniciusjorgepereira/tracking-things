@@ -14,7 +14,7 @@ public class SystemController {
 	
 	/**
 	 * Constroi o Gerenciador do Sistema, gerando um controlador de
-	 * usuários e o inventário
+	 * usuarios e o inventario
 	 * */
 	public SystemController() {
 		usuarios = new UsuarioController();
@@ -23,11 +23,11 @@ public class SystemController {
 	}
 	
 	/**
-	 * Invoca método de cadastrar usuários
+	 * Invoca metodo de cadastrar usuarios
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
-	 * @param email Representa o email do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
+	 * @param email Representa o email do usuario
 	 * */
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		excecoes.dadosInvalidos(nome, telefone, email);
@@ -35,10 +35,10 @@ public class SystemController {
 	}
 
 	/**
-	 * Invoca método para remover usuário
+	 * Invoca metodo para remover usuario
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * */
 	public void removerUsuario(String nome, String telefone) {
 		excecoes.dadosInvalidos(nome, telefone);
@@ -46,10 +46,10 @@ public class SystemController {
 	}
 	
 	/**
-	 * Invoca método para resgatar atributos do usuário
+	 * Invoca metodo para resgatar atributos do usuario
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param atributo Representa atributo a ser resgatado
 	 * 
 	 * @return Retorna em forma de String o atributo desejado
@@ -60,12 +60,12 @@ public class SystemController {
 	}
 
 	/**
-	 * Atualiza dados do usuário
+	 * Atualiza dados do usuario
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param atributo Representa o atributo a ser alterado
-	 * @param valor Valor que substituirá o antigo
+	 * @param valor Valor que substituira o antigo
 	 * */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		excecoes.dadosInvalidos(nome, telefone, atributo, valor, "Atributo", "Valor");
@@ -73,11 +73,11 @@ public class SystemController {
 	}
 	
 	/**
-	 * Cadastra jogo eletrônico
+	 * Cadastra jogo eletronico
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
-	 * @param nomeItem Representa o nome do jogo eletrônico
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
+	 * @param nomeItem Representa o nome do jogo eletronico
 	 * @param preco Representa o preço do item
 	 * @param plataforma Representa a plataforma que o jogo funciona
 	 * */
@@ -90,8 +90,8 @@ public class SystemController {
 	/**
 	 * Cadastra jogo de tabuleiro
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do jogo de tabuleiro
 	 * @param preco Representa o preço do item
 	 * */
@@ -104,8 +104,8 @@ public class SystemController {
 	/**
 	 * Adiciona peca perdida ao jogo de tabuleiro
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do jogo de tabuleiro
 	 * @param nomePeca Representa o nome da peca perdida
 	 * */
@@ -117,8 +117,8 @@ public class SystemController {
 	/**
 	 * Cadastra um filme em BluRay
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do filme
 	 * @param preco Representa o preco do filme
 	 * @param duracao Representa a duracao do filme
@@ -139,8 +139,8 @@ public class SystemController {
 	/**
 	 * Cadastra um show em BluRay
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do show
 	 * @param preco Representa o preco do show (item)
 	 * @param duracao Representa a duracao do show
@@ -162,8 +162,8 @@ public class SystemController {
 	/**
 	 * Cadastra uma serie em BluRay
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome da serie
 	 * @param preco Representa o preco da serie (item)
 	 * @param descricao Apresenta uma descricao sobre a serie
@@ -193,8 +193,8 @@ public class SystemController {
 	/**
 	 * Adiciona um BluRay na temporada
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeBlurayTemporada Representa qual a temporada da serie
 	 * @param duracao A duracao do episodio inserido
 	 * */
@@ -208,8 +208,8 @@ public class SystemController {
 	/**
 	 * Remove um item do sistema
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do item a ser removido
 	 * */
 	public void removerItem(String nome, String telefone, String nomeItem) {
@@ -220,8 +220,8 @@ public class SystemController {
 	/**
 	 * Atualiza dados de um item
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do item a ser atualizado
 	 * @param atributo Representa o atributo a ser atualizado
 	 * @param valor Representa o valor que será setado
@@ -236,8 +236,8 @@ public class SystemController {
 	/**
 	 * Traz informacoes sobre o item
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do item a ser consultado
 	 * @param atributo Representa o atributo a ser consultado
 	 * 
@@ -271,8 +271,8 @@ public class SystemController {
 	/**
 	 * Retorna todas as informacoes sobre o item
 	 * 
-	 * @param nome Representa o nome do usuário
-	 * @param telefone Representa o telefone do usuário
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
 	 * @param nomeItem Representa o nome do item a ser consultado
 	 * 
 	 * @return Retorna uma string com os dados do item consultado
@@ -283,7 +283,7 @@ public class SystemController {
 	}
 	
 	/**
-	 * Registra um empréstimo
+	 * Registra um emprestimo
 	 * 
 	 * @param nomeDono Representa o nome do dono do item
 	 * @param telefoneDono Representa o telefone do dono
@@ -291,7 +291,7 @@ public class SystemController {
 	 * @param telefoneRequerente Representa o telefone do requerente
 	 * @param nomeItem Nome do item a ser emprestado
 	 * @param dataEmprestimo A data que o emprestimo foi feito
-	 * @param periodo Período que o emprestimo irá durar
+	 * @param periodo Periodo que o emprestimo ira durar
 	 * */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		excecoes.dadosInvalidos(nomeDono, telefoneDono, nomeItem, dataEmprestimo, "Nome do item", "Data de Emprestimo");

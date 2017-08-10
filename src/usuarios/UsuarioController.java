@@ -1,5 +1,5 @@
 /**
- * Classe que gerencia o fluxo de usuários
+ * Classe que gerencia o fluxo de usuarios
  * */
 
 package usuarios;
@@ -19,8 +19,8 @@ public class UsuarioController {
 	
 
 	/**
-	 * Constroi um controlador de usuário, possuindo um map com o ID do usuário
-	 * e  com os dados do usuário
+	 * Constroi um controlador de usuario, possuindo um map com o ID do usuario
+	 * e  com os dados do usuario
 	 * */
 	public UsuarioController() {
 		this.usuarios = new HashMap<>();
@@ -28,11 +28,11 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca método para cadastrar usuário
+	 * Invoca metodo para cadastrar usuario
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
-	 * @param email Representa o email do usário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
+	 * @param email Representa o email do usuario
 	 * */
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		IdUsuario id = new IdUsuario(nome, telefone);
@@ -41,10 +41,10 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método para recuparar informações do usuário
+	 * Invoca metodo para recuparar informacoes do usuario
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param atributo Atributo a ser retornado
 	 * 
 	 * @return Retorna atributo em forma de String
@@ -61,7 +61,7 @@ public class UsuarioController {
 	 * @param nome Representa o nome do usuario
 	 * @param telefone Representa o telefone do usuario
 	 * 
-	 * @return O ID de usuário procurado ou null
+	 * @return O ID de usuario procurado ou null
 	 * */
 	public IdUsuario pesquisaId(String nome, String telefone) {
 		for (IdUsuario id : usuarios.keySet()) {
@@ -75,10 +75,10 @@ public class UsuarioController {
 	
 
 	/**
-	 * Invoca método para remover usuário pelo ID
+	 * Invoca metodo para remover usuario pelo ID
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * */
 	public void removerUsuario(String nome, String telefone) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -86,10 +86,10 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método para remover item
+	 * Invoca metodo para remover item
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param nomeItem Representa nome do item a ser removido
 	 * */
 	public void removerItem(String nome, String telefone, String nomeItem) {
@@ -98,12 +98,12 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Busca usuário no sistema
+	 * Busca usuario no sistema
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * 
-	 * @return Retorna uma representação do usuário em String
+	 * @return Retorna uma representacao do usuario em String
 	 * */
 	public String pesquisarUsuario(String nome, String telefone) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -111,9 +111,9 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Atualiza o ID do usuário
+	 * Atualiza o ID do usuario
 	 * 
-	 * @param id Representa o id do usuário
+	 * @param id Representa o id do usuario
 	 * */
 	private void atualizarChave(IdUsuario id) {
 		Usuario novo = usuarios.get(id);
@@ -123,12 +123,12 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Atualiza dados do usuário
+	 * Atualiza dados do usuario
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param atributo Atributo a ser atualizado
-	 * @param valor Valor que substituirá o antigo
+	 * @param valor Valor que substituira o antigo
 	 * */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -137,12 +137,12 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca método de cadastrar um jogo eletrônico
+	 * Invoca metodo de cadastrar um jogo eletronico
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
-	 * @param nomeItem Representa o nome do jogo eletrônico
-	 * @param preco Representa o preço do item
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
+	 * @param nomeItem Representa o nome do jogo eletronico
+	 * @param preco Representa o preco do item
 	 * @param plataforma Representa a plataforma que o jogo funciona
 	 * */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
@@ -151,12 +151,12 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método de cadastrar um jogo de tabuleiro
+	 * Invoca metodo de cadastrar um jogo de tabuleiro
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param nomeItem Representa o nome do jogo de tabuleiro
-	 * @param preco Representa o preço do item
+	 * @param preco Representa o preco do item
 	 * */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -164,12 +164,12 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método de cadastrar um jogo eletrônico
+	 * Invoca metodo de cadastrar um jogo eletronico
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
-	 * @param nomeItem Representa o nome do jogo eletrônico
-	 * @param nomePeca Representa o nome da peça perdida
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
+	 * @param nomeItem Representa o nome do jogo eletronico
+	 * @param nomePeca Representa o nome da peca perdida
 	 * */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -177,16 +177,16 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método de cadastrar um filme em BluRay
+	 * Invoca metodo de cadastrar um filme em BluRay
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param nomeItem Representa o nome do filme
-	 * @param preco Representa o preço do item
-	 * @param duracao Representa a duração do filme
-	 * @param genero Representa o gênero do filme
-	 * @param classificacao Representa a classificação indicativa do filme
-	 * @param anoLancamento Representa o ano de lançamento do filme
+	 * @param preco Representa o preco do item
+	 * @param duracao Representa a duracao do filme
+	 * @param genero Representa o genero do filme
+	 * @param classificacao Representa a classificacao indicativa do filme
+	 * @param anoLancamento Representa o ano de lancamento do filme
 	 * */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -194,16 +194,16 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca método de cadastrar um show em BluRay
+	 * Invoca metodo de cadastrar um show em BluRay
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
 	 * @param nomeItem Representa o nome do show em BluRay
-	 * @param preco Representa o preço do item
-	 * @param duracao Representa a duração do show
+	 * @param preco Representa o preco do item
+	 * @param duracao Representa a duracao do show
 	 * @param numeroFaixas Representa a quantidade de faixas no show
 	 * @param artista Representa o artista do show
-	 * @param classificacao Representa a classificação indicativa do show
+	 * @param classificacao Representa a classificacao indicativa do show
 	 * */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -211,16 +211,16 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Invoca método de cadastrar uma série em BluRay
+	 * Invoca metodo de cadastrar uma serie em BluRay
 	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
-	 * @param nomeItem Representa o nome da série em BluRay
-	 * @param preco Representa o preço do item
-	 * @param descricao Representa a descrição da série
-	 * @param duracao Representa a duraçãodo BluRay
-	 * @param classificacao Representa a classificação indicativa da série
-	 * @param genero Representa o gênero da série
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa telefone do usuario
+	 * @param nomeItem Representa o nome da serie em BluRay
+	 * @param preco Representa o preco do item
+	 * @param descricao Representa a descricao da serie
+	 * @param duracao Representa a duracao do BluRay
+	 * @param classificacao Representa a classificacao indicativa da serie
+	 * @param genero Representa o genero da serie
 	 * @param temporada Indica qual temporada pertence o BluRay
 	 * */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
@@ -255,10 +255,10 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca o método que traz detalhes sobre o Item em forma de String
+	 * Invoca o metodo que traz detalhes sobre o Item em forma de String
 	 * 
-	 * @param nome Nome do usuário
-	 * @param telefone Telefone do usuário
+	 * @param nome Nome do usuario
+	 * @param telefone Telefone do usuario
 	 * @param nomeItem Nome do Item buscado
 	 * 
 	 * @return Retorna uma String com os detalhes do item
@@ -269,10 +269,10 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca o método que recupera um atributo em forma de String
+	 * Invoca o metodo que recupera um atributo em forma de String
 	 * 
-	 * @param nome Nome do usuário
-	 * @param telefone Telefone do usuário
+	 * @param nome Nome do usuario
+	 * @param telefone Telefone do usuario
 	 * @param nomeItem Nome do Item buscado
 	 * @param atributo Atributo a ser buscado
 	 * 
@@ -286,11 +286,11 @@ public class UsuarioController {
 	/**
 	 * Atualiza um atributo do item
 	 * 
-	 * @param nome Nome do usuário
-	 * @param telefone Telefone do usuário
+	 * @param nome Nome do usuario
+	 * @param telefone Telefone do usuario
 	 * @param nomeItem Nome do Item buscado
 	 * @param atributo Atributo a ser alterado
-	 * @param valor Valor que substituirá o antigo
+	 * @param valor Valor que substituira o antigo
 	 * */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		IdUsuario id = pesquisaId(nome, telefone);
@@ -298,15 +298,15 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Registra empréstimos
+	 * Registra emprestimos
 	 * 
 	 * @param nomeDono Nome do dono
 	 * @param telefoneDono Telefone do dono
 	 * @param nomeRequerente Nome da pessoa que pega emprestado
 	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
 	 * @param nomeItem Nome do item
-	 * @param dataEmprestimo Representa a data do empréstimo
-	 * @param periodo Representa o período do empréstimo em dias
+	 * @param dataEmprestimo Representa a data do emprestimo
+	 * @param periodo Representa o periodo do emprestimo em dias
 	 * */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
@@ -316,15 +316,15 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Registra devoluções de itens no sistema
+	 * Registra devolucoes de itens no sistema
 	 * 
 	 * @param nomeDono Nome do dono
 	 * @param telefoneDono Telefone do dono
 	 * @param nomeRequerente Nome da pessoa que pega emprestado
 	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
 	 * @param nomeItem Nome do item
-	 * @param dataEmprestimo Representa a data do empréstimo
-	 * @param dataDevolucao Representa a data de devolução do item
+	 * @param dataEmprestimo Representa a data do emprestimo
+	 * @param dataDevolucao Representa a data de devolucao do item
 	 * */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
