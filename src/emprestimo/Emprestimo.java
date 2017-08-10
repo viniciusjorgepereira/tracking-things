@@ -74,7 +74,7 @@ public class Emprestimo {
 	/**
 	 * Seta a data de devolucao do item
 	 * 
-	 * @param Uma string representando a data de devolucao
+	 * @param dataDevolucao Uma string representando a data de devolucao
 	 * */
 	public void devolucao(String dataDevolucao) {
 		this.dataDevolucao = LocalDate.parse(dataDevolucao, formato);

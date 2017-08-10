@@ -9,7 +9,7 @@ package itens;
 public abstract class Bluray extends Item {
 
 	protected int duracao;
-	protected ClassificacaoIndicativa classind;
+	protected ClassificacaoIndicativa classInd;
 	
 	/**
 	 * Constroi um objeto do tipo BluRay
@@ -19,10 +19,10 @@ public abstract class Bluray extends Item {
 	 * @param duracao Representa a duração do BluRay
 	 * @param classInd Representa a classificação indicativa do BluRay
 	 * */
-	public Bluray(String nome, double preco, int duracao, String classind) {
+	public Bluray(String nome, double preco, int duracao, String classInd) {
 		super(nome, preco);
 		this.duracao = duracao;
-		this.classind = ClassificacaoIndicativa.valueOf(classind.toUpperCase());
+		this.classInd = ClassificacaoIndicativa.valueOf(classInd.toUpperCase());
 	}
 
 	@Override

@@ -7,10 +7,8 @@ import org.junit.Test;
 
 public class ExcecoesUsuariosTest {
 
-	//*Atributos
 	private ExcecoesUsuario excecoes;
 	
-	//*Inicializacao
 	@Before
 	public void inicializar() {
 		excecoes = new ExcecoesUsuario();

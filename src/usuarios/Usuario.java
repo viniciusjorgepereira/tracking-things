@@ -210,8 +210,8 @@ public class Usuario {
 	 * @param genero Representa o gênero do filme
 	 * @param classInd Representa a classificação indicativa do filme
 	 * */
-	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classind) {
-		itens.add(new Filmes(nomeItem, preco, duracao, classind, genero, lancamento));
+	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classInd) {
+		itens.add(new Filmes(nomeItem, preco, duracao, classInd, genero, lancamento));
 	}
 
 	/**
@@ -265,6 +265,8 @@ public class Usuario {
 	 * @param nomeItem Nome do item requerido
 	 * @param dataEmprestimo Data do empréstimo
 	 * @param periodo Período de empréstimo do item
+	 * 
+	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
 	 * */
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
 		Item item = getItem(nomeItem);
@@ -278,7 +280,7 @@ public class Usuario {
 	/**
 	 * Método que registra o emprestimo
 	 * 
-	 * @param emprestimo
+	 * @param emprestimo O emprestimo a ser adicionado
 	 * */
 	public void registrarEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
@@ -291,6 +293,8 @@ public class Usuario {
 	 * @param requerente ID do requerente buscado
 	 * @param nomeItem Nome do item requerido
 	 * @param dataEmprestimo Data do empréstimo
+	 * 
+	 * @return Retorna o emprestimo buscado
 	 * */
 	public Emprestimo encontraEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo) {
 		for (Emprestimo emprestimo : emprestimos) {

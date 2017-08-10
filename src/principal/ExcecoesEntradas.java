@@ -59,7 +59,7 @@ public class ExcecoesEntradas {
 	 * @param entrada1 Uma entrada realizada
 	 * @param entrada2 Uma outra entrada
 	 * @param msg1 Mensagem de complemento 1
-	 * @param mgs2 Mensagem de complemento 2
+	 * @param msg2 Mensagem de complemento 2
 	 * */
 	public void dadosInvalidos(String nome, String telefone, String entrada1, String entrada2, String msg1, String msg2) {
 		dadosInvalidos(nome, telefone, entrada1, msg1);

@@ -15,8 +15,10 @@ public class ExcecoesItens {
 	}
 
 	/**
-	 * Verifica se um item já está emprestado ou não, lancando
+	 * Verifica se um item ja esta emprestado ou nao, lancando
 	 * excecao se emprestado no momento
+	 * 
+	 * @param status Boolean que indica se um item esta emprestado ou nao
 	 * */
 	public void statusItem(boolean status) {
 		if (status) {
@@ -25,7 +27,9 @@ public class ExcecoesItens {
 	}
 
 	/**
-	 * Verifica se o atributo é invalido
+	 * Verifica se o atributo e invalido
+	 * 
+	 * @param infoItem Infoma atributo a ser checkado
 	 * */
 	public void atributoInvalido(String infoItem) {
 		if (infoItem == null) {
