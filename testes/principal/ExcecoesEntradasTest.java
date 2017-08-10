@@ -166,4 +166,13 @@ public class ExcecoesEntradasTest {
 	public void testOutrosDadosInvalidos3() {
 		excecoes.outrosDadosInvalidos("Mensagem de erro", null);
 	}
+	
+	/**
+	 * Testa a excecao quando o valor a ser passado e invalido: valor negativo
+	 */
+	@Test (expected=IllegalArgumentException.class)
+	public void testValorInvalido() {
+		excecoes.valorInvalido("preco", "-50");
+	}
+
 }
