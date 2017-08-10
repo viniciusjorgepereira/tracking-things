@@ -54,6 +54,15 @@ public class UsuarioController {
 		return usuarios.get(id).getInfoUsuario(atributo);
 	}
 
+	/**
+	 * Pesquisa um ID de usuario e retorna o mesmo, Caso nao
+	 * encontre, retorna null.
+	 * 
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
+	 * 
+	 * @return O ID de usuário procurado ou null
+	 * */
 	public IdUsuario pesquisaId(String nome, String telefone) {
 		for (IdUsuario id : usuarios.keySet()) {
 			if (id.getNome().equals(nome) && id.getTelefone().equals(telefone)) {
@@ -220,6 +229,14 @@ public class UsuarioController {
 		usuarios.get(id).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 
+	/**
+	 * Invoca metodo de cadastrar um episodio novo na temporada
+	 * 
+	 * @param nome Representa o nome do usuario
+	 * @param telefone Representa o telefone do usuario
+	 * @param nomeTemporada Representa o nome da serie
+	 * @param duracao Representa a duracao da serie (desta temporada)
+	 * */
 	public void cadastrarBlurayTemporada(String nome, String telefone, String nomeTemporada, int duracao) {
 		IdUsuario id =pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarBlurayTemporada(nomeTemporada,duracao);

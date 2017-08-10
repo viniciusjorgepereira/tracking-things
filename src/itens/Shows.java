@@ -1,3 +1,7 @@
+/**
+ * Classe que cria shows. Herda caracteristica de BluRay
+ * */
+
 package itens;
 
 public class Shows extends Bluray{
@@ -5,12 +9,30 @@ public class Shows extends Bluray{
 	private int faixas;
 	private String artista;
 	
+	/**
+	 * Constroi um objeto do tipo show
+	 * 
+	 * @param nome Representa o nome do Item
+	 * @param preco Representa preco do item
+	 * @param duracao Representa duracao do show
+	 * @param faixas Representa a quantidade de faixas no show
+	 * @param artista Representa o artista deste show
+	 * @param classInd Representa a classificacao indicativa
+	 * */
 	public Shows(String nome, double preco, int duracao, int faixas, String artista, String classInd) {
 		super(nome, preco, duracao, classInd);
 		this.faixas = faixas;
 		this.artista = artista;	
 	}
 
+	/**
+	 * Metodo que resgata dados de um certo atributo
+	 * passado como parametro
+	 * 
+	 * @param atributo Atributo a ser resgatado
+	 * 
+	 * @return Uma string com o dado recuperado
+	 * */
 	@Override
 	public String getAtributo(String atributo) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -38,6 +60,12 @@ public class Shows extends Bluray{
 		return null;
 	}
 	
+	/**
+	 * Metodo que atualiza dados de um item
+	 * 
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituira o antigo
+	 * */
 	@Override
 	public void atualizarAtributo(String atributo, String valor) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -60,6 +88,11 @@ public class Shows extends Bluray{
 		}
 	}
 	
+	/**
+	 * Retorna uma representacao em String de um show
+	 * 
+	 * @return Uma String com dados do show
+	 * */
 	@Override
 	public String toString() {
 		return "SHOW: "+ nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 

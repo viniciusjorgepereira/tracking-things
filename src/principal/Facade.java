@@ -1,3 +1,7 @@
+/**
+ * Classe Facade
+ * */
+
 package principal;
 
 import easyaccept.EasyAccept;
@@ -11,15 +15,21 @@ public class Facade {
 			EasyAccept.main(args);
 		}
 
+		/**
+		 * Constroi uma Facade e inicia o Controlador do sistema
+		 * */
 		public Facade() {
 			system = new SystemController();			
 		}
 		
+		/**
+		 * Metodo que inicia o sistema
+		 * */
 		public void iniciarSistema() {
 		}
 		
 		/**
-		 * Caso de uso 1: CRUD dos usuarios
+		 * Inicio de Caso de uso 1: CRUD dos usuarios
 		 */
 		public void cadastrarUsuario(String nome, String telefone, String email) {
 			system.cadastrarUsuario(nome, telefone, email);
@@ -36,9 +46,13 @@ public class Facade {
 		public String getInfoUsuario(String nome, String telefone, String atributo) {
 			return system.getInfoUsuario(nome, telefone, atributo);
 		}
+		/**
+		 * Fim do caso 1
+		 * */
+		
 		
 		/**
-		 * Caso de uso 2: CRUD dos itens emprestaveis
+		 * Inicio do Caso de uso 2: CRUD dos itens emprestaveis
 		 */
 		public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 			system.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
@@ -79,9 +93,13 @@ public class Facade {
 		public String getInfoItem(String nome, String telefone, String nomeItem,String atributo) {
 			return system.getInfoItem(nome, telefone, nomeItem, atributo);
 		}
+		/**
+		 * Fim do caso 2
+		 * */
+		
 		
 		/**
-		 * Caso de uso 3: funcionalidades de pesquisa
+		 * Inicio de Caso de uso 3: funcionalidades de pesquisa
 		 */
 		public String listarItensOrdenadosPorNome() {
 			return system.listarItensOrdenadosPorNome();
@@ -94,9 +112,13 @@ public class Facade {
 		public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
 			return system.pesquisarDetalhesItem(nome, telefone, nomeItem);
 		}
+		/**
+		 * Fim do caso 3
+		 * */
+		
 		
 		/**
-		 * Caso de uso 4: criacao de emprestimos
+		 * Inicio do Caso de uso 4: criacao de emprestimos
 		 */
 		public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 			system.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
@@ -105,7 +127,13 @@ public class Facade {
 		public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 			system.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		}
+		/**
+		 * Fim do caso 4
+		 * */
 		
+		/**
+		 * Metodo que fecha o sistema
+		 * */
 		public void fecharSistema(){
 		}
 }

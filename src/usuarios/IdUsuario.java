@@ -43,6 +43,15 @@ public class IdUsuario {
 		return result;
 	}
 
+	/**
+	 * Metodo equals. Checka se o IdUsuario e igual ao
+	 * outro se tiverem o mesmo nome e mesmo numero de
+	 * telefone
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return Retorna um boolean informando se e o mesmo ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

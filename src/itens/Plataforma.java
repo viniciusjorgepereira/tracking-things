@@ -1,3 +1,8 @@
+/**
+ * Enum que guarda as plataformas do jogos
+ * eletronicos
+ * */
+
 package itens;
 
 public enum Plataforma {
@@ -13,10 +18,18 @@ public enum Plataforma {
 	
 	private final String status;
 	
+	/**
+	 * Constroi um tipo de plataforma
+	 * */
 	Plataforma(String status) {
 		this.status = status;
 	}
 	
+	/**
+	 * Resgata valor da plataforma
+	 * 
+	 * @return Valor atual da plataforma
+	 * */
 	public String getValor() {
 		return this.status;
 	}

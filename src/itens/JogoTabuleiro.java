@@ -1,3 +1,8 @@
+/**
+ * Classe que cria jogos de tabuleiro. Herda caracteristicas de
+ * Item.
+ * */
+
 package itens;
 
 import java.util.ArrayList;
@@ -6,15 +11,34 @@ import java.util.List;
 public class JogoTabuleiro extends Item {
 	private List<String> pecasPerdidas;
 	
+	/**
+	 * Cria um jogo de tabuleiro. Dentro do construtor ha
+	 * um array para armazenar as possiveis pecas perdias
+	 * 
+	 * @param nome Representa nome do jogo
+	 * @param preco Representa preco do jogo
+	 * */
 	public JogoTabuleiro(String nome, double preco) {
 		super(nome, preco);
 		pecasPerdidas = new ArrayList<>();
 	}
 	
+	/**
+	 * Adiciona peças perdidas ao jogo
+	 * 
+	 * @param peca Peca perdida a ser registrada
+	 * */
 	public void adicionarPecaPerdida(String peca) {
 		pecasPerdidas.add(peca);
 	}
 	
+	/**
+	 * Checka status do jogo, se ha  pecas perdidas
+	 * ou nao
+	 * 
+	 * @returns Uma string indicando se ha pecas perdidas ou
+	 * se esta completo
+	 * */
 	public String statusPecas() {
 		if (pecasPerdidas.size() > 0) {
 			return "COM PECAS PERDIDAS";
@@ -22,6 +46,11 @@ public class JogoTabuleiro extends Item {
 		return "COMPLETO";
 	}
 	
+	/**
+	 * Retorna as pecas perdidas
+	 * 
+	 * @return Todas as pecas perdidas em forma de string
+	 * */
 	public String getPecasPerdidas() {
 		String saida = "";
 		for (String peca : pecasPerdidas) {
@@ -30,6 +59,14 @@ public class JogoTabuleiro extends Item {
 		return saida;
 	}
 	
+	/**
+	 * Metodo que resgata dados de um certo atributo
+	 * passado como parametro
+	 * 
+	 * @param atributo Atributo a ser resgatado
+	 * 
+	 * @return Uma string com o dado recuperado
+	 * */
 	@Override
 	public String getAtributo(String atributo) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -44,6 +81,12 @@ public class JogoTabuleiro extends Item {
 		return null;
 	}
 	
+	/**
+	 * Metodo que atualiza dados de um item
+	 * 
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituira o antigo
+	 * */
 	@Override
 	public void atualizarAtributo(String atributo, String valor) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -63,6 +106,14 @@ public class JogoTabuleiro extends Item {
 		return result;
 	}
 
+	/**
+	 * Metodo equals. Ve se um jogo de tabuleiro e igual a outro
+	 * pelo nome e pelas pecas perdidas
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return um boolean informando se e igual ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,6 +136,11 @@ public class JogoTabuleiro extends Item {
 		return true;
 	}
 
+	/**
+	 * Retorna uma representacao em string de um jogo de tebuleiro
+	 * 
+	 * @return Uma string com os dados do jogo de tabuleiro
+	 * */
 	@Override
 	public String toString() {
 		return "JOGO DE TABULEIRO: " + nome + ", R$ " + super.getPrecoString() + 

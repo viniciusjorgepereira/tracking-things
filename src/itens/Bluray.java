@@ -25,14 +25,6 @@ public abstract class Bluray extends Item {
 		this.classind = ClassificacaoIndicativa.valueOf(classind.toUpperCase());
 	}
 
-	/**
-	 * Resgata atributos do BluRay
-	 * 
-	 * @param atributo Representa o atributo a ser resgatado
-	 * 
-	 * @return Retorna o atributo buscado em forma de String
-	 * */
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,6 +33,15 @@ public abstract class Bluray extends Item {
 		return result;
 	}
 
+	/**
+	 * Metodo equals que verifica se os BluRays são iguais
+	 * pelo nome
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return Retora um boolean dizendo se e o mesmo objeto
+	 * ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

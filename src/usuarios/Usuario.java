@@ -229,6 +229,12 @@ public class Usuario {
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
 	}
 	
+	/**
+	 * Cadastra um novo episodio na temporada
+	 * 
+	 * @param nome Representa nome da serie
+	 * @param duracao Representa a duracao do episodio
+	 * */
 	public void cadastrarBlurayTemporada(String nome, int duracao) {
 		Item item = getItem(nome);
 		if (item instanceof Series) {
@@ -321,6 +327,15 @@ public class Usuario {
 		return result;
 	}
 
+	/**
+	 * Metodo equals. Checka se um usuario e igual ao
+	 * outro se tiverem o mesmo nome e mesmo numero de
+	 * telefone
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return Retorna um boolean informando se e o mesmo ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

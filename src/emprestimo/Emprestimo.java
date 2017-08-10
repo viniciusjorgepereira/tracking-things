@@ -1,3 +1,7 @@
+/**
+ * Classe que cria e manipula emprestimos.
+ * */
+
 package emprestimo;
 
 import java.time.LocalDate;
@@ -17,6 +21,15 @@ public class Emprestimo {
 	private int dias;
 	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+	/**
+	 * Constroi um emprestimo
+	 * 
+	 * @param dono ID do dono do item
+	 * @param requerente ID do requerente
+	 * @param dataEmprestimo Data que o emprestimo foi feito
+	 * @param item O item emprestado
+	 * @param dias Os dias totais para o emprestimo
+	 * */
 	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, Item item, int dias) {
 		this.dias = dias;
 		this.dono = dono;
@@ -49,6 +62,11 @@ public class Emprestimo {
 		return dias;
 	}
 	
+	/**
+	 * Formatana data de devolucao do emprestimo
+	 * 
+	 * @return Uma string com a data de devolucao formatada
+	 * */
 	public String getDataDevolucao() {
 		if (dataDevolucao != null) {
 			return formato.format(dataDevolucao);
@@ -56,6 +74,11 @@ public class Emprestimo {
 		return "Emprestimo em andamento";
 	}
 	
+	/**
+	 * Seta a data de devolucao do item
+	 * 
+	 * @param Uma string representando a data de devolucao
+	 * */
 	public void devolucao(String dataDevolucao) {
 		this.dataDevolucao = LocalDate.parse(dataDevolucao, formato);
 	}
@@ -83,6 +106,15 @@ public class Emprestimo {
 		return result;
 	}
 
+	/**
+	 * Metodo equals. Checka se um emprestimo e igual ao
+	 * outro se tiverem o mesmo item, dono, requerente e data
+	 * de emprestimo.
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return Retorna um boolean informando se e o mesmo ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -126,6 +158,11 @@ public class Emprestimo {
 		return true;
 	}
 
+	/**
+	 * Retorna uma representacao do emprestimo em string
+	 * 
+	 * @return Uma string com os dados do emprestimo
+	 * */
 	@Override
 	public String toString() {
 		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + item.getNome() + 
