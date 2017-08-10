@@ -10,4 +10,11 @@ public class ExcecoesItens {
 			throw new IllegalArgumentException("Item emprestado no momento");
 		}
 	}
+
+	public void atributoInvalido(String infoItem) {
+		if (infoItem == null) {
+			throw new IllegalArgumentException("Atributo invalido");
+		}
+		
+	}
 }

@@ -123,7 +123,9 @@ public class Usuario {
 	 * @return O atributo desejado em forma de String
 	 * */
 	public String getInfoItem(String nomeItem, String atributo) {
-		return getItem(nomeItem).getAtributo(atributo);
+		String infoItem = getItem(nomeItem).getAtributo(atributo); 
+		excecoesItens.atributoInvalido(infoItem);
+		return infoItem;
 	}
 	
 	/**
@@ -159,17 +161,8 @@ public class Usuario {
 	 * @param valor Valor que substituirá o antigo
 	 * */
 	public void atualizarDadosItens(String nomeItem, String atributo, String valor) {
-		if ("nome".equals(atributo.toLowerCase())) {
-			getItem(nomeItem).setNome(valor);			
-		}
-		else if ("preco".equals(atributo.toLowerCase())) {
-			double preco = Double.parseDouble(valor);
-			getItem(nomeItem).setPreco(preco);			
-		}
-		else if ("status".equals(atributo.toLowerCase())) {
-			boolean status = Boolean.parseBoolean(valor);
-			getItem(nomeItem).setStatus(status);				
-		}
+		getItem(nomeItem).atualizarAtributo(atributo, valor);;
+		
 	}
 	
 	/**
@@ -259,7 +252,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Método que Empresta um item
+	 * Método que cria um Emprestimo
 	 * 
 	 * @param dono ID do dono do item
 	 * @param requerente ID do requerente do item
@@ -270,7 +263,7 @@ public class Usuario {
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
 		Item item = getItem(nomeItem);
 		excecoesItens.statusItem(item.getStatus());
-		atualizarDadosItens(nomeItem, "Status", "true");
+		item.setStatus(true);;
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
 		registrarEmprestimo(emprestimo);
 		
@@ -278,13 +271,9 @@ public class Usuario {
 	}
 	
 	/**
-	 * Método que registra o fato de pegar o item emprestado
+	 * Método que registra o emprestimo
 	 * 
-	 * @param dono ID do dono do item
-	 * @param requerente ID do requerente do item
-	 * @param nomeItem Nome do item requerido
-	 * @param dataEmprestimo Data do empréstimo
-	 * @param periodo Período de empréstimo do item
+	 * @param emprestimo
 	 * */
 	public void registrarEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
@@ -293,13 +282,14 @@ public class Usuario {
 	/**
 	 * Busca um empréstimo desejado
 	 * 
-	 * @param requerente ID do usuário buscado
+	 * @param dono ID do dono buscado
+	 * @param requerente ID do requerente buscado
 	 * @param nomeItem Nome do item requerido
 	 * @param dataEmprestimo Data do empréstimo
 	 * */
-	public Emprestimo encontraEmprestimo(IdUsuario requerente, String nomeItem, String dataEmprestimo) {
+	public Emprestimo encontraEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo) {
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getRequerente().equals(requerente) && emprestimo.getNomeItem().equals(nomeItem)
+			if (emprestimo.getDono().equals(dono) && emprestimo.getRequerente().equals(requerente) && emprestimo.getNomeItem().equals(nomeItem)
 					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo)) {
 				return emprestimo;
 			}
@@ -310,13 +300,14 @@ public class Usuario {
 	/**
 	 * Registra devolução do item
 	 * 
+	 * @param dono ID do dono
 	 * @param requerente ID do requerente
 	 * @param nomeItem Nome do item emprestado
 	 * @param dataEmprestimo Data do empréstimo
 	 * @param dataDevolucao Data de devolução de empréstimo
 	 * */
-	public void devolverItem(IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		Emprestimo emprestimo = encontraEmprestimo(requerente, nomeItem, dataEmprestimo);
+	public void devolverItem(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
+		Emprestimo emprestimo = encontraEmprestimo(dono, requerente, nomeItem, dataEmprestimo);
 		excecoesEmprestimo.emprestimoInvalido(emprestimo);
 		emprestimo.devolucao(dataDevolucao);
 	}

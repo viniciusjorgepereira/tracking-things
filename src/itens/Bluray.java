@@ -32,16 +32,6 @@ public abstract class Bluray extends Item {
 	 * 
 	 * @return Retorna o atributo buscado em forma de String
 	 * */
-	public String getInfoBluray(String atributo) {
-		String saida = "";
-		if ("nome".equals(atributo.toLowerCase())) {
-			saida += this.nome;
-		}
-		else if ("preco".equals(atributo.toLowerCase())) {
-			saida += String.valueOf(this.preco);
-		}
-		return saida;
-	}
 	
 	@Override
 	public int hashCode() {

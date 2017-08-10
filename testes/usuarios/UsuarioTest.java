@@ -28,7 +28,7 @@ public class UsuarioTest {
 		novo.cadastrarBlurayShow("James Bay Ao Vivo", 29.99, 138, 14, "James Bay", "livre");
 		novo.cadastrarBlurayTemporada("The Flash", 240);
 		
-		novo.cadastrarEletronico("GTA V", 89.99, "XboX");
+		novo.cadastrarEletronico("GTA V", 89.99, "XBOX_ONE");
 		novo.cadastrarEletronico("Harry Potter Lego Years 1-4", 39.99, "PS4");
 		
 		novo.cadastrarJogoTabuleiro("Monopoly", 49.99);
@@ -76,7 +76,7 @@ public class UsuarioTest {
 	public void testGetInfoItem() {
 		assertEquals("89.99", novo.getInfoItem("The Flash", "preco"));
 	}
-
+	
 	@Test (expected=IllegalArgumentException.class)
 	public void testRemoverItem() {
 		novo.removerItem("The Flash");
@@ -117,19 +117,19 @@ public class UsuarioTest {
 	public void testEncontraEmprestimo() {
 		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
 		outroUsuario.registrarEmprestimo(emprestimo);
-		assertEquals(emprestimo, novo.encontraEmprestimo(outroUsuarioId, "Monopoly", "03/08/2017"));
+		assertEquals(emprestimo, novo.encontraEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017"));
 	}
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testDevolverItem() {
-		novo.devolverItem(outroUsuarioId, "Monopoly 2", "03/08/2017", "05/07/2017");
+		novo.devolverItem(novoId, outroUsuarioId, "Monopoly 2", "03/08/2017", "05/07/2017");
 	}
 	
 	@Test
 	public void testDevolverItem2() {
 		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
 		outroUsuario.registrarEmprestimo(emprestimo);
-		novo.devolverItem(outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
+		novo.devolverItem(novoId, outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
 	}
 
 	@Test

@@ -1,13 +1,42 @@
 package itens;
 
 public class JogoEletronico extends Item {
-	private String plataforma;
+	private Plataforma plataforma;
 
 	public JogoEletronico(String nome, Double preco, String plataforma) {
 		super(nome, preco);
-		this.plataforma = plataforma;
+		this.plataforma = Plataforma.valueOf(plataforma.toUpperCase());
 	}
 
+	@Override
+	public String getAtributo(String atributo) {
+		if ("preco".equals(atributo.toLowerCase())) {
+			return super.getPrecoString();
+			
+		} else if ("nome".equals(atributo.toLowerCase())) {
+			return this.nome;
+			
+		} else if ("plataforma".equals(atributo.toLowerCase())) {
+			return this.plataforma.getValor();
+			
+		}
+		return null;
+	}
+	
+	@Override
+	public void atualizarAtributo(String atributo, String valor) {
+		if ("preco".equals(atributo.toLowerCase())) {
+			this.preco = Double.parseDouble(valor);
+			
+		} else if ("nome".equals(atributo.toLowerCase())) {
+			this.nome = valor;
+			
+		} else if ("plataforma".equals(atributo.toLowerCase())) {
+			this.plataforma = Plataforma.valueOf(valor.toUpperCase());
+		}
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -42,6 +71,6 @@ public class JogoEletronico extends Item {
 	@Override
 	public String toString() {
 		return "JOGO ELETRONICO: " + this.nome + ", R$ " + super.getPrecoString() + ", " +
-				super.getStatusString() + ", " + this.plataforma;
+				super.getStatusString() + ", " + this.plataforma.getValor();
 	}
 }
