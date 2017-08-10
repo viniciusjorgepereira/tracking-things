@@ -71,7 +71,7 @@ public class ShowsTest {
 	}
 	
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: preco 
+	 * Testa o metodo de atualizar atributo de shows, passando: preco 
 	 */
 	@Test
 	public void testAtualizarAtributoPreco() {
@@ -80,7 +80,7 @@ public class ShowsTest {
 	}
 	
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: nome 
+	 * Testa o metodo de atualizar atributo de shows, passando: nome 
 	 */
 	@Test
 	public void testAtualizarAtributoNome() {
@@ -89,7 +89,7 @@ public class ShowsTest {
 	}
 	
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: duracao 
+	 * Testa o metodo de atualizar atributo de shows, passando: duracao 
 	 */
 	@Test
 	public void testAtualizarAtributoDuracao() {
@@ -98,7 +98,7 @@ public class ShowsTest {
 	}
 
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: classificacao 
+	 * Testa o metodo de atualizar atributo de shows, passando: classificacao 
 	 */
 	@Test
 	public void testAtualizarAtributoClassificacao() {
@@ -107,7 +107,7 @@ public class ShowsTest {
 	}
 	
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: faixas 
+	 * Testa o metodo de atualizar atributo de shows, passando: faixas 
 	 */
 	@Test
 	public void testAtualizarAtributoFaixas() {
@@ -117,7 +117,7 @@ public class ShowsTest {
 	
 	
 	/**
-	 * Teta o metodo de atualizar atributo de shows, passando: artista 
+	 * Testa o metodo de atualizar atributo de shows, passando: artista 
 	 */
 	@Test
 	public void testAtualizarAtributoArtista() {
