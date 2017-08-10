@@ -35,11 +35,8 @@ public class Emprestimo {
 		this.dono = dono;
 		this.item = item;
 		this.requerente = requerente;
-		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);;
-	}
-	
-	public void setDataEmprestimo(String data) {
-		dataEmprestimo = LocalDate.parse(data, formato);
+		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);
+		this.item.setStatus(true);
 	}
 	
 	public IdUsuario getDono() {
@@ -81,6 +78,7 @@ public class Emprestimo {
 	 * */
 	public void devolucao(String dataDevolucao) {
 		this.dataDevolucao = LocalDate.parse(dataDevolucao, formato);
+		this.item.setStatus(false);;
 	}
 	
 	/**

@@ -333,6 +333,5 @@ public class UsuarioController {
 		
 		usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idDono).getItem(nomeItem).setStatus(false);;
 	}
 }
