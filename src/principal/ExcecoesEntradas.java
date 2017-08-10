@@ -45,13 +45,16 @@ public class ExcecoesEntradas {
 		}
 	}
 
-	public void valorInvalido(String atributo, String valor) {
-		outrosDadosInvalidos(atributo, valor);
+	public void valorInvalido(String entrada, String valor) {
+		outrosDadosInvalidos(entrada, valor);
+		String atributo = entrada.substring(0,1).toUpperCase() + entrada.substring(1);
 		
-		if (atributo.equals("Preco")) {
+		if ("Preco".equals(atributo) || "Duracao".equals(atributo) || "Lancamento".equals(atributo) 
+				|| "Temporada".equals(atributo) || "Episodios".equals(atributo) || "Faixas".equals(atributo)) {
+			
 			double preco = Double.parseDouble(valor);
 			if (preco < 0) {
-				throw new IllegalArgumentException("Preco invalido");
+				throw new IllegalArgumentException(atributo + " invalido");
 			}
 		}
 	}
