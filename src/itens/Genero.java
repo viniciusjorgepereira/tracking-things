@@ -1,3 +1,7 @@
+/**
+ * Enum com todos os generos possiveis no sistema
+ * */
+
 package itens;
 
 public enum Genero {
@@ -20,10 +24,16 @@ public enum Genero {
 	
 	private final String status;
 	
+	/**
+	 * Constroi um genero
+	 * */
 	Genero(String status) {
 		this.status = status;
 	}
 	
+	/**
+	 * Recupera valor do genero
+	 * */
 	public String getValor() {
 		return this.status;
 	}

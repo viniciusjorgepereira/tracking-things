@@ -1,13 +1,33 @@
+/**
+ * Classe que gera itens do tipo Jogos Eletronicos.
+ * Herda caracteristica da classe itens
+ * */
+
 package itens;
 
 public class JogoEletronico extends Item {
 	private Plataforma plataforma;
 
+	/**
+	 * Constroi um objeto do tipo Jogo Eletronico
+	 * 
+	 * @param nome Representa o nome do item
+	 * @param preco Representa o preco do item
+	 * @param plataforma Plataforma que o jogo funciona
+	 * */
 	public JogoEletronico(String nome, Double preco, String plataforma) {
 		super(nome, preco);
 		this.plataforma = Plataforma.valueOf(plataforma.toUpperCase());
 	}
 
+	/**
+	 * Metodo que resgata dados de um certo atributo
+	 * passado como parametro
+	 * 
+	 * @param atributo Atributo a ser resgatado
+	 * 
+	 * @return Uma string com o dado recuperado
+	 * */
 	@Override
 	public String getAtributo(String atributo) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -23,6 +43,12 @@ public class JogoEletronico extends Item {
 		return null;
 	}
 	
+	/**
+	 * Metodo abstrato que atualiza dados de um item
+	 * 
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituira o antigo
+	 * */
 	@Override
 	public void atualizarAtributo(String atributo, String valor) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -46,6 +72,12 @@ public class JogoEletronico extends Item {
 		return result;
 	}
 
+	/**
+	 * Metodo equals que analisa se um um objeto e igual
+	 * atraves do nome e da plataforma
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,6 +100,11 @@ public class JogoEletronico extends Item {
 		return true;
 	}
 	
+	/**
+	 * Retorna uma representacao em String do jogo eletronico
+	 * 
+	 * @return Uma string com dados do jogo eletronico
+	 * */
 	@Override
 	public String toString() {
 		return "JOGO ELETRONICO: " + this.nome + ", R$ " + super.getPrecoString() + ", " +

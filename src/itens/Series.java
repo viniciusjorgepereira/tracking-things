@@ -1,3 +1,7 @@
+/**
+ * Classe que cria series. Herda caracteristica de BluRay
+ * */
+
 package itens;
 
 public class Series extends Bluray{
@@ -7,6 +11,17 @@ public class Series extends Bluray{
 	private String descricao;
 	private int numTemporadas;
 	
+	/**
+	 * Constroi um objeto do tipo serie
+	 * 
+	 * @param nome Representa o nome do Item
+	 * @param preco Representa preco do item
+	 * @param duracao Representa duracao da serie
+	 * @param descricao Uma descricao da serie
+	 * @param classificacao Representa a classificacao indicativa da serie
+	 * @param genero Representa o genero da serie
+	 * @param temporada Representa a temporada da serie
+	 * */
 	public Series(String nome, double preco, int duracao, String descricao, String classificacao, String genero, int temporada) {
 		super(nome, preco, duracao, classificacao);
 		this.descricao = descricao;
@@ -14,11 +29,23 @@ public class Series extends Bluray{
 		this.genero = Genero.valueOf(genero.toUpperCase());
 	}
 
+	/**
+	 * Metodo que acrescenta temporadas a uma serie
+	 * 
+	 * @param duracao Representa a duracao do episodio
+	 * */
 	public void adicionarTemporada(int duracao) {
 		this.episodios += 1;
 	}
 	
-	
+	/**
+	 * Metodo que resgata dados de um certo atributo
+	 * passado como parametro
+	 * 
+	 * @param atributo Atributo a ser resgatado
+	 * 
+	 * @return Uma string com o dado recuperado
+	 * */
 	@Override
 	public String getAtributo(String atributo) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -52,6 +79,12 @@ public class Series extends Bluray{
 		return null;
 	}
 
+	/**
+	 * Metodo que atualiza dados de um item
+	 * 
+	 * @param atributo Atributo a ser alterado
+	 * @param valor Valor que substituira o antigo
+	 * */
 	@Override
 	public void atualizarAtributo(String atributo, String valor) {
 		if ("preco".equals(atributo.toLowerCase())) {
@@ -90,6 +123,14 @@ public class Series extends Bluray{
 		return result;
 	}
 
+	/**
+	 * Metodo equals. Ve se uma serie e igual a outra
+	 * pelo nome e pelo numero de temporadas
+	 * 
+	 * @param obj Objeto a ser comparado
+	 * 
+	 * @return um boolean informando se e igual ou nao
+	 * */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -109,6 +150,11 @@ public class Series extends Bluray{
 		return true;
 	}
 	
+	/**
+	 * Retorna uma representacao em string de uma serie
+	 * 
+	 * @return Uma string com os dados da serie
+	 * */
 	@Override
 	public String toString() {
 		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
