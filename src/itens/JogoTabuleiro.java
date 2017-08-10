@@ -31,6 +31,7 @@ public class JogoTabuleiro extends Item {
 	public void adicionarPecaPerdida(String peca) {
 		pecasPerdidas.add(peca);
 	}
+
 	
 	/**
 	 * Checka status do jogo, se ha  pecas perdidas
