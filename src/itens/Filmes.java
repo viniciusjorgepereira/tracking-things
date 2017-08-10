@@ -47,7 +47,7 @@ public class Filmes extends Bluray{
 			return this.duracao + " min";
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			return this.classind.getValor();
+			return this.classInd.getValor();
 			
 		} else if ("genero".equals(atributo.toLowerCase())) {
 			return this.genero.getValor();
@@ -77,7 +77,7 @@ public class Filmes extends Bluray{
 			 this.duracao = Integer.parseInt(valor);
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			 this.classind = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
+			 this.classInd = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
 			
 		} else if ("genero".equals(atributo.toLowerCase())) {
 			 this.genero = Genero.valueOf(valor.toUpperCase());
@@ -95,6 +95,6 @@ public class Filmes extends Bluray{
 	@Override
 	public String toString() {
 		return "FILME: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao +
-				" min, " + classind.getValor() + ", " + genero.getValor() + ", " + lancamento;
+				" min, " + classInd.getValor() + ", " + genero.getValor() + ", " + lancamento;
 	}
 }

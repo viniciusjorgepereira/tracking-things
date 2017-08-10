@@ -37,8 +37,7 @@ public class JogoTabuleiro extends Item {
 	 * Checka status do jogo, se ha  pecas perdidas
 	 * ou nao
 	 * 
-	 * @returns Uma string indicando se ha pecas perdidas ou
-	 * se esta completo
+	 * @return Uma string indicando se ha pecas perdidas ou se esta completo
 	 * */
 	public String statusPecas() {
 		if (pecasPerdidas.size() > 0) {

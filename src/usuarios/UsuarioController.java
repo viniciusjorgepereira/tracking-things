@@ -219,7 +219,6 @@ public class UsuarioController {
 	 * @param preco Representa o preço do item
 	 * @param descricao Representa a descrição da série
 	 * @param duracao Representa a duraçãodo BluRay
-	 * @param artista Representa o artista do show
 	 * @param classificacao Representa a classificação indicativa da série
 	 * @param genero Representa o gênero da série
 	 * @param temporada Indica qual temporada pertence o BluRay

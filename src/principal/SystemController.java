@@ -195,7 +195,7 @@ public class SystemController {
 	 * 
 	 * @param nome Representa o nome do usuário
 	 * @param telefone Representa o telefone do usuário
-	 * @param nomeBluRayTemporada Representa qual a temporada da serie
+	 * @param nomeBlurayTemporada Representa qual a temporada da serie
 	 * @param duracao A duracao do episodio inserido
 	 * */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {

@@ -61,7 +61,7 @@ public class Series extends Bluray{
 			return this.duracao + " min";
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			return this.classind.getValor();
+			return this.classInd.getValor();
 			
 		} else if ("genero".equals(atributo.toLowerCase())) {
 			return this.genero.getValor();
@@ -97,7 +97,7 @@ public class Series extends Bluray{
 			this.duracao = Integer.parseInt(valor);
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			this.classind = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
+			this.classInd = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
 			
 		} else if ("genero".equals(atributo.toLowerCase())) {
 			this.genero = Genero.valueOf(valor.toUpperCase());
@@ -158,7 +158,7 @@ public class Series extends Bluray{
 	@Override
 	public String toString() {
 		return "SERIE: " + nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
-				" min, " + classind.getValor() + ", " + genero.getValor() + ", Temporada " + numTemporadas;
+				" min, " + classInd.getValor() + ", " + genero.getValor() + ", Temporada " + numTemporadas;
 	}
 
 }

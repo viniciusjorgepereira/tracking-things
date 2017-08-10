@@ -48,7 +48,7 @@ public class Shows extends Bluray{
 			return this.duracao + " min";
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			return this.classind.getValor();
+			return this.classInd.getValor();
 
 		} else if ("faixas".equals(atributo.toLowerCase())) {
 			return String.valueOf(this.faixas);
@@ -78,7 +78,7 @@ public class Shows extends Bluray{
 			 this.duracao = Integer.parseInt(valor);
 			
 		} else if ("classificacao".equals(atributo.toLowerCase())) {
-			 this.classind = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
+			 this.classInd = ClassificacaoIndicativa.valueOf(valor.toUpperCase());
 
 		} else if ("faixas".equals(atributo.toLowerCase())) {
 			this.faixas = Integer.parseInt(valor);
@@ -96,7 +96,7 @@ public class Shows extends Bluray{
 	@Override
 	public String toString() {
 		return "SHOW: "+ nome + ", R$ " + super.getPrecoString() + ", " + super.getStatusString() + ", " + duracao + 
-				" min, " + classind.getValor() + ", " + artista + ", " + faixas + " faixas";
+				" min, " + classInd.getValor() + ", " + artista + ", " + faixas + " faixas";
 	}
 
 }

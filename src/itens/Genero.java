@@ -33,6 +33,8 @@ public enum Genero {
 	
 	/**
 	 * Recupera valor do genero
+	 * 
+	 * @return Retorna o status do Genero atual
 	 * */
 	public String getValor() {
 		return this.status;
