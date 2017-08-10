@@ -22,6 +22,38 @@ public class JogoTabuleiro extends Item {
 		return "COMPLETO";
 	}
 	
+	public String getPecasPerdidas() {
+		String saida = "";
+		for (String peca : pecasPerdidas) {
+			saida += peca + System.lineSeparator();
+		}
+		return saida;
+	}
+	
+	@Override
+	public String getAtributo(String atributo) {
+		if ("preco".equals(atributo.toLowerCase())) {
+			return super.getPrecoString();
+			
+		} else if ("nome".equals(atributo.toLowerCase())) {
+			return this.nome;
+			
+		} else if ("pecas perdidas".equals(atributo.toLowerCase())) {
+			return getPecasPerdidas();	
+		}
+		return null;
+	}
+	
+	@Override
+	public void atualizarAtributo(String atributo, String valor) {
+		if ("preco".equals(atributo.toLowerCase())) {
+			this.preco = Double.parseDouble(valor);
+			
+		} else if ("nome".equals(atributo.toLowerCase())) {
+			this.nome = valor;
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,4 +90,6 @@ public class JogoTabuleiro extends Item {
 		return "JOGO DE TABULEIRO: " + nome + ", R$ " + super.getPrecoString() + 
 				", " + super.getStatusString() + ", " + statusPecas();
 	}
+
+
 }

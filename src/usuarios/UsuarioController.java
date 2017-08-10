@@ -28,21 +28,6 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Invoca método para recuparar informações do usuário
-	 * 
-	 * @param nome Representa nome do usuário
-	 * @param telefone Representa telefone do usuário
-	 * @param atributo Atributo a ser retornado
-	 * 
-	 * @return Retorna atributo em forma de String
-	 * */
-	public String getInfoUsuario(String nome, String telefone, String atributo) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
-		return usuarios.get(id).getInfoUsuario(atributo);
-	}
-
-	/**
 	 * Invoca método para cadastrar usuário
 	 * 
 	 * @param nome Representa nome do usuário
@@ -54,6 +39,31 @@ public class UsuarioController {
 		excecoes.usuarioJaCadastrado(usuarios.containsKey(id));
 		usuarios.put(id, new Usuario(nome, telefone, email));
 	}
+	
+	/**
+	 * Invoca método para recuparar informações do usuário
+	 * 
+	 * @param nome Representa nome do usuário
+	 * @param telefone Representa telefone do usuário
+	 * @param atributo Atributo a ser retornado
+	 * 
+	 * @return Retorna atributo em forma de String
+	 * */
+	public String getInfoUsuario(String nome, String telefone, String atributo) {
+		IdUsuario id = pesquisaId(nome, telefone);
+		return usuarios.get(id).getInfoUsuario(atributo);
+	}
+
+	public IdUsuario pesquisaId(String nome, String telefone) {
+		for (IdUsuario id : usuarios.keySet()) {
+			if (id.getNome().equals(nome) && id.getTelefone().equals(telefone)) {
+				return id;
+			}
+		}
+		excecoes.usuarioInvalido(false);
+		return null;
+	}
+	
 
 	/**
 	 * Invoca método para remover usuário pelo ID
@@ -62,8 +72,7 @@ public class UsuarioController {
 	 * @param telefone Representa telefone do usuário
 	 * */
 	public void removerUsuario(String nome, String telefone) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.remove(id);
 	}
 	
@@ -75,8 +84,7 @@ public class UsuarioController {
 	 * @param nomeItem Representa nome do item a ser removido
 	 * */
 	public void removerItem(String nome, String telefone, String nomeItem) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).removerItem(nomeItem);
 	}
 
@@ -89,7 +97,7 @@ public class UsuarioController {
 	 * @return Retorna uma representação do usuário em String
 	 * */
 	public String pesquisarUsuario(String nome, String telefone) {
-		IdUsuario id = new IdUsuario(nome, telefone);
+		IdUsuario id = pesquisaId(nome, telefone);
 		return usuarios.get(id).toString();
 	}
 
@@ -114,8 +122,7 @@ public class UsuarioController {
 	 * @param valor Valor que substituirá o antigo
 	 * */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).atualizarDadosUsuario(atributo, valor);
 		atualizarChave(id);
 	}
@@ -130,8 +137,7 @@ public class UsuarioController {
 	 * @param plataforma Representa a plataforma que o jogo funciona
 	 * */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarEletronico(nomeItem, preco, plataforma);
 	}
 	
@@ -144,8 +150,7 @@ public class UsuarioController {
 	 * @param preco Representa o preço do item
 	 * */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarJogoTabuleiro(nomeItem, preco);
 	}
 	
@@ -158,8 +163,7 @@ public class UsuarioController {
 	 * @param nomePeca Representa o nome da peça perdida
 	 * */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).adicionarPecaPerdida(nomeItem, nomePeca);
 	}
 	
@@ -176,8 +180,7 @@ public class UsuarioController {
 	 * @param anoLancamento Representa o ano de lançamento do filme
 	 * */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarBlurayFilme(nomeItem, preco, duracao, anoLancamento, genero, classificacao);			
 	}
 
@@ -194,8 +197,7 @@ public class UsuarioController {
 	 * @param classificacao Representa a classificação indicativa do show
 	 * */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarBlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 	}
 	
@@ -214,14 +216,12 @@ public class UsuarioController {
 	 * @param temporada Indica qual temporada pertence o BluRay
 	 * */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 
 	public void cadastrarBlurayTemporada(String nome, String telefone, String nomeTemporada, int duracao) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id =pesquisaId(nome, telefone);
 		usuarios.get(id).cadastrarBlurayTemporada(nomeTemporada,duracao);
 	}
 	
@@ -248,8 +248,7 @@ public class UsuarioController {
 	 * @return Retorna uma String com os detalhes do item
 	 * */
 	public String detalhesItem(String nome, String telefone, String nomeItem) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		return usuarios.get(id).getDetalhesItem(nomeItem);
 	}
 
@@ -264,8 +263,7 @@ public class UsuarioController {
 	 * @return Retorna um atributo desejado em forma de string
 	 * */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		return usuarios.get(id).getInfoItem(nomeItem, atributo);
 	}
 
@@ -279,8 +277,7 @@ public class UsuarioController {
 	 * @param valor Valor que substituirá o antigo
 	 * */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		IdUsuario id = new IdUsuario(nome, telefone);
-		excecoes.usuarioInvalido(usuarios.containsKey(id));
+		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
 	}
 
@@ -296,14 +293,9 @@ public class UsuarioController {
 	 * @param periodo Representa o período do empréstimo em dias
 	 * */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
-		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
-		
-		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
-		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
-		
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
 		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
-		
 		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
 	}
 
@@ -319,14 +311,11 @@ public class UsuarioController {
 	 * @param dataDevolucao Representa a data de devolução do item
 	 * */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		IdUsuario idDono = new IdUsuario(nomeDono, telefoneDono);
-		IdUsuario idRequerente = new IdUsuario(nomeRequerente, telefoneRequerente);
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
 		
-		excecoes.usuarioInvalido(usuarios.containsKey(idRequerente));
-		excecoes.usuarioInvalido(usuarios.containsKey(idDono));
-		
-		usuarios.get(idDono).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idRequerente).devolverItem(idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idDono).atualizarDadosItens(nomeItem, "Status", "false");
+		usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idDono).getItem(nomeItem).setStatus(false);;
 	}
 }

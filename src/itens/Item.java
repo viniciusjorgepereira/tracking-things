@@ -46,17 +46,7 @@ public abstract class Item {
 		return df.format(preco).replace(",", ".");
 	}
 
-	public String getAtributo(String atributo) {
-		String saida = "";
-		if ("preco".equals(atributo.toLowerCase())) {
-			saida += getPrecoString();			
-		}
-		else if ("nome".equals(atributo.toLowerCase())) {
-			saida += this.nome;			
-		}
-		else if ("emprestimo".equals(atributo.toLowerCase())) {
-			saida += getStatusString();			
-		}
-		return saida;
-	}	
+	public abstract String getAtributo(String atributo);
+	
+	public abstract void atualizarAtributo(String atributo, String valor);
 }
