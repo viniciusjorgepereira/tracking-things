@@ -1,6 +1,6 @@
 /**
- * Classe que lança exceções para usuários inválidos
- * ou já cadastrados 
+ * Classe que lança excecoes para usurios invalidos
+ * ou ja cadastrados 
  * */
 
 package usuarios;
@@ -8,9 +8,9 @@ package usuarios;
 public class ExcecoesUsuario {
 	
 	/**
-	 * Lança exceção caso o usuário seja inválido
+	 * Lança excecao caso o usuario seja invalido
 	 * 
-	 * @param contem Informa se o usuário está contido ou não
+	 * @param contem Informa se o usuario está contido ou não
 	 * */
 	public void usuarioInvalido(boolean contem) {
 		if (!(contem)) {
@@ -19,9 +19,9 @@ public class ExcecoesUsuario {
 	}
 	
 	/**
-	 * Lança exceção caso o usuário já esteja cadastrado
+	 * Lança exceção caso o usuario ja esteja cadastrado
 	 * 
-	 * @param contem Informa se o usuário está contido ou não
+	 * @param contem Informa se o usuário esta contido ou não
 	 * */
 	public void usuarioJaCadastrado(boolean contem) {
 		if (contem) {
