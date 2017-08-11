@@ -1,5 +1,5 @@
 /**
- * Classe que gera filmes. Esta classe herda características
+ * Classe que gera filmes. Esta classe herda caracteristicas
  * da classe Bluray
  * */
 package itens;
@@ -88,7 +88,7 @@ public class Filmes extends Bluray{
 	}
 		
 	/**
-	 * Retorna uma representação em string do filme
+	 * Retorna uma representacao em string do filme
 	 * 
 	 * @return Uma representacao em string do filme
 	 * */

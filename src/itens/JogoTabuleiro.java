@@ -137,7 +137,7 @@ public class JogoTabuleiro extends Item {
 	}
 
 	/**
-	 * Retorna uma representacao em string de um jogo de tebuleiro
+	 * Retorna uma representacao em string de um jogo de tabuleiro
 	 * 
 	 * @return Uma string com os dados do jogo de tabuleiro
 	 * */

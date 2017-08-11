@@ -1,5 +1,5 @@
 /**
- * Classe que lança exceções para os itens
+ * Classe que lança excecoes para os itens
  * */
 
 package itens;
