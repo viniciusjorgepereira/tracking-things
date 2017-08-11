@@ -1,3 +1,4 @@
 # tracking_things
 
-by Sammara - Bruno - Vinícius
+Grupo: Sammara - Bruno - Vinícius
+Link: https://github.com/viniciusjorgepereira/tracking-things.git
