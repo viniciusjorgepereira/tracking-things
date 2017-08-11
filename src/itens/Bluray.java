@@ -1,5 +1,5 @@
 /**
- * Classe abstrata que serve de base para a construção de BluRay's
+ * Classe abstrata que serve de base para a construcao de BluRay's
  * 
  * Herda atributos da classe Itens
  * */
@@ -16,8 +16,8 @@ public abstract class Bluray extends Item {
 	 * 
 	 * @param nome Nome do Item
 	 * @param preco Preço do Item
-	 * @param duracao Representa a duração do BluRay
-	 * @param classInd Representa a classificação indicativa do BluRay
+	 * @param duracao Representa a duracao do BluRay
+	 * @param classInd Representa a classificacao indicativa do BluRay
 	 * */
 	public Bluray(String nome, double preco, int duracao, String classInd) {
 		super(nome, preco);
@@ -34,7 +34,7 @@ public abstract class Bluray extends Item {
 	}
 
 	/**
-	 * Metodo equals que verifica se os BluRays são iguais
+	 * Metodo equals que verifica se os BluRays sao iguais
 	 * pelo nome
 	 * 
 	 * @param obj Objeto a ser comparado
