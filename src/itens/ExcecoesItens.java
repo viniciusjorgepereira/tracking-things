@@ -10,7 +10,7 @@ public class ExcecoesItens {
 	 * Verifica se um item não foi encontrado, lancando
 	 * excecao se não encontrado
 	 * */
-	public void itemNotFound() {
+	public void itemInexistente() {
 		throw new IllegalArgumentException("Item nao encontrado");
 	}
 

@@ -60,7 +60,8 @@ public class Emprestimo {
 	}
 	
 	/**
-	 * Formatana data de devolucao do emprestimo
+	 * Pega a informacao se o item ja foi devolvido, se ja tiver sido devolvido 
+	 * retorna a data de devolucao
 	 * 
 	 * @return Uma string com a data de devolucao formatada
 	 * */

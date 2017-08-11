@@ -79,7 +79,7 @@ public class Usuario {
 				return item;
 			}
 		}
-		excecoesItens.itemNotFound();
+		excecoesItens.itemInexistente();
 		return null;
 	}
 	
@@ -269,6 +269,7 @@ public class Usuario {
 	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
 	 * */
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
+		excecoesEmprestimo.periodoInvalido(periodo);
 		Item item = getItem(nomeItem);
 		excecoesItens.statusItem(item.getStatus());
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);

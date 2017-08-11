@@ -1,7 +1,5 @@
 package itens;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +17,7 @@ public class ExcecoesItensTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testItemNotFound() {
-		excecoes.itemNotFound();
+		excecoes.itemInexistente();
 	}
 
 	/**

@@ -8,6 +8,7 @@ import org.junit.Test;
 public class JogoTabuleiroTest {
 	private JogoTabuleiro jgTabuleiro;
 	private JogoTabuleiro jgVazio;
+	private final String pulaLinha = System.lineSeparator();
 	
 	@Before
 	public void testJogoTabuleiro() {
@@ -20,8 +21,8 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals("rainha branca\n" + 
-					 "rei preto\n", jgTabuleiro.getPecasPerdidas());
+		assertEquals("rainha branca" + pulaLinha +
+					 "rei preto" + pulaLinha, jgTabuleiro.getPecasPerdidas());
 	}
 	
 	@Test
@@ -55,8 +56,8 @@ public class JogoTabuleiroTest {
 		jgTabuleiro.adicionarPecaPerdida("rainha branca");
 		jgTabuleiro.adicionarPecaPerdida("rei preto");
 		
-		assertEquals("rainha branca\n" + 
-				 	 "rei preto\n", jgTabuleiro.getPecasPerdidas());
+		assertEquals("rainha branca" + pulaLinha +
+				 	 "rei preto" + pulaLinha, jgTabuleiro.getPecasPerdidas());
 	}
 
 	@Test
