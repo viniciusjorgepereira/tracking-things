@@ -77,6 +77,14 @@ public class Usuario {
 		reputacao.acrescimoDez(preco);
 	}
 	
+	public void diminuirReputacao(int atraso, double preco) {
+		reputacao.diminuirReputacao(atraso,preco);
+	}
+	
+	public double getReputacao() {
+		return reputacao.getReputacao();
+	}
+	
 	/**
 	 * Retorna o item desejado
 	 * 
@@ -114,13 +122,16 @@ public class Usuario {
 	 * */
 	public String getInfoUsuario(String atributo) {
 		if ("email".equals(atributo.toLowerCase())) {
-			return this.email;
-			
-		} else if ("telefone".equals(atributo.toLowerCase())) {
+			return this.email;	
+		} 
+		else if ("telefone".equals(atributo.toLowerCase())) {
 			return this.telefone;
-			
-		} else if ("nome".equals(atributo.toLowerCase())) {
+		} 
+		else if ("nome".equals(atributo.toLowerCase())) {
 			return this.nome;
+		}
+		else if ("reputacao".equals(atributo.toLowerCase())) {
+			return String.valueOf(reputacao.getReputacao());
 		}
 		return "";
 	}
@@ -387,10 +398,5 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return this.nome + ", " + this.email + ", " + this.telefone;
-	}
-
-	public void diminuirReputacao(int atraso, double preco) {
-		// TODO Auto-generated method stub
-		
 	}
 }
