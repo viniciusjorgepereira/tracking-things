@@ -27,8 +27,7 @@ public class Inventario {
 	 * @param todosItens Array com todos os itens registrados
 	 * */
 	public void adicionaItens(ArrayList<Item> todosItens) {
-		itensOrdenados.clear();
-		itensOrdenados.addAll(todosItens);
+		itensOrdenados = new ArrayList<>(todosItens);
 	}
 	
 	/**
