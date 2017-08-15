@@ -4,16 +4,9 @@
 
 package principal;
 
-import easyaccept.EasyAccept;
-
 public class Facade {
+	
 		private SystemController system;
-		
-		public static void main(String[] args) {
-			args = new String[] { "principal.Facade", "testes_aceitacao/us1_test.txt", "testes_aceitacao/us2_test.txt",
-					"testes_aceitacao/us3_test.txt", "testes_aceitacao/us4_test.txt"};
-			EasyAccept.main(args);
-		}
 
 		/**
 		 * Constroi uma Facade e inicia o Controlador do sistema
