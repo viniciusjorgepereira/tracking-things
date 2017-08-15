@@ -329,8 +329,14 @@ public class UsuarioController {
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
 		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		
-		usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		int atraso = usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);		
+		double preco = Double.parseDouble(usuarios.get(idDono).getInfoItem(nomeItem, "preco"));
+		if (atraso == 0) {
+			usuarios.get(idRequerente).addReputacaoCinco(preco);
+		}
+		usuarios.get(idRequerente).diminuirReputacao(atraso,preco);
 	}
+	
+	
 }
