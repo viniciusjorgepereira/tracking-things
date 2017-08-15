@@ -5,6 +5,7 @@
 package usuarios;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import emprestimo.Emprestimo;
@@ -23,6 +24,7 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private Set<Item> itens;
+	private Reputacao reputacao;
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
 	private ExcecoesEmprestimo excecoesEmprestimo;
@@ -41,6 +43,7 @@ public class Usuario {
 		this.email = email;
 		this.telefone = telefone;
 		this.itens = new HashSet<>();
+		this.reputacao = new Reputacao(0);
 		this.emprestimos = new HashSet<>();
 		this.excecoesItens = new ExcecoesItens();
 		this.excecoesEmprestimo = new ExcecoesEmprestimo();
@@ -66,6 +69,14 @@ public class Usuario {
 		return itens;
 	}
 
+	public void addReputacaoCinco(double preco) {
+		reputacao.acrescimoCinco(preco);
+	}
+	
+	public void addReputacaoDez(double preco) {
+		reputacao.acrescimoDez(preco);
+	}
+	
 	/**
 	 * Retorna o item desejado
 	 * 
@@ -174,6 +185,7 @@ public class Usuario {
 	 * */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		itens.add(new JogoEletronico(nomeItem, preco, plataforma));
+		addReputacaoCinco(preco);
 	}
 	
 	/**
@@ -184,6 +196,7 @@ public class Usuario {
 	 * */
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
 		itens.add(new JogoTabuleiro(nomeItem, preco));
+		addReputacaoCinco(preco);
 	}
 	
 	/**
@@ -212,6 +225,7 @@ public class Usuario {
 	 * */
 	public void cadastrarBlurayFilme(String nomeItem, double preco, int duracao, int lancamento, String genero, String classInd) {
 		itens.add(new Filmes(nomeItem, preco, duracao, classInd, genero, lancamento));
+		addReputacaoCinco(preco);
 	}
 
 	/**
@@ -227,6 +241,7 @@ public class Usuario {
 	 * */
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classInd, String genero, int temporada) {
 		itens.add(new Series(nomeItem, preco, duracao, descricao, classInd, genero, temporada));
+		addReputacaoCinco(preco);
 	}
 	
 	/**
@@ -255,6 +270,7 @@ public class Usuario {
 	 * */
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int faixas, String artista, String classInd) {
 		itens.add(new Shows(nomeItem, preco, duracao, faixas, artista, classInd));
+		addReputacaoCinco(preco);
 	}
 	
 	/**
@@ -274,7 +290,7 @@ public class Usuario {
 		excecoesItens.statusItem(item.getStatus());
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
 		registrarEmprestimo(emprestimo);
-		
+		addReputacaoDez(item.getPreco());
 		return emprestimo;
 	}
 	
@@ -316,10 +332,11 @@ public class Usuario {
 	 * @param dataEmprestimo Data do emprestimo
 	 * @param dataDevolucao Data de devolução de emprestimo
 	 * */
-	public void devolverItem(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
+	public int devolverItem(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		Emprestimo emprestimo = encontraEmprestimo(dono, requerente, nomeItem, dataEmprestimo);
 		excecoesEmprestimo.emprestimoInvalido(emprestimo);
 		emprestimo.devolucao(dataDevolucao);
+		return emprestimo.getAtraso();
 	}
 	
 	@Override
@@ -372,5 +389,8 @@ public class Usuario {
 		return this.nome + ", " + this.email + ", " + this.telefone;
 	}
 
-
+	public void diminuirReputacao(int atraso, double preco) {
+		// TODO Auto-generated method stub
+		
+	}
 }
