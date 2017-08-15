@@ -335,8 +335,8 @@ public class UsuarioController {
 		if (atraso == 0) {
 			usuarios.get(idRequerente).addReputacaoCinco(preco);
 		}
-		usuarios.get(idRequerente).diminuirReputacao(atraso,preco);
+		else if (atraso > 0) {
+			usuarios.get(idRequerente).diminuirReputacao(atraso,preco);			
+		}
 	}
-	
-	
 }
