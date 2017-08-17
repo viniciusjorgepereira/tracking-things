@@ -1,10 +1,8 @@
-package itens;
+package usuarios;
 
 import java.util.Comparator;
 
-import usuarios.Usuario;
-
-public class OrdenaUsuarioOrdemAlfabetica implements Comparator<Usuario>{
+public class OrdemAlfabeticaComparator implements Comparator<Usuario>{
 
 	@Override
 	public int compare(Usuario o1, Usuario o2) {

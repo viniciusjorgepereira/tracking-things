@@ -12,7 +12,6 @@ import java.util.Map;
 
 import emprestimo.Emprestimo;
 import itens.Item;
-import itens.OrdenaUsuarioOrdemAlfabetica;
 import usuarios.IdUsuario;
 
 public class UsuarioController {
@@ -351,7 +350,7 @@ public class UsuarioController {
 	public String listarCaloteiros() {
 		String saida = "Lista de usuarios com reputacao negativa: ";
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
-		Collections.sort(lista, new OrdenaUsuarioOrdemAlfabetica());
+		Collections.sort(lista, new OrdemAlfabeticaComparator());
 		for (int i = 0; i < lista.size(); i++) {
 			if (lista.get(i).getReputacao() < 0) {
 				saida += lista.get(i).toString() + "|";
