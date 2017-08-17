@@ -339,7 +339,7 @@ public class UsuarioController {
 		int atraso = usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);		
 		double preco = Double.parseDouble(usuarios.get(idDono).getInfoItem(nomeItem, "preco"));
-		if (atraso == 0) {
+		if (atraso <= 0) {
 			usuarios.get(idRequerente).addReputacaoCinco(preco);
 		}
 		else if (atraso > 0) {
@@ -354,6 +354,23 @@ public class UsuarioController {
 		for (int i = 0; i < lista.size(); i++) {
 			if (lista.get(i).getReputacao() < 0) {
 				saida += lista.get(i).toString() + "|";
+			}
+		}
+		return saida;
+	}
+	
+	public String listarTop10MelhoresUsuarios() {
+		String saida = "";
+		List<Usuario> lista = new ArrayList<>(usuarios.values());
+		Collections.sort(lista, new MaiorReputacaoComparator());
+		if (lista.size() < 10) {
+			for (int i = 0; i < lista.size(); i++) {
+				saida += (i+1) + ": " + lista.get(i).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(i).getReputacao()) + "|";
+			}
+		}
+		else {
+			for (int i = 0; i < 10; i++) {
+				saida += (i+1) + ": " + lista.get(i).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(i).getReputacao()) + "|";
 			}
 		}
 		return saida;
