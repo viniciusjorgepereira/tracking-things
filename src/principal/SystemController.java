@@ -318,4 +318,8 @@ public class SystemController {
 		
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
+	
+	public String listarCaloteiros() {
+		return usuarios.listarCaloteiros();
+	}
 }
