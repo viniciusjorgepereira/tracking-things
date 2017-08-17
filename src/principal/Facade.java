@@ -270,4 +270,9 @@ public class Facade {
 		 */
 		public void fecharSistema(){
 		}
+		
+		public String listarCaloteiros() {
+			return system.listarCaloteiros();
+		}
+		
 }
