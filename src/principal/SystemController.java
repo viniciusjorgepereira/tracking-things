@@ -319,6 +319,31 @@ public class SystemController {
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		return null;
+
+	}
+
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+		return null;
+	}
+
+	public String listarEmprestimosItem(String nomeItem) {
+		return null;
+	}
+
+	public String listarItensNaoEmprestados() {
+		return null;
+	}
+
+	public String listarItensEmprestados() {
+		return null;
+	}
+
+	public String listarTop10Itens() {
+		return null;
+	}
+	  
 	public String listarCaloteiros() {
 		return usuarios.listarCaloteiros();
 	}

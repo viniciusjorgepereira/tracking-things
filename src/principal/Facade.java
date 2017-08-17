@@ -265,17 +265,37 @@ public class Facade {
 			system.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		}
 		
+		public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+			return system.listarEmprestimosUsuarioEmprestando(nome, telefone);
+		}
+	
+		public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+			return system.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+		}
+	
+		public String listarEmprestimosItem(String nomeItem) {
+			return system.listarEmprestimosItem(nomeItem);
+		}
+	
+		public String listarItensNaoEmprestados() {
+			return system.listarItensNaoEmprestados();
+		}
+	
+		public String listarItensEmprestados() {
+			return system.listarItensEmprestados();
+		}
+	
+		public String listarTop10Itens() {
+			return system.listarTop10Itens();
+		}
+	
+		public String listarCaloteiros() {
+			return system.listarCaloteiros();
+		}
+
 		/**
 		 * Metodo que fecha o sistema
 		 */
 		public void fecharSistema(){
-		}
-		
-		public String listarCaloteiros() {
-			return system.listarCaloteiros();
-		}
-		
-		public String listarTop10MelhoresUsuarios() {
-			return system.listarTop10MelhoresUsuarios();
 		}
 }
