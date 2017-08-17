@@ -343,4 +343,9 @@ public class UsuarioController {
 		}
 		usuarios.get(idRequerente).atualizaCartao();
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		return usuarios.get(idDono).exibirEmprestimosOrdenadosNomeItem();
+	}
 }

@@ -122,7 +122,7 @@ public class SystemController {
 	 * @param nomeItem Representa o nome do filme
 	 * @param preco Representa o preco do filme
 	 * @param duracao Representa a duracao do filme
-	 * @param genero Representa o genero do filme
+	 * @param genero Representa o genero do filmelistarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
 	 * @param classificacao Representa a classificacao indicativa
 	 * @param anoLancamento Representa o ano de lancamento do filme
 	 * */
@@ -232,7 +232,7 @@ public class SystemController {
 		
 		usuarios.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
-
+	
 	/**
 	 * Traz informacoes sobre o item
 	 * 
@@ -317,5 +317,9 @@ public class SystemController {
 		excecoes.outrosDadosInvalidos("Data de Devolução", dataDevolucao);
 		
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+		return usuarios.listarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
 	}
 }

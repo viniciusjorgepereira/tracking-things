@@ -265,6 +265,9 @@ public class Facade {
 			system.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		}
 		
+		public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+			return system.listarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
+		}
 		/**
 		 * Metodo que fecha o sistema
 		 */
