@@ -51,7 +51,9 @@ public class UsuarioController {
 	 * */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		IdUsuario id = pesquisaId(nome, telefone);
-		return usuarios.get(id).getInfoUsuario(atributo);
+		Usuario usuario = usuarios.get(id);
+		usuario.atualizaCartao();
+		return usuario.getInfoUsuario(atributo);
 	}
 
 	/**
@@ -311,6 +313,7 @@ public class UsuarioController {
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
 		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+		usuarios.get(idRequerente).atualizaCartao();
 		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
 		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
 	}
@@ -336,7 +339,8 @@ public class UsuarioController {
 			usuarios.get(idRequerente).addReputacaoCinco(preco);
 		}
 		else if (atraso > 0) {
-			usuarios.get(idRequerente).diminuirReputacao(atraso,preco);			
+			usuarios.get(idRequerente).diminuirReputacao(atraso, preco);			
 		}
+		usuarios.get(idRequerente).atualizaCartao();
 	}
 }

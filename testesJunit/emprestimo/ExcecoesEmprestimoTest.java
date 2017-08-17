@@ -30,7 +30,7 @@ public class ExcecoesEmprestimoTest {
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testPeriodoInvalido() {
-		excecaoEmprestimo.periodoInvalido(8);
+		excecaoEmprestimo.periodoInvalido(0, 1);
 	}
 	
 	@Test
@@ -40,6 +40,6 @@ public class ExcecoesEmprestimoTest {
 
 	@Test
 	public void testPeriodoValido() {
-		excecaoEmprestimo.periodoInvalido(7);
+		excecaoEmprestimo.periodoInvalido(7, 7);
 	}
 }

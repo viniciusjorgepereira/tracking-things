@@ -87,7 +87,7 @@ public class Emprestimo {
 	 * @return Retorna a quantidade de dias em atraso
 	 */
 	public int getAtraso() {
-		return (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS) - this.dias;
+		return this.dias - (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS);
 	}
 
 	@Override

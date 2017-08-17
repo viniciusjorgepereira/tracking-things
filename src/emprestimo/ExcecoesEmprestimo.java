@@ -18,14 +18,19 @@ public class ExcecoesEmprestimo {
 		}
 	}
 	
+	public void permitirEmprestimo(Boolean permicao) {
+		if (permicao == false) {
+			throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+		}
+	}
 	/**
 	 * Checka se o periodo de emprestimo eh valido
 	 * 
 	 * @param periodo Numero de dias do emprestimo
 	 */
-	public void periodoInvalido(int periodo) {
-		if (periodo > 7) {
-			throw new IllegalArgumentException("Periodo invalido");
+	public void periodoInvalido(int periodoPermitido, int periodoRequerido) {
+		if (periodoRequerido > periodoPermitido) {
+			throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
 		}
 	}
 }

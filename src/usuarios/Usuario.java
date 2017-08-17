@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import cartoes.CartaoBomAmigo;
+import cartoes.CartaoCaloteiro;
+import cartoes.CartaoFidelidade;
+import cartoes.CartaoFreeRider;
+import cartoes.CartaoNoob;
 import emprestimo.Emprestimo;
 import emprestimo.ExcecoesEmprestimo;
 import itens.ExcecoesItens;
@@ -25,6 +30,7 @@ public class Usuario {
 	private String telefone;
 	private Set<Item> itens;
 	private Reputacao reputacao;
+	private CartaoFidelidade cartao;
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
 	private ExcecoesEmprestimo excecoesEmprestimo;
@@ -44,6 +50,7 @@ public class Usuario {
 		this.telefone = telefone;
 		this.itens = new HashSet<>();
 		this.reputacao = new Reputacao(0);
+		this.cartao = new CartaoFreeRider();
 		this.emprestimos = new HashSet<>();
 		this.excecoesItens = new ExcecoesItens();
 		this.excecoesEmprestimo = new ExcecoesEmprestimo();
@@ -132,6 +139,9 @@ public class Usuario {
 		}
 		else if ("reputacao".equals(atributo.toLowerCase())) {
 			return String.valueOf(reputacao.getReputacao());
+		}
+		else if ("cartao".equals(atributo.toLowerCase())) {
+			return this.cartao.getTipoCartao();
 		}
 		return "";
 	}
@@ -296,7 +306,9 @@ public class Usuario {
 	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
 	 * */
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		excecoesEmprestimo.periodoInvalido(periodo);
+		int periodoPermitido = cartao.diasMaximoEmprestimo();
+		excecoesEmprestimo.periodoInvalido(periodoPermitido, periodo);
+		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
 		Item item = getItem(nomeItem);
 		excecoesItens.statusItem(item.getStatus());
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
@@ -349,6 +361,25 @@ public class Usuario {
 		emprestimo.devolucao(dataDevolucao);
 		return emprestimo.getAtraso();
 	}
+	
+	public void atualizaCartao() {
+		double valorReputacao = this.reputacao.getReputacao();
+		if (valorReputacao >= 0) {
+			if (itens.size() == 0) {
+				this.cartao = new CartaoFreeRider();
+			}
+			else if (valorReputacao <= 100 && itens.size() > 0) {
+				this.cartao = new CartaoNoob();
+			}
+			else if (valorReputacao > 100) {
+				this.cartao = new CartaoBomAmigo();
+			}
+		}
+		else {
+			this.cartao = new CartaoCaloteiro();
+		}
+	}
+	
 	
 	@Override
 	public int hashCode() {
