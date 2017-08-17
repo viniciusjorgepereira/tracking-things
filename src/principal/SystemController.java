@@ -322,4 +322,8 @@ public class SystemController {
 	public String listarCaloteiros() {
 		return usuarios.listarCaloteiros();
 	}
+	
+	public String listarTop10MelhoresUsuarios() {
+		return usuarios.listarTop10MelhoresUsuarios();
+	}
 }
