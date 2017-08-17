@@ -292,7 +292,15 @@ public class Facade {
 		public String listarCaloteiros() {
 			return system.listarCaloteiros();
 		}
+		
+		public String listarTop10MelhoresUsuarios() {
+			return system.listarTop10MelhoresUsuarios();
+		}
 
+		public String listarTop10PioresUsuarios() {
+			return system.listarTop10PioresUsuarios();
+		}
+		
 		/**
 		 * Metodo que fecha o sistema
 		 */

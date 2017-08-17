@@ -360,9 +360,19 @@ public class UsuarioController {
 	}
 	
 	public String listarTop10MelhoresUsuarios() {
-		String saida = "";
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
 		Collections.sort(lista, new MaiorReputacaoComparator());
+		return listarTop10(lista);
+	}
+
+	public String listarTop10PioresUsuarios() {
+		List<Usuario> lista = new ArrayList<>(usuarios.values());
+		Collections.sort(lista, new MenorReputacaoComparator());
+		return listarTop10(lista);
+	}
+
+	private String listarTop10(List<Usuario> lista) {
+		String saida = "";
 		if (lista.size() < 10) {
 			for (int i = 0; i < lista.size(); i++) {
 				saida += (i+1) + ": " + lista.get(i).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(i).getReputacao()) + "|";

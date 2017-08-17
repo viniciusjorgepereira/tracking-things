@@ -351,4 +351,8 @@ public class SystemController {
 	public String listarTop10MelhoresUsuarios() {
 		return usuarios.listarTop10MelhoresUsuarios();
 	}
+	
+	public String listarTop10PioresUsuarios() {
+		return usuarios.listarTop10PioresUsuarios();
+	}
 }
