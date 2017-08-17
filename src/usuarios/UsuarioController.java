@@ -314,6 +314,8 @@ public class UsuarioController {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
 		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
 		usuarios.get(idRequerente).atualizaCartao();
+		usuarios.get(idRequerente).permicaoEmprestimo();
+		usuarios.get(idRequerente).periodoEmprestimoValido(periodo);
 		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
 		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
 	}
@@ -341,6 +343,5 @@ public class UsuarioController {
 		else if (atraso > 0) {
 			usuarios.get(idRequerente).diminuirReputacao(atraso, preco);			
 		}
-		usuarios.get(idRequerente).atualizaCartao();
 	}
 }

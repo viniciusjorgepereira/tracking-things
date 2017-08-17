@@ -306,9 +306,6 @@ public class Usuario {
 	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
 	 * */
 	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		int periodoPermitido = cartao.diasMaximoEmprestimo();
-		excecoesEmprestimo.periodoInvalido(periodoPermitido, periodo);
-		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
 		Item item = getItem(nomeItem);
 		excecoesItens.statusItem(item.getStatus());
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
@@ -324,6 +321,14 @@ public class Usuario {
 	 * */
 	public void registrarEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
+	}
+	
+	public void periodoEmprestimoValido(int periodoRequerido) {
+		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
+	}
+	
+	public void permicaoEmprestimo() {
+		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
 	}
 	
 	/**
