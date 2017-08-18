@@ -385,4 +385,9 @@ public class UsuarioController {
 		}
 		return saida;
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		return usuarios.get(idDono).exibirEmprestimosOrdenadosNomeItem();
+	}
 }
