@@ -4,8 +4,9 @@
 
 package usuarios;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import cartoes.CartaoBomAmigo;
@@ -15,6 +16,7 @@ import cartoes.CartaoFreeRider;
 import cartoes.CartaoNoob;
 import emprestimo.Emprestimo;
 import emprestimo.ExcecoesEmprestimo;
+import emprestimo.OrdemEmprestimoNome;
 import itens.ExcecoesItens;
 import itens.Filmes;
 import itens.Item;
@@ -34,6 +36,7 @@ public class Usuario {
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
 	private ExcecoesEmprestimo excecoesEmprestimo;
+	private ArrayList<Emprestimo> emprestimosOrdenados;
 
 	/**
 	 * Construtor de um usuario. Recebe um nome, um numero de telefone,
@@ -321,6 +324,8 @@ public class Usuario {
 	 * */
 	public void registrarEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
+		adicionaEmprestimos(emprestimos);
+		ordenaItemEmprestimoNome();
 	}
 	
 	public void periodoEmprestimoValido(int periodoRequerido) {
@@ -434,5 +439,23 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return this.nome + ", " + this.email + ", " + this.telefone;
+	}
+	
+	public void adicionaEmprestimos(Set<Emprestimo> emprestimos) {
+		emprestimosOrdenados = new ArrayList<>(emprestimos);
+	}
+	
+	public void ordenaItemEmprestimoNome() {
+		Collections.sort(emprestimosOrdenados, new OrdemEmprestimoNome());
+	}
+	
+	public String exibirEmprestimosOrdenadosNomeItem() {
+		String saida = "Emprestimos: ";
+		
+		for(Emprestimo emprestimo: this.emprestimosOrdenados) {
+			saida += emprestimo.toString() + "|";
+		}
+		
+		return saida;
 	}
 }

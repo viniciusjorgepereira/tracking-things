@@ -232,7 +232,7 @@ public class SystemController {
 		
 		usuarios.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
-
+	
 	/**
 	 * Traz informacoes sobre o item
 	 * 
@@ -318,11 +318,6 @@ public class SystemController {
 		
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
-	
-	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		return null;
-
-	}
 
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 		return null;
@@ -354,5 +349,10 @@ public class SystemController {
 	
 	public String listarTop10PioresUsuarios() {
 		return usuarios.listarTop10PioresUsuarios();
+	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+		return usuarios.listarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
+
 	}
 }
