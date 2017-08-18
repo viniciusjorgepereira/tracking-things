@@ -122,7 +122,7 @@ public class SystemController {
 	 * @param nomeItem Representa o nome do filme
 	 * @param preco Representa o preco do filme
 	 * @param duracao Representa a duracao do filme
-	 * @param genero Representa o genero do filmelistarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
+	 * @param genero Representa o genero do filme
 	 * @param classificacao Representa a classificacao indicativa
 	 * @param anoLancamento Representa o ano de lancamento do filme
 	 * */
