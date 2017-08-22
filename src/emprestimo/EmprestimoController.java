@@ -29,12 +29,12 @@ public class EmprestimoController {
 	 * @param periodo Representa o periodo do emprestimo em dias
 	 * */
 	public void registrarEmprestimo(Usuario dono, Usuario requerente, Emprestimo emprestimo) {
-		permicaoEmprestimo(requerente.getCartao(), emprestimo.getDias(), emprestimo.getItem());
+		permissaoEmprestimo(requerente.getCartao(), emprestimo.getDias(), emprestimo.getItem());
 		dono.registrarEmprestimo(emprestimo);
 		requerente.registrarEmprestimo(emprestimo);
 	}
 	
-	public void permicaoEmprestimo(CartaoFidelidade cartao, int periodoRequerido, Item item) {
+	public void permissaoEmprestimo(CartaoFidelidade cartao, int periodoRequerido, Item item) {
 		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
 		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
 	}
