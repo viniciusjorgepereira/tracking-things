@@ -9,16 +9,17 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import itens.Item;
-import usuarios.IdUsuario;
+import usuarios.Usuario;
 
 public class Emprestimo {
 	
 	private Item item;
-	private IdUsuario dono;
-	private IdUsuario requerente;
+	private Usuario dono;
+	private Usuario requerente;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
 	private int dias;
+	private boolean emprestimoAtivo;
 	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	/**
@@ -30,20 +31,21 @@ public class Emprestimo {
 	 * @param item O item emprestado
 	 * @param dias Os dias totais para o emprestimo
 	 * */
-	public Emprestimo(IdUsuario dono, IdUsuario requerente, String dataEmprestimo, Item item, int dias) {
+	public Emprestimo(Usuario dono, Usuario requerente, String dataEmprestimo, Item item, int dias) {
 		this.dias = dias;
 		this.dono = dono;
 		this.item = item;
 		this.requerente = requerente;
 		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, formato);
 		this.item.setStatus(true);
+		this.emprestimoAtivo = true;
 	}
 	
-	public IdUsuario getDono() {
+	public Usuario getDono() {
 		return dono;
 	}
 	
-	public IdUsuario getRequerente() {
+	public Usuario getRequerente() {
 		return requerente;
 	}
 	
@@ -80,6 +82,10 @@ public class Emprestimo {
 		return item;
 	}
 	
+	public boolean getStatus() {
+		return emprestimoAtivo;
+	}
+	
 	/**
 	 * Pega a informacao se o item ja foi devolvido, se ja tiver sido devolvido 
 	 * retorna a data de devolucao
@@ -87,7 +93,7 @@ public class Emprestimo {
 	 * @return Uma string com a data de devolucao formatada
 	 * */
 	public String getDataDevolucao() {
-		if (dataDevolucao != null) {
+		if (this.emprestimoAtivo == false) {
 			return formato.format(dataDevolucao);
 		}
 		return "Emprestimo em andamento";
@@ -100,7 +106,8 @@ public class Emprestimo {
 	 * */
 	public void devolucao(String dataDevolucao) {
 		this.dataDevolucao = LocalDate.parse(dataDevolucao, formato);
-		this.item.setStatus(false);;
+		this.item.setStatus(false);
+		this.emprestimoAtivo = false;
 	}
 	
 	/**
@@ -188,4 +195,5 @@ public class Emprestimo {
 		return "EMPRESTIMO - De: " + dono.getNome() + ", Para: " + requerente.getNome() + ", " + item.getNome() + 
 				", " + getDataEmprestimo() + ", " + dias + " dias, ENTREGA: " + getDataDevolucao();
 	}
+
 }

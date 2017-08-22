@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import ordenadores.OrdenadorDeItens;
+
 public class InventarioTest {
 
-	private Inventario inventario;
+	private OrdenadorDeItens inventario;
 	private ArrayList<Item> itens;
 	private Item item1;
 	private Item item2;
@@ -18,7 +20,7 @@ public class InventarioTest {
 	
 	@Before
 	public void inicializa() {
-		inventario = new Inventario();
+		inventario = new OrdenadorDeItens();
 		itens = new ArrayList<>();
 		item1 = new JogoEletronico("DBX2", 159.67, "PC");
 		item2 = new JogoTabuleiro("Xadrez", 10.99);

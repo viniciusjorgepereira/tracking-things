@@ -3,21 +3,23 @@
  * adicionar, ordenar e listar um array de itens registrados
  * */
 
-package itens;
+package ordenadores;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import itens.Item;
 
-public class Inventario {
+
+public class OrdenadorDeItens {
 	private List<Item> itensOrdenados;
 	
 	/**
 	 * Constroi um inventario com um array vazio para todos os
 	 * itens
 	 * */
-	public Inventario() {
+	public OrdenadorDeItens() {
 		itensOrdenados = new ArrayList<>();
 	}
 
@@ -26,7 +28,7 @@ public class Inventario {
 	 * 
 	 * @param todosItens Array com todos os itens registrados
 	 * */
-	public void adicionaItens(ArrayList<Item> todosItens) {
+	public void adicionaItens(List<Item> todosItens) {
 		itensOrdenados = new ArrayList<>(todosItens);
 	}
 	
@@ -75,5 +77,27 @@ public class Inventario {
 			saida += item.toString() + "|";
 		} 
 		return saida;
+	}
+
+	public String listarItensOrdenadosPorQuantidadeEmprestimos() {
+		ordenaQuantidadeEmprestimos();
+		return listaItensQuantidadeEmprestimosString();
+	}
+
+	private String listaItensQuantidadeEmprestimosString() {
+		String saida = "";
+		int posicao = 1;
+		for (Item item : itensOrdenados) {
+			if (item.getQuantidadeEmprestimos() > 0) {
+				saida += posicao + ") " + item.getQuantidadeEmprestimos() + " emprestimos - " + item.toString() + "|";
+				posicao++;
+			}
+		} 
+		return saida;
+	}
+
+	private void ordenaQuantidadeEmprestimos() {
+		Collections.sort(itensOrdenados, new OrdemPorQuantidadeEmprestimosComparator());
+		
 	}
 }
