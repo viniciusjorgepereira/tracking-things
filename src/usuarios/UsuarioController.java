@@ -12,7 +12,6 @@ import java.util.Map;
 
 import emprestimo.Emprestimo;
 import itens.Item;
-import usuarios.IdUsuario;
 
 public class UsuarioController {
 
@@ -386,8 +385,15 @@ public class UsuarioController {
 		return saida;
 	}
 	
-	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+	public List<Emprestimo> emprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
 		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		return usuarios.get(idDono).exibirEmprestimosOrdenadosNomeItem();
+		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idDono).getEmprestando());
+		return emprestimos;
+	}
+	
+	public List<Emprestimo> emprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idRequerente).getEmprestado());
+		return emprestimos;
 	}
 }

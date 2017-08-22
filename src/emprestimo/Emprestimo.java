@@ -47,6 +47,23 @@ public class Emprestimo {
 		return requerente;
 	}
 	
+	public String getNomeDono() {
+		return dono.getNome();
+	}
+	
+	public String getTelefoneDono() {
+		return dono.getTelefone();
+	}
+	
+	public String getNomeRequerente() {
+		return requerente.getNome();
+	}
+	
+	public String getTelefoneRequerente() {
+		return requerente.getTelefone();
+	}
+	
+	
 	public String getDataEmprestimo() {
 		return formato.format(dataEmprestimo);
 	}
@@ -57,6 +74,10 @@ public class Emprestimo {
 	
 	public int getDias() {
 		return dias;
+	}
+	
+	public Item getItem() {
+		return item;
 	}
 	
 	/**
