@@ -35,7 +35,7 @@ public class EmprestimoController {
 	}
 	
 	public void permicaoEmprestimo(CartaoFidelidade cartao, int periodoRequerido, Item item) {
-		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
+		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
 		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
 	}
 	

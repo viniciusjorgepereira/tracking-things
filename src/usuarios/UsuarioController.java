@@ -303,32 +303,8 @@ public class UsuarioController {
 		IdUsuario id = pesquisaId(nome, telefone);
 		usuarios.get(id).atualizarDadosItens(nomeItem, atributo, valor);
 	}
-
+	
 	/**
-<<<<<<< HEAD
-=======
-	 * Registra emprestimos
-	 * 
-	 * @param nomeDono Nome do dono
-	 * @param telefoneDono Telefone do dono
-	 * @param nomeRequerente Nome da pessoa que pega emprestado
-	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
-	 * @param nomeItem Nome do item
-	 * @param dataEmprestimo Representa a data do emprestimo
-	 * @param periodo Representa o periodo do emprestimo em dias
-	 * */
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		usuarios.get(idRequerente).atualizaCartao();
-		usuarios.get(idRequerente).permissaoEmprestimo();
-		usuarios.get(idRequerente).periodoEmprestimoValido(periodo);
-		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
-		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
-	}
-
-	/**
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	 * Registra devolucoes de itens no sistema
 	 * 
 	 * @param nomeDono Nome do dono
@@ -415,38 +391,4 @@ public class UsuarioController {
 			}
 		return saida;
 	}
-<<<<<<< HEAD
-=======
-	
-	/**
-	 * Metodo que converte e retorna os Emprestimos de
-	 * um usuario dono do item em ArrayList
-	 * 
-	 * @param nomeDono Nome do dono do item
-	 * @param telefoneDono Telefone do dono do item
-	 * 
-	 * @return Um List de Emprestimos
-	 * */
-	public List<Emprestimo> emprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idDono).getEmprestando());
-		return emprestimos;
-	}
-	
-	
-	/**
-	 * Metodo que converte e retorna os Emprestimos de
-	 * um usuario requente em ArrayList
-	 * 
-	 * @param nomeRequerente Nome do requerente do item
-	 * @param telefoneRequerente Telefone do requerente do item
-	 * 
-	 * @return Um List de Emprestimos do requerente
-	 * */
-	public List<Emprestimo> emprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idRequerente).getEmprestado());
-		return emprestimos;
-	}
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 }

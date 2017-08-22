@@ -77,13 +77,11 @@ public class Usuario {
 		return itens;
 	}
 	
-<<<<<<< HEAD
 	public CartaoFidelidade getCartao() {
 		return cartao;
-=======
+	}
 	public double getReputacao() {
 		return reputacao.getReputacao();
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	}
 	
 	public List<Emprestimo> getEmprestando() {
@@ -106,19 +104,16 @@ public class Usuario {
 		return emprestado;
 	}
 	
-<<<<<<< HEAD
 	public List<Emprestimo> getEmprestimos() {
 		return new ArrayList<>(emprestimos);
 	}
 	
-=======
 	/**
 	 * Invoca metodo para incementar 5% do preco 
 	 * do item adicionado para emprestimo na reputacao
 	 * 
 	 * @param preco Representa preco do item adicionado para emprestimo
 	 * */
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	public void addReputacaoCinco(double preco) {
 		reputacao.acrescimoCinco(preco);
 	}
@@ -380,11 +375,10 @@ public class Usuario {
 		emprestimos.add(emprestimo);
 	}
 	
-<<<<<<< HEAD
 	public void getStatusItem(Item item) {
 		excecoesItens.statusItem(item.getStatus());
 		atualizaCartao();
-=======
+	}
 	/**
 	 * Metodo que valida o periodo do emprestimo
 	 * 
@@ -399,7 +393,6 @@ public class Usuario {
 	 * */
 	public void permissaoEmprestimo() {
 		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	}
 	
 	/**
