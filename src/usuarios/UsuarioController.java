@@ -305,6 +305,30 @@ public class UsuarioController {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Registra emprestimos
+	 * 
+	 * @param nomeDono Nome do dono
+	 * @param telefoneDono Telefone do dono
+	 * @param nomeRequerente Nome da pessoa que pega emprestado
+	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param nomeItem Nome do item
+	 * @param dataEmprestimo Representa a data do emprestimo
+	 * @param periodo Representa o periodo do emprestimo em dias
+	 * */
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+		usuarios.get(idRequerente).atualizaCartao();
+		usuarios.get(idRequerente).permissaoEmprestimo();
+		usuarios.get(idRequerente).periodoEmprestimoValido(periodo);
+		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
+		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
+	}
+
+	/**
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	 * Registra devolucoes de itens no sistema
 	 * 
 	 * @param nomeDono Nome do dono
@@ -328,7 +352,15 @@ public class UsuarioController {
 			usuarios.get(idRequerente).diminuirReputacao(atraso, preco);			
 		}
 	}
-
+	
+	
+	/**
+	 * Metodo que lista usuarios que possuem reputacao
+	 * de caloteiros
+	 * 
+	 * @return Uma String listando as informacoes dos usuarios
+	 * considerados caloteiros
+	 * */
 	public String listarCaloteiros() {
 		String saida = "Lista de usuarios com reputacao negativa: ";
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
@@ -342,18 +374,38 @@ public class UsuarioController {
 		return saida;
 	}
 	
+	/**
+	 * Metodo que lista os dez usuarios com as melhores
+	 * reputacoes
+	 * 
+	 * @return Uma String com as informacoes dos dez
+	 * melhores usuarios
+	 * */
 	public String listarTop10MelhoresUsuarios() {
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
 		Collections.sort(lista, new MaiorReputacaoComparator());
 		return listarTop10(lista);
 	}
 
+	/**
+	 * Metodo que lista os dez usuarios com as piores
+	 * reputacoes
+	 * 
+	 * @return Uma String com as informacoes dos dez
+	 * piores usuarios
+	 * */
 	public String listarTop10PioresUsuarios() {
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
 		Collections.sort(lista, new MenorReputacaoComparator());
 		return listarTop10(lista);
 	}
 
+	/**
+	 * Metodo que lista o top 10 dos usuarios do TT
+	 * 
+	 * @return Uma String com as informacoes do top
+	 * 10 dos usuarios do TT
+	 * */
 	private String listarTop10(List<Usuario> lista) {
 		String saida = "";
 		int contador = 0;
@@ -363,4 +415,38 @@ public class UsuarioController {
 			}
 		return saida;
 	}
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * Metodo que converte e retorna os Emprestimos de
+	 * um usuario dono do item em ArrayList
+	 * 
+	 * @param nomeDono Nome do dono do item
+	 * @param telefoneDono Telefone do dono do item
+	 * 
+	 * @return Um List de Emprestimos
+	 * */
+	public List<Emprestimo> emprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
+		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
+		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idDono).getEmprestando());
+		return emprestimos;
+	}
+	
+	
+	/**
+	 * Metodo que converte e retorna os Emprestimos de
+	 * um usuario requente em ArrayList
+	 * 
+	 * @param nomeRequerente Nome do requerente do item
+	 * @param telefoneRequerente Telefone do requerente do item
+	 * 
+	 * @return Um List de Emprestimos do requerente
+	 * */
+	public List<Emprestimo> emprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
+		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
+		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idRequerente).getEmprestado());
+		return emprestimos;
+	}
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 }

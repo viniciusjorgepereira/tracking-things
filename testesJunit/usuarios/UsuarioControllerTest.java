@@ -147,4 +147,30 @@ public class UsuarioControllerTest {
 		controle.devolverItem("Vinicius", "1234-1234", "Jorge", "12-12", "Harry Potter", "10/08/2017", "11/08/2017");
 		assertEquals("Nao emprestado", controle.getInfoItem("Vinicius", "1234-1234", "Harry Potter", "emprestimo"));		
 	}
+	
+	@Test
+	public void testListarCaloteiros() {
+		controle.cadastrarUsuario("Jorge", "123-123", "a@b.c");
+		controle.registrarEmprestimo("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", 1);
+		controle.devolverItem("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", "22/08/2017");
+		assertEquals("Lista de usuarios com reputacao negativa: Jorge, a@b.c, 123-123|", controle.listarCaloteiros());
+	}
+	
+	@Test
+	public void testListarTop10Melhores() {
+		controle.cadastrarUsuario("Jorge", "123-123", "a@b.c");
+		assertEquals("1: Vinicius - Reputacao: 1,00|2: Jorge - Reputacao: 0,00|", controle.listarTop10MelhoresUsuarios());
+	}
+	
+	@Test
+	public void testListarTop10Piores() {
+		controle.cadastrarBluRaySerie("Vinicius", "1234-1234", "The Flash", 99.99, "The Fastest man alive", 360, "DEz_Anos", "Outro", 2);
+		controle.cadastrarUsuario("Jorge", "123-123", "a@b.c");
+		controle.cadastrarUsuario("Silva", "1212-1212", "b@c.d");
+		controle.registrarEmprestimo("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", 1);
+		controle.devolverItem("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", "22/08/2017");
+		controle.registrarEmprestimo("Vinicius", "1234-1234", "Silva", "1212-1212", "The Flash", "15/08/2017", 2);
+		controle.devolverItem("Vinicius", "1234-1234", "Silva", "1212-1212", "The Flash", "15/08/2017", "23/08/2017");
+		assertEquals("1: Silva - Reputacao: -6,00|2: Jorge - Reputacao: -2,20|3: Vinicius - Reputacao: 18,00|", controle.listarTop10PioresUsuarios());		
+	}
 }

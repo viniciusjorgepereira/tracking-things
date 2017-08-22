@@ -77,8 +77,13 @@ public class Usuario {
 		return itens;
 	}
 	
+<<<<<<< HEAD
 	public CartaoFidelidade getCartao() {
 		return cartao;
+=======
+	public double getReputacao() {
+		return reputacao.getReputacao();
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	}
 	
 	public List<Emprestimo> getEmprestando() {
@@ -101,24 +106,42 @@ public class Usuario {
 		return emprestado;
 	}
 	
+<<<<<<< HEAD
 	public List<Emprestimo> getEmprestimos() {
 		return new ArrayList<>(emprestimos);
 	}
 	
+=======
+	/**
+	 * Invoca metodo para incementar 5% do preco 
+	 * do item adicionado para emprestimo na reputacao
+	 * 
+	 * @param preco Representa preco do item adicionado para emprestimo
+	 * */
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	public void addReputacaoCinco(double preco) {
 		reputacao.acrescimoCinco(preco);
 	}
 	
+	/**
+	 * Invoca metodo para incementar 10% do preco 
+	 * do item emprestado na reputacao
+	 * 
+	 * @param preco Representa preco do item emprestado
+	 * */
 	public void addReputacaoDez(double preco) {
 		reputacao.acrescimoDez(preco);
 	}
 	
+	/**
+	 * Invoca metodo de diminuir a reputacao em caso
+	 * de atraso na entrega do item
+	 * 
+	 * @param atraso Representa dias de atraso na devolucao do item
+	 * @param preco Representa o terco do item
+	 * */
 	public void diminuirReputacao(int atraso, double preco) {
 		reputacao.diminuirReputacao(atraso,preco);
-	}
-	
-	public double getReputacao() {
-		return reputacao.getReputacao();
 	}
 	
 	/**
@@ -325,7 +348,31 @@ public class Usuario {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Método que registra o emprestimo
+=======
+	 * Método que cria um Emprestimo
+	 * 
+	 * @param dono ID do dono do item
+	 * @param requerente ID do requerente do item
+	 * @param nomeItem Nome do item requerido
+	 * @param dataEmprestimo Data do emprestimo
+	 * @param periodo Período de emprestimo do item
+	 * 
+	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
+	 * */
+	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
+		Item item = getItem(nomeItem);
+		excecoesItens.statusItem(item.getStatus());
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
+		registrarEmprestimo(emprestimo);
+		addReputacaoDez(item.getPreco());
+		return emprestimo;
+	}
+	
+	/**
+	 * Metodo que registra o emprestimo
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	 * 
 	 * @param emprestimo O emprestimo a ser adicionado
 	 * */
@@ -333,9 +380,26 @@ public class Usuario {
 		emprestimos.add(emprestimo);
 	}
 	
+<<<<<<< HEAD
 	public void getStatusItem(Item item) {
 		excecoesItens.statusItem(item.getStatus());
 		atualizaCartao();
+=======
+	/**
+	 * Metodo que valida o periodo do emprestimo
+	 * 
+	 * @param periodoRequerido Representa o periodo que o item foi pedido
+	 * */
+	public void periodoEmprestimoValido(int periodoRequerido) {
+		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
+	}
+	
+	/**
+	 * Metodo que valida a permissao para o emprestimo
+	 * */
+	public void permissaoEmprestimo() {
+		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
+>>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	}
 	
 	/**
@@ -366,6 +430,8 @@ public class Usuario {
 	 * @param nomeItem Nome do item emprestado
 	 * @param dataEmprestimo Data do emprestimo
 	 * @param dataDevolucao Data de devolução de emprestimo
+	 * 
+	 * @return A quantidade de dias que a entrega atrasou
 	 * */
 	public int devolverItem(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		Emprestimo emprestimo = encontraEmprestimo(dono, requerente, nomeItem, dataEmprestimo);
@@ -374,6 +440,10 @@ public class Usuario {
 		return emprestimo.getAtraso();
 	}
 	
+	/**
+	 * Atualiza o tipo de cartao fidelidade que o usuario
+	 * possui com base na sua reputacao
+	 * */
 	public void atualizaCartao() {
 		double valorReputacao = this.reputacao.getReputacao();
 		if (valorReputacao >= 0) {

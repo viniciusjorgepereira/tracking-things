@@ -1,3 +1,8 @@
+/**
+ * Classe que gera o cartao do tipo BomAmigo
+ * implementa a interface CartaoFidelidade
+ * */
+
 package cartoes;
 
 public class CartaoBomAmigo implements CartaoFidelidade{
@@ -12,7 +17,7 @@ public class CartaoBomAmigo implements CartaoFidelidade{
 	}
 
 	@Override
-	public boolean permicaoEmprestimo() {
+	public boolean permissaoEmprestimo() {
 		return emprestimo;
 	}
 
