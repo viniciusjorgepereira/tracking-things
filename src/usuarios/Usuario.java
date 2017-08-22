@@ -333,7 +333,7 @@ public class Usuario {
 	}
 	
 	public void permicaoEmprestimo() {
-		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
+		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
 	}
 	
 	/**

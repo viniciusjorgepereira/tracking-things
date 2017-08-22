@@ -1,3 +1,8 @@
+/**
+ * Classe que gera o cartao do tipo Caloteiro
+ * implementa a interface CartaoFidelidade
+ * */
+
 package cartoes;
 
 public class CartaoCaloteiro implements CartaoFidelidade {
@@ -12,7 +17,7 @@ public class CartaoCaloteiro implements CartaoFidelidade {
 	}
 
 	@Override
-	public boolean permicaoEmprestimo() {
+	public boolean permissaoEmprestimo() {
 		return emprestimo;
 	}
 
