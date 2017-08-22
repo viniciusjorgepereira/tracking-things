@@ -173,12 +173,4 @@ public class UsuarioControllerTest {
 		controle.devolverItem("Vinicius", "1234-1234", "Silva", "1212-1212", "The Flash", "15/08/2017", "23/08/2017");
 		assertEquals("1: Silva - Reputacao: -6,00|2: Jorge - Reputacao: -2,20|3: Vinicius - Reputacao: 18,00|", controle.listarTop10PioresUsuarios());		
 	}
-	
-	@Test
-	public void testListarEmprestimosUsuarioEmprestando() {
-		controle.cadastrarUsuario("Jorge", "123-123", "a@b.c");
-		controle.registrarEmprestimo("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", 1);
-		controle.devolverItem("Vinicius", "1234-1234", "Jorge", "123-123", "Harry Potter", "10/08/2017", "22/08/2017");
-		assertEquals("Emprestimos: EMPRESTIMO - De: Vinicius, Para: Jorge, Harry Potter, 10/08/2017, 1 dias, ENTREGA: 22/08/2017|", controle.listarEmprestimosUsuarioEmprestando("Vinicius", "1234-1234"));
-	}
 }
