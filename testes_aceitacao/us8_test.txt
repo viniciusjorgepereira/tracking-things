@@ -1,4 +1,4 @@
-﻿#####################
+#####################
 # PROJETO LP2 - US8 #
 #####################
 
@@ -19,3 +19,4 @@ expect "1: Jericho - Reputacao: 492,85|2: Evaine - Reputacao: 399,90|3: Joao - R
 expect "1: Tobias - Reputacao: -99,14|2: Josefina - Reputacao: 0,00|3: Maria - Reputacao: 1,10|4: Atreus - Reputacao: 3,00|5: Vilmar - Reputacao: 4,00|6: Carlos - Reputacao: 15,50|7: Shauna - Reputacao: 20,25|8: Sarah - Reputacao: 45,00|9: Joao - Reputacao: 173,25|10: Evaine - Reputacao: 399,90|" listarTop10PioresUsuarios
 
 fecharSistema
+
