@@ -77,6 +77,10 @@ public class Usuario {
 		return itens;
 	}
 	
+	public CartaoFidelidade getCartao() {
+		return cartao;
+	}
+	
 	public List<Emprestimo> getEmprestando() {
 		List<Emprestimo> emprestando = new ArrayList<>();
 		for (Emprestimo emprestimo : emprestimos) {
@@ -95,6 +99,10 @@ public class Usuario {
 			}
 		}
 		return emprestado;
+	}
+	
+	public List<Emprestimo> getEmprestimos() {
+		return new ArrayList<>(emprestimos);
 	}
 	
 	public void addReputacaoCinco(double preco) {
@@ -162,6 +170,7 @@ public class Usuario {
 			return String.valueOf(reputacao.getReputacao());
 		}
 		else if ("cartao".equals(atributo.toLowerCase())) {
+			atualizaCartao();
 			return this.cartao.getTipoCartao();
 		}
 		return "";
@@ -316,26 +325,6 @@ public class Usuario {
 	}
 	
 	/**
-	 * Método que cria um Emprestimo
-	 * 
-	 * @param dono ID do dono do item
-	 * @param requerente ID do requerente do item
-	 * @param nomeItem Nome do item requerido
-	 * @param dataEmprestimo Data do emprestimo
-	 * @param periodo Período de emprestimo do item
-	 * 
-	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
-	 * */
-	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		Item item = getItem(nomeItem);
-		excecoesItens.statusItem(item.getStatus());
-		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
-		registrarEmprestimo(emprestimo);
-		addReputacaoDez(item.getPreco());
-		return emprestimo;
-	}
-	
-	/**
 	 * Método que registra o emprestimo
 	 * 
 	 * @param emprestimo O emprestimo a ser adicionado
@@ -344,12 +333,9 @@ public class Usuario {
 		emprestimos.add(emprestimo);
 	}
 	
-	public void periodoEmprestimoValido(int periodoRequerido) {
-		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
-	}
-	
-	public void permicaoEmprestimo() {
-		excecoesEmprestimo.permitirEmprestimo(cartao.permicaoEmprestimo());
+	public void getStatusItem(Item item) {
+		excecoesItens.statusItem(item.getStatus());
+		atualizaCartao();
 	}
 	
 	/**

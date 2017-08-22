@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import emprestimo.Emprestimo;
 import itens.Item;
 
 public class UsuarioController {
@@ -66,7 +65,7 @@ public class UsuarioController {
 	 * 
 	 * @return O ID de usuario procurado ou null
 	 * */
-	public IdUsuario pesquisaId(String nome, String telefone) {
+	private IdUsuario pesquisaId(String nome, String telefone) {
 		for (IdUsuario id : usuarios.keySet()) {
 			if (id.getNome().equals(nome) && id.getTelefone().equals(telefone)) {
 				return id;
@@ -74,6 +73,11 @@ public class UsuarioController {
 		}
 		excecoes.usuarioInvalido(false);
 		return null;
+	}
+	
+	public Usuario pegaUsuario(String nome, String telefone) {
+		return usuarios.get(pesquisaId(nome, telefone));
+		
 	}
 	
 
@@ -301,27 +305,6 @@ public class UsuarioController {
 	}
 
 	/**
-	 * Registra emprestimos
-	 * 
-	 * @param nomeDono Nome do dono
-	 * @param telefoneDono Telefone do dono
-	 * @param nomeRequerente Nome da pessoa que pega emprestado
-	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
-	 * @param nomeItem Nome do item
-	 * @param dataEmprestimo Representa a data do emprestimo
-	 * @param periodo Representa o periodo do emprestimo em dias
-	 * */
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		usuarios.get(idRequerente).atualizaCartao();
-		usuarios.get(idRequerente).permicaoEmprestimo();
-		usuarios.get(idRequerente).periodoEmprestimoValido(periodo);
-		Emprestimo emprestimo = usuarios.get(idDono).criarEmprestimo(idDono, idRequerente, nomeItem, dataEmprestimo, periodo);
-		usuarios.get(idRequerente).registrarEmprestimo(emprestimo);
-	}
-
-	/**
 	 * Registra devolucoes de itens no sistema
 	 * 
 	 * @param nomeDono Nome do dono
@@ -350,10 +333,11 @@ public class UsuarioController {
 		String saida = "Lista de usuarios com reputacao negativa: ";
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
 		Collections.sort(lista, new OrdemAlfabeticaComparator());
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getReputacao() < 0) {
-				saida += lista.get(i).toString() + "|";
+		for (Usuario usuario : lista) {
+			if (usuario.getReputacao() < 0) {
+				saida += usuario.toString() + "|";
 			}
+			
 		}
 		return saida;
 	}
@@ -372,28 +356,11 @@ public class UsuarioController {
 
 	private String listarTop10(List<Usuario> lista) {
 		String saida = "";
-		if (lista.size() < 10) {
-			for (int i = 0; i < lista.size(); i++) {
-				saida += (i+1) + ": " + lista.get(i).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(i).getReputacao()) + "|";
+		int contador = 0;
+		while (contador < 10) {
+				saida += (contador + 1) + ": " + lista.get(contador).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(contador).getReputacao()) + "|";
+				contador++;
 			}
-		}
-		else {
-			for (int i = 0; i < 10; i++) {
-				saida += (i+1) + ": " + lista.get(i).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(i).getReputacao()) + "|";
-			}
-		}
 		return saida;
-	}
-	
-	public List<Emprestimo> emprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idDono).getEmprestando());
-		return emprestimos;
-	}
-	
-	public List<Emprestimo> emprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		List<Emprestimo> emprestimos = new ArrayList<>(usuarios.get(idRequerente).getEmprestado());
-		return emprestimos;
 	}
 }
