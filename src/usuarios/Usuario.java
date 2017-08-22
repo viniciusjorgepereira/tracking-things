@@ -5,8 +5,8 @@
 package usuarios;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import cartoes.CartaoBomAmigo;
@@ -16,7 +16,6 @@ import cartoes.CartaoFreeRider;
 import cartoes.CartaoNoob;
 import emprestimo.Emprestimo;
 import emprestimo.ExcecoesEmprestimo;
-import emprestimo.OrdemEmprestimoNome;
 import itens.ExcecoesItens;
 import itens.Filmes;
 import itens.Item;
@@ -36,7 +35,6 @@ public class Usuario {
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
 	private ExcecoesEmprestimo excecoesEmprestimo;
-	private ArrayList<Emprestimo> emprestimosOrdenados;
 
 	/**
 	 * Construtor de um usuario. Recebe um nome, um numero de telefone,
@@ -78,7 +76,27 @@ public class Usuario {
 	public Set<Item> getTodosItens() {
 		return itens;
 	}
-
+	
+	public List<Emprestimo> getEmprestando() {
+		List<Emprestimo> emprestando = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getNomeDono().equals(nome) && emprestimo.getTelefoneDono().equals(telefone)) {
+				emprestando.add(emprestimo);
+			}
+		}
+		return emprestando;
+	}
+	
+	public List<Emprestimo> getEmprestado() {
+		List<Emprestimo> emprestado = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getNomeRequerente().equals(nome) && emprestimo.getTelefoneRequerente().equals(telefone)) {
+				emprestado.add(emprestimo);
+			}
+		}
+		return emprestado;
+	}
+	
 	public void addReputacaoCinco(double preco) {
 		reputacao.acrescimoCinco(preco);
 	}
@@ -324,8 +342,6 @@ public class Usuario {
 	 * */
 	public void registrarEmprestimo(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
-		adicionaEmprestimos(emprestimos);
-		ordenaItemEmprestimoNome();
 	}
 	
 	public void periodoEmprestimoValido(int periodoRequerido) {
@@ -441,21 +457,4 @@ public class Usuario {
 		return this.nome + ", " + this.email + ", " + this.telefone;
 	}
 	
-	public void adicionaEmprestimos(Set<Emprestimo> emprestimos) {
-		emprestimosOrdenados = new ArrayList<>(emprestimos);
-	}
-	
-	public void ordenaItemEmprestimoNome() {
-		Collections.sort(emprestimosOrdenados, new OrdemEmprestimoNome());
-	}
-	
-	public String exibirEmprestimosOrdenadosNomeItem() {
-		String saida = "Emprestimos: ";
-		
-		for(Emprestimo emprestimo: this.emprestimosOrdenados) {
-			saida += emprestimo.toString() + "|";
-		}
-		
-		return saida;
-	}
 }

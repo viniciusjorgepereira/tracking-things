@@ -4,11 +4,13 @@
 
 package principal;
 
+import emprestimo.EmprestimoController;
 import itens.Inventario;
 import usuarios.UsuarioController;
 
 public class SystemController {
 	private UsuarioController usuarios;
+	private EmprestimoController emprestimosController;
 	private Inventario inventario;
 	private ExcecoesEntradas excecoes;
 	
@@ -18,6 +20,7 @@ public class SystemController {
 	 * */
 	public SystemController() {
 		usuarios = new UsuarioController();
+		emprestimosController = new EmprestimoController();
 		inventario = new Inventario();
 		excecoes = new ExcecoesEntradas();
 	}
@@ -319,9 +322,6 @@ public class SystemController {
 		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 
-	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		return null;
-	}
 
 	public String listarEmprestimosItem(String nomeItem) {
 		return null;
@@ -352,7 +352,9 @@ public class SystemController {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
-		return usuarios.listarEmprestimosUsuarioEmprestando(nomeDono, telefoneDono);
-
+		return emprestimosController.listarEmprestimosUsuarioEmprestando(usuarios.emprestimosUsuarioEmprestando(nomeDono, telefoneDono));
+	}
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
+		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.emprestimosUsuarioPegandoEmprestado(nomeRequerente, telefoneRequerente));
 	}
 }
