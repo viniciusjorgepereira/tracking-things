@@ -29,7 +29,6 @@ public class EmprestimoController {
 	}
 	
 	public String listarEmprestimosUsuarioPegandoEmprestado(List<Emprestimo> emprestimos) {
-		ordenaEmprestimos(emprestimos);
 		if (emprestimos.size() > 0) {
 			ordenaEmprestimos(emprestimos);
 			return "Emprestimos pegos: " + listagemEmprestimos();			
