@@ -305,32 +305,6 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Registra devolucoes de itens no sistema
-	 * 
-	 * @param nomeDono Nome do dono
-	 * @param telefoneDono Telefone do dono
-	 * @param nomeRequerente Nome da pessoa que pega emprestado
-	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
-	 * @param nomeItem Nome do item
-	 * @param dataEmprestimo Representa a data do emprestimo
-	 * @param dataDevolucao Representa a data de devolucao do item
-	 * */
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		IdUsuario idDono = pesquisaId(nomeDono, telefoneDono);
-		IdUsuario idRequerente = pesquisaId(nomeRequerente, telefoneRequerente);
-		int atraso = usuarios.get(idDono).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-		usuarios.get(idRequerente).devolverItem(idDono, idRequerente, nomeItem, dataEmprestimo, dataDevolucao);		
-		double preco = Double.parseDouble(usuarios.get(idDono).getInfoItem(nomeItem, "preco"));
-		if (atraso <= 0) {
-			usuarios.get(idRequerente).addReputacaoCinco(preco);
-		}
-		else if (atraso > 0) {
-			usuarios.get(idRequerente).diminuirReputacao(atraso, preco);			
-		}
-	}
-	
-	
-	/**
 	 * Metodo que lista usuarios que possuem reputacao
 	 * de caloteiros
 	 * 
@@ -385,7 +359,7 @@ public class UsuarioController {
 	private String listarTop10(List<Usuario> lista) {
 		String saida = "";
 		int contador = 0;
-		while (contador < 10) {
+		while (contador < lista.size() && contador < 10) {
 				saida += (contador + 1) + ": " + lista.get(contador).getNome() +" - Reputacao: " + String.format("%.2f", lista.get(contador).getReputacao()) + "|";
 				contador++;
 			}

@@ -11,6 +11,7 @@ public abstract class Item {
 	protected String nome;
 	protected double preco;
 	protected boolean status;
+	protected int quantidadeEmprestimos;
 	
 	/**
 	 * Constroi um objeto do tipo Item. Dentro do construtor,
@@ -23,6 +24,7 @@ public abstract class Item {
 		this.nome = nome;
 		this.preco = preco;
 		this.status = false;
+		this.quantidadeEmprestimos = 0;
 	}
 	
 	public void setNome(String nome) {
@@ -39,6 +41,13 @@ public abstract class Item {
 
 	public double getPreco() {
 		return preco;
+	}
+	public int getQuantidadeEmprestimos() {
+		return quantidadeEmprestimos;
+	}
+	
+	public void adicionaQuantidadeEmprestimos() {
+		this.quantidadeEmprestimos += 1;
 	}
 	
 	public boolean getStatus() {
@@ -86,4 +95,5 @@ public abstract class Item {
 	 * @param valor Valor que substituira o antigo
 	 * */
 	public abstract void atualizarAtributo(String atributo, String valor);
+
 }

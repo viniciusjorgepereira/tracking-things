@@ -15,7 +15,6 @@ import cartoes.CartaoFidelidade;
 import cartoes.CartaoFreeRider;
 import cartoes.CartaoNoob;
 import emprestimo.Emprestimo;
-import emprestimo.ExcecoesEmprestimo;
 import itens.ExcecoesItens;
 import itens.Filmes;
 import itens.Item;
@@ -34,7 +33,6 @@ public class Usuario {
 	private CartaoFidelidade cartao;
 	private Set<Emprestimo> emprestimos;
 	private ExcecoesItens excecoesItens;
-	private ExcecoesEmprestimo excecoesEmprestimo;
 
 	/**
 	 * Construtor de um usuario. Recebe um nome, um numero de telefone,
@@ -54,7 +52,6 @@ public class Usuario {
 		this.cartao = new CartaoFreeRider();
 		this.emprestimos = new HashSet<>();
 		this.excecoesItens = new ExcecoesItens();
-		this.excecoesEmprestimo = new ExcecoesEmprestimo();
 	}
 	
 	public String getNome() {
@@ -78,14 +75,15 @@ public class Usuario {
 	}
 	
 	public CartaoFidelidade getCartao() {
+		atualizaCartao();
 		return cartao;
 	}
 	public double getReputacao() {
 		return reputacao.getReputacao();
 	}
 	
-	public List<Emprestimo> getEmprestando() {
-		List<Emprestimo> emprestando = new ArrayList<>();
+	public Set<Emprestimo> getEmprestando() {
+		Set<Emprestimo> emprestando = new HashSet<>();
 		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.getNomeDono().equals(nome) && emprestimo.getTelefoneDono().equals(telefone)) {
 				emprestando.add(emprestimo);
@@ -94,8 +92,8 @@ public class Usuario {
 		return emprestando;
 	}
 	
-	public List<Emprestimo> getEmprestado() {
-		List<Emprestimo> emprestado = new ArrayList<>();
+	public Set<Emprestimo> getEmprestado() {
+		Set<Emprestimo> emprestado = new HashSet<>();
 		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.getNomeRequerente().equals(nome) && emprestimo.getTelefoneRequerente().equals(telefone)) {
 				emprestado.add(emprestimo);
@@ -343,31 +341,7 @@ public class Usuario {
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * Método que registra o emprestimo
-=======
-	 * Método que cria um Emprestimo
-	 * 
-	 * @param dono ID do dono do item
-	 * @param requerente ID do requerente do item
-	 * @param nomeItem Nome do item requerido
-	 * @param dataEmprestimo Data do emprestimo
-	 * @param periodo Período de emprestimo do item
-	 * 
-	 * @return Retorna o emprestimo criado. Sera usado para futuros registros no sistema
-	 * */
-	public Emprestimo criarEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
-		Item item = getItem(nomeItem);
-		excecoesItens.statusItem(item.getStatus());
-		Emprestimo emprestimo = new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
-		registrarEmprestimo(emprestimo);
-		addReputacaoDez(item.getPreco());
-		return emprestimo;
-	}
-	
-	/**
 	 * Metodo que registra o emprestimo
->>>>>>> e61004100655ea117a57809bf012150ae4b5d896
 	 * 
 	 * @param emprestimo O emprestimo a ser adicionado
 	 * */
@@ -375,24 +349,8 @@ public class Usuario {
 		emprestimos.add(emprestimo);
 	}
 	
-	public void getStatusItem(Item item) {
-		excecoesItens.statusItem(item.getStatus());
-		atualizaCartao();
-	}
-	/**
-	 * Metodo que valida o periodo do emprestimo
-	 * 
-	 * @param periodoRequerido Representa o periodo que o item foi pedido
-	 * */
-	public void periodoEmprestimoValido(int periodoRequerido) {
-		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
-	}
-	
-	/**
-	 * Metodo que valida a permissao para o emprestimo
-	 * */
-	public void permissaoEmprestimo() {
-		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
+	public void getStatusItem(String nomeItem) {
+		excecoesItens.statusItem(getItem(nomeItem).getStatus());
 	}
 	
 	/**
@@ -405,32 +363,14 @@ public class Usuario {
 	 * 
 	 * @return Retorna o emprestimo buscado
 	 * */
-	public Emprestimo encontraEmprestimo(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo) {
+	public Emprestimo pegaEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) {
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getDono().equals(dono) && emprestimo.getRequerente().equals(requerente) && emprestimo.getNomeItem().equals(nomeItem)
+			if (emprestimo.getDono().equals(dono) && emprestimo.getRequerente().equals(requerente) && emprestimo.getItem().equals(item)
 					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo)) {
 				return emprestimo;
 			}
 		}
 		return null;
-	}
-	
-	/**
-	 * Registra devolução do item
-	 * 
-	 * @param dono ID do dono
-	 * @param requerente ID do requerente
-	 * @param nomeItem Nome do item emprestado
-	 * @param dataEmprestimo Data do emprestimo
-	 * @param dataDevolucao Data de devolução de emprestimo
-	 * 
-	 * @return A quantidade de dias que a entrega atrasou
-	 * */
-	public int devolverItem(IdUsuario dono, IdUsuario requerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {
-		Emprestimo emprestimo = encontraEmprestimo(dono, requerente, nomeItem, dataEmprestimo);
-		excecoesEmprestimo.emprestimoInvalido(emprestimo);
-		emprestimo.devolucao(dataDevolucao);
-		return emprestimo.getAtraso();
 	}
 	
 	/**

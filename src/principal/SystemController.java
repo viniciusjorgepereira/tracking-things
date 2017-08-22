@@ -5,13 +5,13 @@
 package principal;
 
 import emprestimo.EmprestimoController;
-import itens.Inventario;
+import ordenadores.OrdenadorDeItens;
 import usuarios.UsuarioController;
 
 public class SystemController {
 	private UsuarioController usuarios;
 	private EmprestimoController emprestimosController;
-	private Inventario inventario;
+	private OrdenadorDeItens ordenadorDeItens;
 	private ExcecoesEntradas excecoes;
 	
 	/**
@@ -21,7 +21,7 @@ public class SystemController {
 	public SystemController() {
 		usuarios = new UsuarioController();
 		emprestimosController = new EmprestimoController();
-		inventario = new Inventario();
+		ordenadorDeItens = new OrdenadorDeItens();
 		excecoes = new ExcecoesEntradas();
 	}
 	
@@ -190,7 +190,7 @@ public class SystemController {
 	 * Adiciona itens ao inventario
 	 * */
 	public void adicionaItensInventario() {
-		inventario.adicionaItens(usuarios.getTodosItens());
+		ordenadorDeItens.adicionaItens(usuarios.getTodosItens());
 	}
 
 	/**
@@ -258,7 +258,7 @@ public class SystemController {
 	 * */
 	public String listarItensOrdenadosPorNome() {
 		adicionaItensInventario();
-		return inventario.listarItensOrdenadosPorNome();
+		return ordenadorDeItens.listarItensOrdenadosPorNome();
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class SystemController {
 	 * */
 	public String listarItensOrdenadosPorValor() {
 		adicionaItensInventario();
-		return inventario.listarItensOrdenadosPorValor();
+		return ordenadorDeItens.listarItensOrdenadosPorValor();
 	}
 
 	/**
@@ -299,8 +299,7 @@ public class SystemController {
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		excecoes.dadosInvalidos(nomeDono, telefoneDono, nomeItem, dataEmprestimo, "Nome do item", "Data de Emprestimo");
 		excecoes.dadosInvalidos(nomeRequerente, telefoneRequerente);
-		
-		usuarios.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);	
+		emprestimosController.registrarEmprestimo(usuarios.pegaUsuario(nomeDono, telefoneDono), usuarios.pegaUsuario(nomeRequerente, telefoneRequerente), nomeItem, dataEmprestimo, periodo);	
 	}
 
 	/**
@@ -319,24 +318,25 @@ public class SystemController {
 		excecoes.dadosInvalidos(nomeRequerente, telefoneRequerente);
 		excecoes.outrosDadosInvalidos("Data de Devolução", dataDevolucao);
 		
-		usuarios.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		emprestimosController.devolverItem(usuarios.pegaUsuario(nomeDono, telefoneDono), usuarios.pegaUsuario(nomeRequerente, telefoneRequerente), nomeItem, dataEmprestimo, dataDevolucao);
 	}
 
 
 	public String listarEmprestimosItem(String nomeItem) {
-		return null;
+		return emprestimosController.listarEmprestimosItem(nomeItem);
 	}
 
 	public String listarItensNaoEmprestados() {
-		return null;
+		return emprestimosController.listarItensNaoEmprestados(usuarios.getTodosItens());
+		
 	}
 
 	public String listarItensEmprestados() {
-		return null;
+		return emprestimosController.listarItensEmprestados();
 	}
 
 	public String listarTop10Itens() {
-		return null;
+		return emprestimosController.listarTop10Itens(usuarios.getTodosItens());
 	}
 	  
 	public String listarCaloteiros() {
@@ -352,9 +352,9 @@ public class SystemController {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
-		return emprestimosController.listarEmprestimosUsuarioEmprestando(usuarios.emprestimosUsuarioEmprestando(nomeDono, telefoneDono));
+		return emprestimosController.listarEmprestimosUsuarioEmprestando(usuarios.pegaUsuario(nomeDono, telefoneDono));
 	}
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
-		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.emprestimosUsuarioPegandoEmprestado(nomeRequerente, telefoneRequerente));
+		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.pegaUsuario(nomeRequerente, telefoneRequerente));
 	}
 }

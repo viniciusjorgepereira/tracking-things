@@ -3,9 +3,11 @@
  * por valor
  * */
 
-package itens;
+package ordenadores;
 
 import java.util.Comparator;
+
+import itens.Item;
 
 public class OrdemPorValorComparator implements Comparator<Item> {
 
@@ -13,10 +15,10 @@ public class OrdemPorValorComparator implements Comparator<Item> {
 	 * Ordena itens por valor
 	 * 
 	 * @param iten1 Item para comparacao
-	 * @param iten2 Outro item do mesmo tipo para comparacao
+	 * @param item2 Outro item do mesmo tipo para comparacao
 	 * */
 	@Override
-	public int compare(Item iten1, Item iten2) {
-		return (int) ((iten1.preco - iten2.preco) * 100);
+	public int compare(Item item1, Item item2) {
+		return (int) ((item1.getPreco() - item2.getPreco()) * 100);
 	}
 }

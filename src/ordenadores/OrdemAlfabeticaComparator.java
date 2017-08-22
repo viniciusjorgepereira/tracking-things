@@ -3,9 +3,11 @@
  * por nome
  * */
 
-package itens;
+package ordenadores;
 
 import java.util.Comparator;
+
+import itens.Item;
 
 public class OrdemAlfabeticaComparator implements Comparator<Item> {
 
@@ -16,7 +18,7 @@ public class OrdemAlfabeticaComparator implements Comparator<Item> {
 	 * @param iten2 Outro item do mesmo tipo para comparacao
 	 * */
 	@Override
-	public int compare(Item iten1, Item iten2) {
-		return iten1.nome.compareTo(iten2.nome);
+	public int compare(Item item1, Item item2) {
+		return item1.getNome().compareTo(item2.getNome());
 	}
 }
