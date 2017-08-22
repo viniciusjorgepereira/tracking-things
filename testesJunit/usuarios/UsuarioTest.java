@@ -73,6 +73,16 @@ public class UsuarioTest {
 	}
 	
 	@Test
+	public void testGetInfoUsuario2() {
+		assertEquals("4002-8922", novo.getInfoUsuario("telefone"));
+	}
+	
+	@Test
+	public void testGetInfoUsuario3() {
+		assertEquals("Vinicius", novo.getInfoUsuario("nome"));
+	}
+	
+	@Test
 	public void testGetInfoItem() {
 		assertEquals("89.99", novo.getInfoItem("The Flash", "preco"));
 	}
