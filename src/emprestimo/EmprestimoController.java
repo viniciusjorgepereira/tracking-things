@@ -44,7 +44,6 @@ public class EmprestimoController {
 		item.adicionaQuantidadeEmprestimos();
 		emprestimosSistema.add(emprestimo);
 	}
-	
 
 	/**
 	 * Registra devolucoes de itens no sistema
@@ -76,7 +75,6 @@ public class EmprestimoController {
 		else if (atraso > 0) {
 			requerente.diminuirReputacao(atraso, preco);			
 		}
-		
 	}
 	
 	public void permissaoEmprestimo(Usuario requerente, int periodoRequerido, Item item) {
