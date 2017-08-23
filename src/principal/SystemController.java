@@ -321,39 +321,94 @@ public class SystemController {
 		emprestimosController.devolverItem(usuarios.pegaUsuario(nomeDono, telefoneDono), usuarios.pegaUsuario(nomeRequerente, telefoneRequerente), nomeItem, dataEmprestimo, dataDevolucao);
 	}
 
-
+	/**
+	 * Invoca metodo de listar emprestimos relacionados ao item
+	 * 
+	 * @param nomeItem Item a ser buscado
+	 * 
+	 * @return String com as informacoes do emprestimos relacionados ao item
+	 * */
 	public String listarEmprestimosItem(String nomeItem) {
 		return emprestimosController.listarEmprestimosItem(nomeItem);
 	}
 
+	/**
+	 * Invoca metodo de listar itens nao emprestados
+	 * 
+	 * @return String com as informacoes dos itens nao emprestados
+	 * */
 	public String listarItensNaoEmprestados() {
 		return emprestimosController.listarItensNaoEmprestados(usuarios.getTodosItens());
 		
 	}
 
+	/**
+	 * Invoca metodo de listar itens emprestados
+	 * 
+	 * @return String com as informacoes dos itens emprestados
+	 * */
 	public String listarItensEmprestados() {
 		return emprestimosController.listarItensEmprestados();
 	}
 
+	/**
+	 * Invoca metodo de listar top 10 dos itens do Sistema
+	 * 
+	 * @return String com as informacoes dos itens que estao no top 10
+	 * */
 	public String listarTop10Itens() {
 		return emprestimosController.listarTop10Itens(usuarios.getTodosItens());
 	}
-	  
+
+	/**
+	 * Invoca metodo de listar usuarios caloteiros
+	 * 
+	 * @return String com as informacoes dos usuarios caloteiros
+	 * */
 	public String listarCaloteiros() {
 		return usuarios.listarCaloteiros();
 	}
 	
+	/**
+	 * Invoca metodo de listar os 10 Usuarios de melhor reputacao
+	 * 
+	 * @return String com as informacoes dos 10 melhores usuarios
+	 * */
 	public String listarTop10MelhoresUsuarios() {
 		return usuarios.listarTop10MelhoresUsuarios();
 	}
 	
+	/**
+	 * Invoca metodo de listar os 10 Usuarios de pior reputacao
+	 * 
+	 * @return String com as informacoes dos 10 piores usuarios
+	 * */
 	public String listarTop10PioresUsuarios() {
 		return usuarios.listarTop10PioresUsuarios();
 	}
 	
+	/**
+	 * Invoca metodo de listar os emprestimos que um usuario
+	 * tem papel de dono do item
+	 * 
+	 * @param nomeDono Representa nome do dono do Item
+	 * @param telefoneDono Representa telefone do dono do Item
+	 * 
+	 * @return String com as informacoes dos emprestimos do dono do Item
+	 * */
 	public String listarEmprestimosUsuarioEmprestando(String nomeDono, String telefoneDono) {
 		return emprestimosController.listarEmprestimosUsuarioEmprestando(usuarios.pegaUsuario(nomeDono, telefoneDono));
 	}
+	
+	/**
+	 * Invoca metodo de listar os emprestimos de usuarios que tem
+	 * papel de requerente
+	 * 
+	 * @param nomeRequerente Representa nome do dono do Item
+	 * @param telefoneRequerente Representa telefone do dono do Item
+	 * 
+	 * @return String com as informacoes dos emprestimos
+	 * */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
 		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.pegaUsuario(nomeRequerente, telefoneRequerente));
 	}

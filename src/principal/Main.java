@@ -1,3 +1,7 @@
+/**
+ * Main do projeto. Fica encarregada de excutar os testes de aceitacao
+ * */
+
 package principal;
 
 import easyaccept.EasyAccept;

@@ -75,6 +75,14 @@ public class UsuarioController {
 		return null;
 	}
 	
+	/**
+	 * Pesquisa usuario desejado
+	 * 
+	 * @param nome Representa nome do usuario
+	 * @param telefone Representa nome do usuario
+	 * 
+	 * @return O usuario procurado
+	 * */
 	public Usuario pegaUsuario(String nome, String telefone) {
 		return usuarios.get(pesquisaId(nome, telefone));
 		

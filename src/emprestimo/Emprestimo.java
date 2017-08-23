@@ -25,8 +25,8 @@ public class Emprestimo {
 	/**
 	 * Constroi um emprestimo
 	 * 
-	 * @param dono ID do dono do item
-	 * @param requerente ID do requerente
+	 * @param dono Representa o usuario dono do item
+	 * @param requerente Representa o usuario requerente do Item
 	 * @param dataEmprestimo Data que o emprestimo foi feito
 	 * @param item O item emprestado
 	 * @param dias Os dias totais para o emprestimo

@@ -349,6 +349,11 @@ public class Usuario {
 		emprestimos.add(emprestimo);
 	}
 	
+	/**
+	 * Checka o status do item se está emprestado ou nao
+	 * 
+	 * @param nomeItem Representa nome do item desejado
+	 * */
 	public void getStatusItem(String nomeItem) {
 		excecoesItens.statusItem(getItem(nomeItem).getStatus());
 	}
@@ -356,10 +361,10 @@ public class Usuario {
 	/**
 	 * Busca um emprestimo desejado
 	 * 
-	 * @param dono ID do dono buscado
-	 * @param requerente ID do requerente buscado
-	 * @param nomeItem Nome do item requerido
-	 * @param dataEmprestimo Data do empréstimo
+	 * @param dono Representa dono do item
+	 * @param requerente Representa requerente do item
+	 * @param item Item emprestado
+	 * @param dataEmprestimo Data do emprestimo
 	 * 
 	 * @return Retorna o emprestimo buscado
 	 * */
