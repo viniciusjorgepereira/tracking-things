@@ -19,8 +19,6 @@ public class EmprestimoTest {
 		idDono = new IdUsuario("Bruno", "4002-8922");
 		idRequerente = new IdUsuario("Calcio", "789-6543");
 		Item item = new JogoEletronico("DBX2", 150.64, "PC");
-		
-		emprestimo = new Emprestimo(idDono, idRequerente, "22/01/2017", item, 7);
 	}
 	
 	@Test
@@ -38,17 +36,6 @@ public class EmprestimoTest {
 	public void testGetAtraso() {
 		emprestimo.devolucao("25/01/2017");
 		assertEquals(3, emprestimo.getAtraso());
-	}
-
-	@Test
-	public void testEqualsObject() {
-		idDono = new IdUsuario("Bruno", "4002-8922");
-		idRequerente = new IdUsuario("Calcio", "789-6543");
-		Item item = new JogoEletronico("DBX2", 150.64, "PC");
-		Emprestimo emprestimo2 = new Emprestimo(idDono, idRequerente, "22/01/2017", item, 7);
-		
-		assertTrue(emprestimo.equals(emprestimo2));
-		
 	}
 
 	@Test
