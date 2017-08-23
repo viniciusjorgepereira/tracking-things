@@ -16,6 +16,8 @@ public class OrdemPorValorComparator implements Comparator<Item> {
 	 * 
 	 * @param iten1 Item para comparacao
 	 * @param item2 Outro item do mesmo tipo para comparacao
+	 * 
+	 * @return Retorna o menor preco
 	 * */
 	@Override
 	public int compare(Item item1, Item item2) {

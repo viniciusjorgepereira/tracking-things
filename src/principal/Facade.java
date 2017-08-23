@@ -265,38 +265,93 @@ public class Facade {
 			system.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 		}
 		
+		/**
+		 * Invoca metodo de listar os emprestimos de usuarios que tem
+		 * papel de dono
+		 * 
+		 * @param nome Representa nome do Usuario
+		 * @param telefone Representa telefone do Usuario
+		 * 
+		 * @return String com as informacoes dos emprestimos
+		 * */
 		public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
 			return system.listarEmprestimosUsuarioEmprestando(nome, telefone);
 		}
 	
+		/**
+		 * Invoca metodo de listar os emprestimos de usuarios que tem
+		 * papel de requerente
+		 * 
+		 * @param nome Representa nome do Usuario
+		 * @param telefone Representa telefone do Usuario
+		 * 
+		 * @return String com as informacoes dos emprestimos
+		 * */
 		public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 			return system.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 		}
 	
+		/**
+		 * Invoca metodo de listar emprestimos relacionados ao item
+		 * 
+		 * @param nomeItem Nome do item a ser buscado
+		 * 
+		 * @return String com as informacoes do emprestimos relacionados ao item
+		 * */
 		public String listarEmprestimosItem(String nomeItem) {
 			return system.listarEmprestimosItem(nomeItem);
 		}
 	
+		/**
+		 * Invoca metodo de listar itens nao emprestados
+		 * 
+		 * @return String com as informacoes dos itens nao emprestados
+		 * */
 		public String listarItensNaoEmprestados() {
 			return system.listarItensNaoEmprestados();
 		}
 	
+		/**
+		 * Invoca metodo de listar itens emprestados
+		 * 
+		 * @return String com as informacoes dos itens emprestados
+		 * */
 		public String listarItensEmprestados() {
 			return system.listarItensEmprestados();
 		}
 	
+		/**
+		 * Invoca metodo de listar top 10 dos itens do Sistema
+		 * 
+		 * @return String com as informacoes dos itens que estao no top 10
+		 * */
 		public String listarTop10Itens() {
 			return system.listarTop10Itens();
 		}
 	
+		/**
+		 * Invoca metodo de listar usuarios caloteiros
+		 * 
+		 * @return String com as informacoes dos usuarios caloteiros
+		 * */
 		public String listarCaloteiros() {
 			return system.listarCaloteiros();
 		}
 		
+		/**
+		 * Invoca metodo de listar os 10 Usuarios de melhor reputacao
+		 * 
+		 * @return String com as informacoes dos 10 melhores usuarios
+		 * */
 		public String listarTop10MelhoresUsuarios() {
 			return system.listarTop10MelhoresUsuarios();
 		}
 
+		/**
+		 * Invoca metodo de listar os 10 Usuarios de pior reputacao
+		 * 
+		 * @return String com as informacoes dos 10 piores usuarios
+		 * */
 		public String listarTop10PioresUsuarios() {
 			return system.listarTop10PioresUsuarios();
 		}
@@ -305,5 +360,6 @@ public class Facade {
 		 * Metodo que fecha o sistema
 		 */
 		public void fecharSistema(){
+			
 		}
 }

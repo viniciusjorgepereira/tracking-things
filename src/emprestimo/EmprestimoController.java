@@ -1,3 +1,7 @@
+/**
+ * Classe que gerencia emprestimos e suas excecoes
+ * */
+
 package emprestimo;
 
 import java.util.ArrayList;
@@ -17,6 +21,12 @@ public class EmprestimoController {
 	private OrdenadorDeItens ordenadorDeItens;
 	private Set<Emprestimo> emprestimosSistema;
 	
+	/**
+	 * Constroi o EmprestimoController. Nele, há
+	 * um HashSet dos emprestimos do Sistema, Um
+	 * objeto que gerencia as excecoes de emprestimo
+	 * e um objeto de Ordenador de Itens;
+	 * */
 	public EmprestimoController() {
 		emprestimosSistema = new HashSet<>();
 		excecoesEmprestimo = new ExcecoesEmprestimo();
@@ -26,10 +36,8 @@ public class EmprestimoController {
 	/**
 	 * Registra emprestimos
 	 * 
-	 * @param nomeDono Nome do dono
-	 * @param telefoneDono Telefone do dono
-	 * @param nomeRequerente Nome da pessoa que pega emprestado
-	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param dono Usuario dono do item
+	 * @param requerente Usuario requerente do item
 	 * @param nomeItem Nome do item
 	 * @param dataEmprestimo Representa a data do emprestimo
 	 * @param periodo Representa o periodo do emprestimo em dias
@@ -48,10 +56,8 @@ public class EmprestimoController {
 	/**
 	 * Registra devolucoes de itens no sistema
 	 * 
-	 * @param nomeDono Nome do dono
-	 * @param telefoneDono Telefone do dono
-	 * @param nomeRequerente Nome da pessoa que pega emprestado
-	 * @param telefoneRequerente Telefone da pessoa que pega emprestado
+	 * @param dono Usuario dono do item
+	 * @param requerente Usuario requerente do item
 	 * @param nomeItem Nome do item
 	 * @param dataEmprestimo Representa a data do emprestimo
 	 * @param dataDevolucao Representa a data de devolucao do item
@@ -68,6 +74,14 @@ public class EmprestimoController {
 		punicaoAtraso(requerente, atraso, preco);
 	}
 	
+	/**
+	 * Registra uma punicao por atraso do item na reputacao
+	 * do usuario
+	 * 
+	 * @param requerente Usuario requerente do item
+	 * @param atraso Dias de atraso na entrega
+	 * @param preco Preco do item emprestado
+	 * */
 	public void punicaoAtraso(Usuario requerente, int atraso, double preco) {
 		if (atraso <= 0) {
 			requerente.addReputacaoCinco(preco);
@@ -77,17 +91,44 @@ public class EmprestimoController {
 		}
 	}
 	
+	/**
+	 * Checka se um emprestimo e permitido
+	 * 
+	 * @param requerente Usuario requerente do item
+	 * @param periodoRequerido Perido que o item e procurado pelo requerente
+	 * @param item Item a ser emprestado
+	 * */
 	public void permissaoEmprestimo(Usuario requerente, int periodoRequerido, Item item) {
 		CartaoFidelidade cartao = requerente.getCartao();
 		excecoesEmprestimo.permitirEmprestimo(cartao.permissaoEmprestimo());
 		excecoesEmprestimo.periodoInvalido(cartao.diasMaximoEmprestimo(), periodoRequerido);
 	}
 	
+	/**
+	 * Cria um novo emprestimo
+	 * 
+	 * @param dono Usuario dono do item
+	 * @param requerente Usuario requerente do item
+	 * @param item Item a ser emprestado
+	 * @param dataEmprestimo Data que o emprestimo ocorreu
+	 * @param periodo Periodo em dias que o item pode ficar com o requerente
+	 * 
+	 * @return Retorna o novo emprestimo criado
+	 * */
 	public Emprestimo criarEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo, int periodo) {
 		permissaoEmprestimo(requerente, periodo, item);
 		return new Emprestimo(dono, requerente, dataEmprestimo, item, periodo);
 	}
 	
+	/**
+	 * Lista emprestimos em que o usuario tem papel de
+	 * dono
+	 * 
+	 * @param dono Usuario dono do item
+	 * 
+	 * @return String com a informacoes do itens que o usuario emprestou
+	 
+	 * */
 	public String listarEmprestimosUsuarioEmprestando(Usuario dono) {
 		emprestimosOrdenados = new ArrayList<>(dono.getEmprestando());
 		if (emprestimosOrdenados.size() > 0) {
@@ -97,10 +138,18 @@ public class EmprestimoController {
 		return "Nenhum item emprestado";
 	}
 
+	/**
+	 * Invoca metodo de ordenar emprestimos por nome do item
+	 * */
 	private void ordenaEmprestimos() {
 		Collections.sort(emprestimosOrdenados, new OrdemEmprestimoNome());
 	}
 	
+	/**
+	 * Lista emprestimos ordenados
+	 * 
+	 * @return String com emprestimos ordenados por nome do item envolvido
+	 * */
 	private String listagemEmprestimos() {
 		String saida = "";
 		for(Emprestimo emprestimo: this.emprestimosOrdenados) {
@@ -109,6 +158,14 @@ public class EmprestimoController {
 		return saida;
 	}
 	
+	/**
+	 * Lista emprestimos que o usuario pegou emprestado
+	 * ordenados pelo nome do item envolvido
+	 * 
+	 * @param requerente Usuario quem tem papel de requerente nos emprestimos
+	 * 
+	 * @return Retorna String com os emprestimos ordenados pelo nome do item envolvido
+	 * */
 	public String listarEmprestimosUsuarioPegandoEmprestado(Usuario requerente) {
 		emprestimosOrdenados = new ArrayList<>(requerente.getEmprestado());
 		if (emprestimosOrdenados.size() > 0) {
@@ -118,6 +175,11 @@ public class EmprestimoController {
 		return "Nenhum item pego emprestado";
 	}
 	
+	/**
+	 * Checka itens nao emprestados
+	 * 
+	 * @return Uma lista com os itens nao emprestados
+	 * */
 	private List<Item> itensNaoEmprestados(List<Item> todosItens) {
 		for (int i = todosItens.size() - 1; i > 0 ; i--) {
 			if (todosItens.get(i).getStatus() == true) {
@@ -127,6 +189,11 @@ public class EmprestimoController {
 		return todosItens;
 	}
 	
+	/**
+	 * Checka itens emprestados
+	 * 
+	 * @return Uma lista com os itens emprestados
+	 * */
 	private List<Emprestimo> itensEmprestados() {
 		List<Emprestimo> emprestados = new ArrayList<>();
 		for (Emprestimo emprestimo : emprestimosSistema) {
@@ -137,12 +204,24 @@ public class EmprestimoController {
 		return emprestados;
 	}
 	
+	/**
+	 * Lista itens nao emprestados
+	 * 
+	 * @param todosItens Lista com todos os itens do Sistema
+	 * 
+	 * @return Uma String com as informacoes de itens nao emprestados
+	 * */
 	public String listarItensNaoEmprestados(List<Item> todosItens) {
 		List<Item> itens = new ArrayList<>(itensNaoEmprestados(todosItens));
 		ordenadorDeItens.adicionaItens(itens);
 		return ordenadorDeItens.listarItensOrdenadosPorNome();
 	}
 
+	/**
+	 * Lista itens emprestados
+	 * 
+	 * @return Uma String com as informacoes de itens emprestados
+	 * */
 	public String listarItensEmprestados() {
 		emprestimosOrdenados = new ArrayList<>(itensEmprestados());
 		ordenaEmprestimos();
@@ -153,6 +232,13 @@ public class EmprestimoController {
 		return saida;
 	}
 
+	/**
+	 * Lista emprestimos relacionados ao item
+	 * 
+	 * @param nomeItem Nome do item a ser buscado
+	 * 
+	 * @return Uma String com as informacoes dos emprestimos relacionados ao item
+	 * */
 	public String listarEmprestimosItem(String nomeItem) {
 		String saida = "Emprestimos associados ao item: ";
 		for (Emprestimo emprestimo : emprestimosSistema) {
@@ -166,6 +252,13 @@ public class EmprestimoController {
 		return saida;
 	}
 
+	/**
+	 * Lista o top 10 dos itens
+	 * 
+	 * @param todosItens Lista de todos os itens do Sistema
+	 * 
+	 * @return Uma String deste top 10
+	 * */
 	public String listarTop10Itens(List<Item> todosItens) {
 		ordenadorDeItens.adicionaItens(todosItens);
 		return ordenadorDeItens.listarItensOrdenadosPorQuantidadeEmprestimos();

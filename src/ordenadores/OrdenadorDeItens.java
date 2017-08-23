@@ -79,11 +79,23 @@ public class OrdenadorDeItens {
 		return saida;
 	}
 
+	/**
+	 * Metodo que invoca um outro que lista itens ordenados
+	 * pela quantidade de emprestimos
+	 * 
+	 * @return Uma string com as informacoes dos emprestimos ordenados
+	 * */
 	public String listarItensOrdenadosPorQuantidadeEmprestimos() {
 		ordenaQuantidadeEmprestimos();
 		return listaItensQuantidadeEmprestimosString();
 	}
 
+	/**
+	 * Metodo que lista itens ordenados pela quantidade
+	 * de emprestimos
+	 * 
+	 * @return Uma string com as informacoes dos emprestimos ordenados
+	 * */
 	private String listaItensQuantidadeEmprestimosString() {
 		String saida = "";
 		int posicao = 1;
@@ -96,6 +108,10 @@ public class OrdenadorDeItens {
 		return saida;
 	}
 
+	/**
+	 * Metodo que invoca um outro para ordenar Emprestimos
+	 * pela quantidade de vezes que foram emprestados
+	 * */
 	private void ordenaQuantidadeEmprestimos() {
 		Collections.sort(itensOrdenados, new OrdemPorQuantidadeEmprestimosComparator());
 		

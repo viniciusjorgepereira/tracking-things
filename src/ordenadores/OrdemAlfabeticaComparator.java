@@ -1,6 +1,6 @@
 /**
  * Classe que implementa a interface de ordenacao
- * por nome
+ * por nome do item
  * */
 
 package ordenadores;
@@ -14,8 +14,10 @@ public class OrdemAlfabeticaComparator implements Comparator<Item> {
 	/**
 	 * Ordena itens por nome
 	 * 
-	 * @param iten1 Item para comparacao
-	 * @param iten2 Outro item do mesmo tipo para comparacao
+	 * @param item1 Item para comparacao
+	 * @param item2 Outro item do mesmo tipo para comparacao
+	 * 
+	 * @return Retorna nome de menor letra
 	 * */
 	@Override
 	public int compare(Item item1, Item item2) {

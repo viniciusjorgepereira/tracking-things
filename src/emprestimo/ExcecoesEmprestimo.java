@@ -18,15 +18,21 @@ public class ExcecoesEmprestimo {
 		}
 	}
 	
-	public void permitirEmprestimo(Boolean permicao) {
-		if (permicao == false) {
+	/**
+	 * Lança excecao caso o usuario nao possa pegar itens emprestados
+	 * 
+	 * @param permissao Diz se o usuario pode pegar um item emprestado ou nao
+	 * */
+	public void permitirEmprestimo(Boolean permissao) {
+		if (!permissao) {
 			throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
 		}
 	}
 	/**
 	 * Checka se o periodo de emprestimo eh valido
 	 * 
-	 * @param periodo Numero de dias do emprestimo
+	 * @param periodoPermitido Numero de dias que o emprestimo e permitido
+	 * @param periodoRequerido Numero de dias desejados para emprestimo
 	 */
 	public void periodoInvalido(int periodoPermitido, int periodoRequerido) {
 		if (periodoRequerido > periodoPermitido) {

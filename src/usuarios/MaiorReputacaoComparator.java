@@ -1,9 +1,21 @@
+/**
+ * Classe que compara a reputacao de dois usuarios
+ * */
+
 package usuarios;
 
 import java.util.Comparator;
 
 public class MaiorReputacaoComparator implements Comparator<Usuario>{
 
+	/**
+	 * Metodo que compara duas reputacoes
+	 * 
+	 * @param o1 Usuario para comparacao
+	 * @param o2 Usuario para comparacao
+	 * 
+	 * @return A maior reputacao entre os usuarios comparados
+	 * */
 	@Override
 	public int compare(Usuario o1, Usuario o2) {
 		if (o1.getReputacao() > o2.getReputacao()) {
