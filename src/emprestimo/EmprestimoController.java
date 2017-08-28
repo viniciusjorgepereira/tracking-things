@@ -4,6 +4,7 @@
 
 package emprestimo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,7 +16,7 @@ import itens.Item;
 import ordenadores.OrdenadorDeItens;
 import usuarios.Usuario;
 
-public class EmprestimoController {
+public class EmprestimoController implements Serializable{
 	private ExcecoesEmprestimo excecoesEmprestimo;
 	private List<Emprestimo> emprestimosOrdenados;
 	private OrdenadorDeItens ordenadorDeItens;
