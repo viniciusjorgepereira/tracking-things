@@ -4,6 +4,13 @@
 
 package principal;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import emprestimo.EmprestimoController;
 import ordenadores.OrdenadorDeItens;
 import usuarios.UsuarioController;
@@ -411,5 +418,23 @@ public class SystemController {
 	 * */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nomeRequerente, String telefoneRequerente) {
 		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.pegaUsuario(nomeRequerente, telefoneRequerente));
+	}
+
+	public void iniciarSistema() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream oisUsuarios = new ObjectInputStream(new FileInputStream("dados.txt"));
+		ObjectInputStream oisEmprestimos = new ObjectInputStream(new FileInputStream("emprestimos.txt"));
+		this.usuarios = (UsuarioController) oisUsuarios.readObject();
+		this.emprestimosController = (EmprestimoController) oisEmprestimos.readObject();
+		oisUsuarios.close();
+		oisEmprestimos.close();
+	}
+
+	public void fecharSistema() throws FileNotFoundException, IOException {
+		ObjectOutputStream oosUsuarios = new ObjectOutputStream(new FileOutputStream("dados.txt"));
+		ObjectOutputStream oosEmprestimos = new ObjectOutputStream(new FileOutputStream("emprestimos.txt"));
+		oosUsuarios.writeObject(this.usuarios);
+		oosUsuarios.close();
+		oosEmprestimos.writeObject(this.emprestimosController);
+		oosEmprestimos.close();
 	}
 }

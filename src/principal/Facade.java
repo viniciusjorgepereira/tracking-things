@@ -4,6 +4,9 @@
 
 package principal;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Facade {
 	
 		private SystemController system;
@@ -17,8 +20,12 @@ public class Facade {
 		
 		/**
 		 * Metodo que inicia o sistema
+		 * @throws IOException 
+		 * @throws FileNotFoundException 
+		 * @throws ClassNotFoundException 
 		 */
-		public void iniciarSistema() {
+		public void iniciarSistema() throws FileNotFoundException, IOException, ClassNotFoundException {
+			system.iniciarSistema();
 		}
 		
 		/**
@@ -358,8 +365,10 @@ public class Facade {
 		
 		/**
 		 * Metodo que fecha o sistema
+		 * @throws IOException 
+		 * @throws FileNotFoundException 
 		 */
-		public void fecharSistema(){
-			
+		public void fecharSistema() throws FileNotFoundException, IOException{
+			system.fecharSistema();
 		}
 }
