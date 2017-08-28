@@ -20,7 +20,6 @@ public class ExcecoesEmprestimoTest {
 		idRequerente = new IdUsuario("Calcio", "97987979");
 		item = new JogoEletronico("Mario", 205.75, "NINTENDO_3DS");
 		excecaoEmprestimo = new ExcecoesEmprestimo();
-		emprestimo = new Emprestimo(idDono, idRequerente, "12/05/2017", item, 7);
 	}
 	
 	@Test (expected=IllegalArgumentException.class)

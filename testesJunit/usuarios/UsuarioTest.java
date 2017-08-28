@@ -112,37 +112,6 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void testCriarEmprestimo() {
-		novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
-		assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Emprestado, COMPLETO", novo.getDetalhesItem("Xadrez de Bruxo"));
-	}
-
-	@Test
-	public void testRegistrarEmprestimo() {
-		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Xadrez de Bruxo", "08/08/2017", 5);
-		outroUsuario.registrarEmprestimo(emprestimo);
-	}
-
-	@Test
-	public void testEncontraEmprestimo() {
-		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
-		outroUsuario.registrarEmprestimo(emprestimo);
-		assertEquals(emprestimo, novo.encontraEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017"));
-	}
-
-	@Test (expected=IllegalArgumentException.class)
-	public void testDevolverItem() {
-		novo.devolverItem(novoId, outroUsuarioId, "Monopoly 2", "03/08/2017", "05/07/2017");
-	}
-	
-	@Test
-	public void testDevolverItem2() {
-		Emprestimo emprestimo = novo.criarEmprestimo(novoId, outroUsuarioId, "Monopoly", "03/08/2017", 6);
-		outroUsuario.registrarEmprestimo(emprestimo);
-		novo.devolverItem(novoId, outroUsuarioId, "Monopoly", "03/08/2017", "05/07/2017");
-	}
-
-	@Test
 	public void testToString() {
 		assertEquals("Vinicius, vinicius@ccc.com, 4002-8922", novo.toString());
 	}
