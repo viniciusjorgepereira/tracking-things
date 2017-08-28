@@ -4,7 +4,9 @@
 
 package itens;
 
-public class ExcecoesItens {
+import java.io.Serializable;
+
+public class ExcecoesItens implements Serializable{
 	
 	/**
 	 * Verifica se um item não foi encontrado, lancando

@@ -5,7 +5,9 @@
 
 package usuarios;
 
-public class ExcecoesUsuario {
+import java.io.Serializable;
+
+public class ExcecoesUsuario implements Serializable{
 	
 	/**
 	 * Lança excecao caso o usuario seja invalido

@@ -4,6 +4,7 @@
 
 package usuarios;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +24,7 @@ import itens.JogoTabuleiro;
 import itens.Series;
 import itens.Shows;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
 	private String nome;
 	private String email;

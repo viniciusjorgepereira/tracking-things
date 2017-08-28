@@ -5,7 +5,9 @@
 
 package usuarios;
 
-public class IdUsuario {
+import java.io.Serializable;
+
+public class IdUsuario implements Serializable{
 	
 	private String nome;
 	private String telefone;

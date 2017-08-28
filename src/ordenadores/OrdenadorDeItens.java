@@ -5,6 +5,7 @@
 
 package ordenadores;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 import itens.Item;
 
 
-public class OrdenadorDeItens {
+public class OrdenadorDeItens implements Serializable {
 	private List<Item> itensOrdenados;
 	
 	/**
