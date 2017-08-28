@@ -5,7 +5,9 @@
 
 package cartoes;
 
-public class CartaoCaloteiro implements CartaoFidelidade {
+import java.io.Serializable;
+
+public class CartaoCaloteiro implements CartaoFidelidade, Serializable {
 	private final String tipo = "Caloteiro";
 	private final boolean emprestimo = false;
 	private final int dias = 0;

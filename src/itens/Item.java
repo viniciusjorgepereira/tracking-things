@@ -5,9 +5,10 @@
 
 package itens;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public abstract class Item {
+public abstract class Item implements Serializable{
 	protected String nome;
 	protected double preco;
 	protected boolean status;

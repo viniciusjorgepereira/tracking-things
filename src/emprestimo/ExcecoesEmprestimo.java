@@ -5,7 +5,9 @@
 
 package emprestimo;
 
-public class ExcecoesEmprestimo {
+import java.io.Serializable;
+
+public class ExcecoesEmprestimo implements Serializable{
 
 	/**
 	 * Checka se o emprestimo eh nulo

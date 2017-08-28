@@ -4,6 +4,7 @@
 
 package usuarios;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 import itens.Item;
 
-public class UsuarioController {
+public class UsuarioController implements Serializable{
 
 	private ExcecoesUsuario excecoes;
 	private Map<IdUsuario, Usuario> usuarios;

@@ -4,6 +4,7 @@
 
 package emprestimo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -11,16 +12,16 @@ import java.time.temporal.ChronoUnit;
 import itens.Item;
 import usuarios.Usuario;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable{
 	
+	private int dias;
 	private Item item;
 	private Usuario dono;
 	private Usuario requerente;
-	private LocalDate dataEmprestimo;
-	private LocalDate dataDevolucao;
-	private int dias;
 	private boolean emprestimoAtivo;
-	private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private LocalDate dataDevolucao;
+	private LocalDate dataEmprestimo;
+	private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	/**
 	 * Constroi um emprestimo

@@ -5,7 +5,9 @@
 
 package usuarios;
 
-public class Reputacao {
+import java.io.Serializable;
+
+public class Reputacao implements Serializable{
 	
 	private double reputacao;
 	
