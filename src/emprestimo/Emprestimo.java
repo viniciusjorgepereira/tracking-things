@@ -117,7 +117,8 @@ public class Emprestimo implements Serializable{
 	 * @return Retorna a quantidade de dias em atraso
 	 */
 	public int getAtraso() {
-		return (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS) - this.dias;
+		int diasAtraso = (int) dataEmprestimo.until(dataDevolucao, ChronoUnit.DAYS) - this.dias;
+		return diasAtraso < 0? 0: diasAtraso;
 	}
 
 	@Override

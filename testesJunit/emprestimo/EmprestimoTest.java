@@ -8,17 +8,19 @@ import org.junit.Test;
 import itens.Item;
 import itens.JogoEletronico;
 import usuarios.IdUsuario;
+import usuarios.Usuario;
 
 public class EmprestimoTest {
 
 	private Emprestimo emprestimo;
-	private IdUsuario idDono, idRequerente;
+	private Usuario dono, requerente;
 	
 	@Before
 	public void inicializa(){
-		idDono = new IdUsuario("Bruno", "4002-8922");
-		idRequerente = new IdUsuario("Calcio", "789-6543");
+		dono = new Usuario("Bruno", "4002-8922", "brunoRPM@gmail.com");
+		requerente = new Usuario("Calcio", "789-6543", "calcio@gmail.com");
 		Item item = new JogoEletronico("DBX2", 150.64, "PC");
+		emprestimo = new Emprestimo(dono, requerente, "22/01/2017", item, 7);
 	}
 	
 	@Test
@@ -35,7 +37,10 @@ public class EmprestimoTest {
 	@Test
 	public void testGetAtraso() {
 		emprestimo.devolucao("25/01/2017");
-		assertEquals(3, emprestimo.getAtraso());
+		assertEquals(0, emprestimo.getAtraso());
+		
+		emprestimo.devolucao("30/01/2017");
+		assertEquals(1, emprestimo.getAtraso());
 	}
 
 	@Test
