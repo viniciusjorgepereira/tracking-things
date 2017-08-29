@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 
 public abstract class Item implements Serializable{
+	private static final long serialVersionUID = 1L;
 	protected String nome;
 	protected double preco;
 	protected boolean status;

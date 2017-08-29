@@ -13,7 +13,8 @@ import itens.Item;
 import usuarios.Usuario;
 
 public class Emprestimo implements Serializable{
-	
+
+	private static final long serialVersionUID = 1L;
 	private int dias;
 	private Item item;
 	private Usuario dono;
@@ -21,7 +22,7 @@ public class Emprestimo implements Serializable{
 	private boolean emprestimoAtivo;
 	private LocalDate dataDevolucao;
 	private LocalDate dataEmprestimo;
-	private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final transient DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	/**
 	 * Constroi um emprestimo

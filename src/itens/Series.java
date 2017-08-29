@@ -6,6 +6,7 @@ package itens;
 
 public class Series extends Bluray{
 	
+	private static final long serialVersionUID = 1L;
 	private int episodios;
 	private Genero genero;
 	private String descricao;

@@ -6,6 +6,7 @@ package itens;
 
 public class Filmes extends Bluray{
 
+	private static final long serialVersionUID = 1L;
 	private int lancamento;
 	private Genero genero;
 	

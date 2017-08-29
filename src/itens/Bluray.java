@@ -8,6 +8,7 @@ package itens;
 
 public abstract class Bluray extends Item {
 
+	private static final long serialVersionUID = 1L;
 	protected int duracao;
 	protected ClassificacaoIndicativa classInd;
 	

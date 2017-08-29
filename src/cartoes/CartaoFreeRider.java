@@ -8,6 +8,7 @@ package cartoes;
 import java.io.Serializable;
 
 public class CartaoFreeRider implements CartaoFidelidade, Serializable {
+	private static final long serialVersionUID = 1L;
 	private final String tipo = "FreeRyder";
 	private final boolean emprestimo = true;
 	private final int dias = 5;

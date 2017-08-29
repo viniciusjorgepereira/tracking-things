@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 public class ExcecoesItens implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Verifica se um item não foi encontrado, lancando
 	 * excecao se não encontrado

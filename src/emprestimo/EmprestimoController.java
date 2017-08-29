@@ -17,6 +17,7 @@ import ordenadores.OrdenadorDeItens;
 import usuarios.Usuario;
 
 public class EmprestimoController implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private ExcecoesEmprestimo excecoesEmprestimo;
 	private List<Emprestimo> emprestimosOrdenados;
 	private OrdenadorDeItens ordenadorDeItens;

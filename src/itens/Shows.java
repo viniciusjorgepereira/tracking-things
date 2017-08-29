@@ -6,6 +6,7 @@ package itens;
 
 public class Shows extends Bluray{
 
+	private static final long serialVersionUID = 1L;
 	private int faixas;
 	private String artista;
 	

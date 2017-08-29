@@ -6,6 +6,7 @@
 package itens;
 
 public class JogoEletronico extends Item {
+	private static final long serialVersionUID = 1L;
 	private Plataforma plataforma;
 
 	/**

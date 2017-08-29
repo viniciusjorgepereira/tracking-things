@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 public class ExcecoesUsuario implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Lança excecao caso o usuario seja invalido
 	 * 

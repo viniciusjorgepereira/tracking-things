@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JogoTabuleiro extends Item {
+	private static final long serialVersionUID = 1L;
 	private List<String> pecasPerdidas;
 	
 	/**

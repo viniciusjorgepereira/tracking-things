@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class ExcecoesEmprestimo implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Checka se o emprestimo eh nulo
 	 * 

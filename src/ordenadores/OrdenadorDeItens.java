@@ -14,6 +14,7 @@ import itens.Item;
 
 
 public class OrdenadorDeItens implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private List<Item> itensOrdenados;
 	
 	/**

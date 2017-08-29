@@ -15,6 +15,7 @@ import itens.Item;
 
 public class UsuarioController implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private ExcecoesUsuario excecoes;
 	private Map<IdUsuario, Usuario> usuarios;
 	
