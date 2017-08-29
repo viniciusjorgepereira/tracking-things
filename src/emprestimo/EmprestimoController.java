@@ -35,6 +35,10 @@ public class EmprestimoController implements Serializable{
 		ordenadorDeItens = new OrdenadorDeItens();
 	}
 	
+	public Set<Emprestimo> getEmprestimosSistema(){
+		return emprestimosSistema;
+	}
+	
 	/**
 	 * Registra emprestimos
 	 * 
