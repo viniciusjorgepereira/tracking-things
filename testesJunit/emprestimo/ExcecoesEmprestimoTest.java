@@ -6,19 +6,21 @@ import org.junit.Test;
 import itens.Item;
 import itens.JogoEletronico;
 import usuarios.IdUsuario;
+import usuarios.Usuario;
 
 public class ExcecoesEmprestimoTest {
-	ExcecoesEmprestimo excecaoEmprestimo;
-	Emprestimo emprestimo;
-	IdUsuario idDono, idRequerente;
-	Item item;
+	private ExcecoesEmprestimo excecaoEmprestimo;
+	private Emprestimo emprestimo;
+	private Usuario dono, requerente;
+	private Item item;
 	
 	
 	@Before
 	public void inicializa() {
-		idDono = new IdUsuario("Bruno", "4987984");
-		idRequerente = new IdUsuario("Calcio", "97987979");
+		dono = new Usuario("Bruno", "4987984", "bruno@gmail.com");
+		requerente = new Usuario("Calcio", "97987979", "calcio@gmail.com");
 		item = new JogoEletronico("Mario", 205.75, "NINTENDO_3DS");
+		emprestimo = new Emprestimo(dono, requerente, "14/09/2017", item, 7);
 		excecaoEmprestimo = new ExcecoesEmprestimo();
 	}
 	
