@@ -48,11 +48,6 @@ public class EmprestimoControllerTest {
 	}
 
 	@Test
-	public void testPermissaoEmprestimo() {
-		ec.permissaoEmprestimo(requerente, 5, dono.getItem("Xadrez"));
-	}
-
-	@Test
 	public void testCriarEmprestimo() {
 		fail("Not yet implemented");
 	}
