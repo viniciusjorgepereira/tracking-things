@@ -6,7 +6,7 @@ package usuarios;
 
 import java.util.Comparator;
 
-public class OrdemAlfabeticaComparator implements Comparator<Usuario>{
+public class OrdemAlfabeticaUsuarioComparator implements Comparator<Usuario>{
 
 	/**
 	 * Compara nome de dois usuarios

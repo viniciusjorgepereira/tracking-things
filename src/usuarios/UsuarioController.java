@@ -324,7 +324,7 @@ public class UsuarioController implements Serializable{
 	public String listarCaloteiros() {
 		String saida = "Lista de usuarios com reputacao negativa: ";
 		List<Usuario> lista = new ArrayList<>(usuarios.values());
-		Collections.sort(lista, new OrdemAlfabeticaComparator());
+		Collections.sort(lista, new OrdemAlfabeticaUsuarioComparator());
 		for (Usuario usuario : lista) {
 			if (usuario.getReputacao() < 0) {
 				saida += usuario.toString() + "|";
