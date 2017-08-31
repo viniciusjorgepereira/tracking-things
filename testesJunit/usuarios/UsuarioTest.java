@@ -1,118 +1,111 @@
 package usuarios;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import emprestimo.Emprestimo;
+
 import itens.Item;
 import itens.Series;
 
 public class UsuarioTest {
 
-	private Usuario novo;
-	private Usuario outroUsuario;
-	private IdUsuario novoId;
-	private IdUsuario outroUsuarioId;
+	private Usuario novoUsuario;
 
 	@Before
 	public void inicializa() {
-		novo = new Usuario("Vinicius", "4002-8922", "vinicius@ccc.com");
-		outroUsuario = new Usuario("Jorge", "3321-3321", "jorge@ccc.ufcg.com");
+		novoUsuario = new Usuario("Vinicius", "4002-8922", "vinicius@ccc.com");
 		
-		novoId = new IdUsuario(novo.getNome(), novo.getTelefone());
-		outroUsuarioId = new IdUsuario(outroUsuario.getNome(), outroUsuario.getTelefone());
+		novoUsuario.cadastrarBlurayFilme("Animais Fantasticos", 49.99, 120, 2016, "AVENTURA", "QUATORZE_ANOS");
+		novoUsuario.cadastrarBluraySerie("The Flash", 89.99, "Primeira temporada", 240, "QUATORZE_ANOS", "POLICIAL", 2);
+		novoUsuario.cadastrarBlurayShow("James Bay Ao Vivo", 29.99, 138, 14, "James Bay", "livre");
+		novoUsuario.cadastrarBlurayTemporada("The Flash", 240);
 		
-		novo.cadastrarBlurayFilme("Animais Fantasticos", 49.99, 120, 2016, "AVENTURA", "QUATORZE_ANOS");
-		novo.cadastrarBluraySerie("The Flash", 89.99, "Primeira temporada", 240, "QUATORZE_ANOS", "POLICIAL", 2);
-		novo.cadastrarBlurayShow("James Bay Ao Vivo", 29.99, 138, 14, "James Bay", "livre");
-		novo.cadastrarBlurayTemporada("The Flash", 240);
+		novoUsuario.cadastrarEletronico("GTA V", 89.99, "XBOX_ONE");
+		novoUsuario.cadastrarEletronico("Harry Potter Lego Years 1-4", 39.99, "PS4");
 		
-		novo.cadastrarEletronico("GTA V", 89.99, "XBOX_ONE");
-		novo.cadastrarEletronico("Harry Potter Lego Years 1-4", 39.99, "PS4");
-		
-		novo.cadastrarJogoTabuleiro("Monopoly", 49.99);
-		novo.cadastrarJogoTabuleiro("Xadrez de Bruxo", 99.99);
+		novoUsuario.cadastrarJogoTabuleiro("Monopoly", 49.99);
+		novoUsuario.cadastrarJogoTabuleiro("Xadrez de Bruxo", 99.99);
 	}
 
 	@Test
 	public void testGetNome() {
-		assertEquals("Vinicius", novo.getNome());
+		assertEquals("Vinicius", novoUsuario.getNome());
 	}
 
 	@Test
 	public void testSetNome() {
-		novo.setNome("Jorge");
-		assertEquals("Jorge", novo.getNome());
+		novoUsuario.setNome("Jorge");
+		assertEquals("Jorge", novoUsuario.getNome());
 	}
 
 	@Test
 	public void testGetEmail() {
-		assertEquals("vinicius@ccc.com", novo.getEmail());
+		assertEquals("vinicius@ccc.com", novoUsuario.getEmail());
 	}
 
 	@Test
 	public void testGetTelefone() {
-		assertEquals("4002-8922", novo.getTelefone());
+		assertEquals("4002-8922", novoUsuario.getTelefone());
 	}
 
 	@Test
 	public void testGetItem() {
 		Item teste = new Series("The Flash", 59.90, 380, "My name is Barry Allen and i'm the fastest man alive", "quatorze_anos", "policial", 2);
-		assertEquals(teste, novo.getItem("The Flash"));
+		assertEquals(teste, novoUsuario.getItem("The Flash"));
 	}
 
 	@Test
 	public void testGetDetalhesItem() {
-		assertEquals("SERIE: The Flash, R$ 89.99, Nao emprestado, 240 min, QUATORZE_ANOS, POLICIAL, Temporada 2", novo.getDetalhesItem("The Flash"));
+		assertEquals("SERIE: The Flash, R$ 89.99, Nao emprestado, 240 min, QUATORZE_ANOS, POLICIAL, Temporada 2", novoUsuario.getDetalhesItem("The Flash"));
 	}
 
 	@Test
 	public void testGetInfoUsuario() {
-		assertEquals("vinicius@ccc.com", novo.getInfoUsuario("Email"));
+		assertEquals("vinicius@ccc.com", novoUsuario.getInfoUsuario("Email"));
 	}
 	
 	@Test
 	public void testGetInfoUsuario2() {
-		assertEquals("4002-8922", novo.getInfoUsuario("telefone"));
+		assertEquals("4002-8922", novoUsuario.getInfoUsuario("telefone"));
 	}
 	
 	@Test
 	public void testGetInfoUsuario3() {
-		assertEquals("Vinicius", novo.getInfoUsuario("nome"));
+		assertEquals("Vinicius", novoUsuario.getInfoUsuario("nome"));
 	}
 	
 	@Test
 	public void testGetInfoItem() {
-		assertEquals("89.99", novo.getInfoItem("The Flash", "preco"));
+		assertEquals("89.99", novoUsuario.getInfoItem("The Flash", "preco"));
 	}
 	
 	@Test (expected=IllegalArgumentException.class)
 	public void testRemoverItem() {
-		novo.removerItem("The Flash");
-		novo.getItem("The Flash");
+		novoUsuario.removerItem("The Flash");
+		novoUsuario.getItem("The Flash");
 	}
 
 	@Test
 	public void testAtualizarDadosUsuario() {
-		novo.atualizarDadosUsuario("email", "vinicius@ccc.ufcg.com");
-		assertEquals("vinicius@ccc.ufcg.com", novo.getEmail());
+		novoUsuario.atualizarDadosUsuario("email", "vinicius@ccc.ufcg.com");
+		assertEquals("vinicius@ccc.ufcg.com", novoUsuario.getEmail());
 	}
 
 	@Test
 	public void testAtualizarDadosItens() {
-		novo.atualizarDadosItens("Animais Fantasticos", "preco", "39.99");
-		assertEquals("39.99", novo.getInfoItem("Animais Fantasticos", "preco"));
+		novoUsuario.atualizarDadosItens("Animais Fantasticos", "preco", "39.99");
+		assertEquals("39.99", novoUsuario.getInfoItem("Animais Fantasticos", "preco"));
 	}
 
 	@Test
 	public void testAdicionarPecaPerdida() {
-		novo.adicionarPecaPerdida("Xadrez de Bruxo", "Rainha ma");
-		assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COM PECAS PERDIDAS", novo.getDetalhesItem("Xadrez de Bruxo"));
+		novoUsuario.adicionarPecaPerdida("Xadrez de Bruxo", "Rainha ma");
+		assertEquals("JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 99.99, Nao emprestado, COM PECAS PERDIDAS", novoUsuario.getDetalhesItem("Xadrez de Bruxo"));
 	}
 
 	@Test
 	public void testToString() {
-		assertEquals("Vinicius, vinicius@ccc.com, 4002-8922", novo.toString());
+		assertEquals("Vinicius, vinicius@ccc.com, 4002-8922", novoUsuario.toString());
 	}
 }

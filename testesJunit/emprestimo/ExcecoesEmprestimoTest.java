@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import itens.Item;
 import itens.JogoEletronico;
-import usuarios.IdUsuario;
 import usuarios.Usuario;
 
 public class ExcecoesEmprestimoTest {

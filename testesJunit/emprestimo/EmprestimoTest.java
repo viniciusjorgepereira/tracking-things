@@ -1,13 +1,12 @@
 package emprestimo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import itens.Item;
 import itens.JogoEletronico;
-import usuarios.IdUsuario;
 import usuarios.Usuario;
 
 public class EmprestimoTest {
