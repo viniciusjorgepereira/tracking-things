@@ -32,6 +32,15 @@ public class SystemController {
 		excecoes = new ExcecoesEntradas();
 	}
 	
+	public void iniciarSistema() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream oisUsuarios = new ObjectInputStream(new FileInputStream("dados.txt"));
+		ObjectInputStream oisEmprestimos = new ObjectInputStream(new FileInputStream("emprestimos.txt"));
+		this.usuarios = (UsuarioController) oisUsuarios.readObject();
+		this.emprestimosController = (EmprestimoController) oisEmprestimos.readObject();
+		oisUsuarios.close();
+		oisEmprestimos.close();
+	}
+	
 	/**
 	 * Invoca metodo de cadastrar usuarios
 	 * 
@@ -420,14 +429,6 @@ public class SystemController {
 		return emprestimosController.listarEmprestimosUsuarioPegandoEmprestado(usuarios.pegaUsuario(nomeRequerente, telefoneRequerente));
 	}
 
-	public void iniciarSistema() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream oisUsuarios = new ObjectInputStream(new FileInputStream("dados.txt"));
-		ObjectInputStream oisEmprestimos = new ObjectInputStream(new FileInputStream("emprestimos.txt"));
-		this.usuarios = (UsuarioController) oisUsuarios.readObject();
-		this.emprestimosController = (EmprestimoController) oisEmprestimos.readObject();
-		oisUsuarios.close();
-		oisEmprestimos.close();
-	}
 
 	public void fecharSistema() throws FileNotFoundException, IOException {
 		ObjectOutputStream oosUsuarios = new ObjectOutputStream(new FileOutputStream("dados.txt"));
