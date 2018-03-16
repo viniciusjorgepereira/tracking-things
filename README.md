@@ -5,6 +5,6 @@ Um sistema de emprestimos de jogos eletronicos, de tabuleiro, blu-rays entre out
 
 ### Projeto de Laboratorio de Programação II, UFCG, 2071.1
 Desenvolvido por:
-[Bruno Meneses](https://github.com/bruno-meneses)
-[Sammara Rinoa](https://github.com/SamaraRinoa)
+[Bruno Meneses](https://github.com/bruno-meneses),
+[Sammara Rinoa](https://github.com/SamaraRinoa),
 [Vinícius Jorge](https://github.com/viniciusjorgepereira)
