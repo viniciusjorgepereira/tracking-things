@@ -7,4 +7,4 @@ Um sistema de emprestimos de jogos eletronicos, de tabuleiro, blu-rays entre out
 Desenvolvido por:
 [Bruno Meneses](https://github.com/bruno-meneses),
 [Sammara Rinoa](https://github.com/SamaraRinoa),
-[Vinícius Jorge](https://github.com/viniciusjorgepereira)
+[Vinícius Jorge](https://github.com/viniciusjps)
